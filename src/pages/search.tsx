@@ -1,5 +1,4 @@
-import NewsArticlesGrid from "@/components/NewsArticlesGrid";
-import { NewsArticle } from "@/models/NewsArticle";
+
 import Head from "next/head";
 import { FormEvent, useState } from "react";
 import { Button, Form, Spinner } from "react-bootstrap";
@@ -13,7 +12,6 @@ const SearchNewsPage = () => {
     e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);
     const searchQuery = formData.get("searchQuery")?.toString().trim();
-    
     if (searchQuery) {
       try {
         setSearchResults(null);
@@ -21,14 +19,14 @@ const SearchNewsPage = () => {
         setSearchResultsLoading(true);
 
         const response = await fetch(`/api/search-news?q=${searchQuery}`);
-        const articles: NewsArticle[] = await response.json();
+        const articles:NewsArticle[]= await response.json();
 
         setSearchResults(articles);
       } catch (error) {
         console.log(error);
         setSearchResultsLoadingIsError(true);
       } finally {
-        setSearchResultsLoading(false);
+        setSearchResultsLoading(false)
       }
     }
   };
@@ -36,10 +34,10 @@ const SearchNewsPage = () => {
   return (
     <>
       <Head>
-        <title key="title">Search News - NextJS News App</title>
+        <title key="title">Rent Me</title>
       </Head>
       <main>
-        <h1>Search News</h1>
+        <h1>Search Rental Product Here</h1>
         <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3" controlId="search-input">
             <Form.Label>Search query</Form.Label>
