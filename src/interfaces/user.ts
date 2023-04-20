@@ -1,4 +1,4 @@
-import { ICourse } from "./product";
+import { Iproduct } from "./product";
 
 interface UserAddress {
   country: string;

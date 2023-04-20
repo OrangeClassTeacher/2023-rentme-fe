@@ -17,12 +17,9 @@ export interface Iproduct {
   picture: string;
   description: string;
   instructor: IUser;
-  level: ICourseLevel;
   category: IProductCategory;
   requirements: string[];
   goals: string[];
-  reviews: ICourseReview[];
-  sections: ICourseSection[];
   readCount: number;
   purchaseCount: number;
   price: number;
