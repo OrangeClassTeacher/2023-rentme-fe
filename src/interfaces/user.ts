@@ -26,8 +26,7 @@ export interface IUser {
   address?: UserAddress;
   avatar: string;
   role: IUserRole;
-  boughtCourses: ICourse[];
-  ownCourses: ICourse[];
+
   avgRating: number;
   socialAccounts: {
     facebook: string;
