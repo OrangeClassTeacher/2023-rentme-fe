@@ -1,7 +1,7 @@
 import react, { FC } from "react";
 import Image from "next/image";
 import Link from "next/link";
-
+import { Search } from "./Search";
 import mainLogo from "@/images/logo.png";
 import { RiMenu4Fill } from "react-icons/ri";
 import { FiShoppingBag, FiSearch } from "react-icons/fi";
@@ -38,9 +38,10 @@ export const Header = () => {
         </nav>
 
         <div className="flex items-center gap-7">
-          <button className="text-xl hover:opacity-70 duration-300">
+          {/* <button className="text-xl hover:opacity-70 duration-300">
             <FiSearch />
-          </button>
+          </button> */}
+          <Search />
           <button className="text-xl hover:opacity-70 duration-300">
             <FiShoppingBag />
           </button>
