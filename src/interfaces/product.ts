@@ -12,13 +12,13 @@ export interface IProductCategory {
 }
 
 export interface Iproduct {
-  _id: string;
   itemName: string;
   itemPhoto: string;
   description: string;
   categoryId: string;
-  phoneNuber: number;
+  phoneNumber: number;
   rating: number;
   rentalPrice: number;
-  rentalDate: string;
+  rentalStartDate: Date;
+  rentalEndDate: Date;
 }
