@@ -17,7 +17,7 @@ interface IUser {
   favItems: string;
 }
 
-export default function index() {
+export default function Index() {
   const [logEmail, setLogEmail] = useState<string>("");
   const [logPassword, setLogPassword] = useState<string>("");
   const [userData, setUserData] = useState<IUser>();

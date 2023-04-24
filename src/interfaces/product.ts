@@ -13,19 +13,12 @@ export interface IProductCategory {
 
 export interface Iproduct {
   _id: string;
-  name: string;
-  picture: string;
+  itemName: string;
+  itemPhoto: string;
   description: string;
-  instructor: IUser;
-  category: IProductCategory;
-  requirements: string[];
-  goals: string[];
-  readCount: number;
-  purchaseCount: number;
-  price: number;
-  discountPrice: number;
-  isPublished: boolean;
-  avgRating: number;
-  createdAt: string;
-  updatedAt: string;
-};
+  categoryId: string;
+  phoneNuber: number;
+  rating: number;
+  rentalPrice: number;
+  rentalDate: string;
+}
