@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Link from "react";
 interface IUser {
   firstName: string;
   lastName: string;
@@ -36,16 +37,27 @@ export default function index() {
   console.log(userData);
 
   return (
-    <div>
-      <input
-        onChange={(e) => setLogEmail(e.target.value)}
-        placeholder="Email"
-      />
-      <input
-        onChange={(e) => setLogPassword(e.target.value)}
-        placeholder="Password"
-      />
-      <button onClick={login}>Log In</button>
+    <div className="w-full bg-white p-8">
+      <div className=" flex items-center flex-col gap-3">
+        <h1 className="text-3xl text-indigo-500">Нэвтрэх</h1>
+        <input
+          onChange={(e) => setLogEmail(e.target.value)}
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/3 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          placeholder="Email"
+        />
+        <input
+          onChange={(e) => setLogPassword(e.target.value)}
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/3 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          placeholder="Password"
+        />
+        <p className="underline text-sky-500">Бүртгэл үүсгэх</p>
+        <button
+          onClick={login}
+          className="text-indigo-500 outline outline-offset-2 outline-blue-500 rounded px-3"
+        >
+          Log In
+        </button>
+      </div>
     </div>
   );
 }
