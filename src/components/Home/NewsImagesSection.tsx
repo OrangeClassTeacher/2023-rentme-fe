@@ -24,10 +24,10 @@ const Carousel: React.FC<Props> = ({ interval = 5000 }) => {
     <BootstrapCarousel activeIndex={index} onSelect={handleSelect} interval={interval}>
       {items.map((item: CarouselItem, i: number ) => (
         <BootstrapCarousel.Item key={i}>
-          <Image src={item.imageUrl} alt={item.title} width="500" height="500" />
+          <Image src={item.imageUrl} alt={item.title} width="400" height="400" />
           <BootstrapCarousel.Caption>
             <h3>{item.title}</h3>
-            <p>{item.docs}</p>
+            {/* <p>{item.docs}</p> */}
           </BootstrapCarousel.Caption>
         </BootstrapCarousel.Item>
       ))}
