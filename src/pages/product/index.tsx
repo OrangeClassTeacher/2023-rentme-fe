@@ -33,7 +33,7 @@ export default function Index() {
         return (
           <div
             key={index}
-            className="w-96 py-4 text-center border border-indigo-500 rounded"
+            className="w-96 py-4 text-center border border-teal-500 rounded"
           >
             <h1 className="text-xl"> {item.itemName}</h1>
             <h3 className="text-base">Description : {item.description}</h3>
