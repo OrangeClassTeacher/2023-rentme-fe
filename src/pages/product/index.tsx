@@ -12,7 +12,7 @@ export default function Index() {
   useEffect(() => {
     getData();
   }, [search]);
-
+  //ji
   const getData = () => {
     if (search && search != "") {
       axios

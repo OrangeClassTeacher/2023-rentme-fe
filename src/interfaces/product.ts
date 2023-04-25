@@ -14,6 +14,7 @@ export interface IProductCategory {
 export interface Iproduct {
   itemName: string;
   itemPhoto: string;
+  itemSlidePhoto: string[];
   description: string;
   categoryId: string;
   phoneNumber: number;

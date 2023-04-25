@@ -4,11 +4,14 @@ import { useState } from "react";
 import { Iproduct } from "@/interfaces/product";
 export default function Index() {
   const [proData, setProData] = useState<Iproduct>();
+  const [thumbImg, setThumbImg] = useState("");
+  const [Images, setImages] = useState([]);
   const createProd = (event: any) => {
     event.preventDefault();
     const data: Iproduct = {
       itemName: event.target.itemName.value,
-      itemPhoto: event.target.itemPhoto.value,
+      itemPhoto: thumbImg,
+      itemSlidePhoto: Images,
       description: event.target.description.value,
       categoryId: event.target.category.value,
       phoneNumber: event.target.phoneNumber.value,
@@ -20,9 +23,11 @@ export default function Index() {
     setProData(data);
     axios
       .post("http://localhost:8000/api/item", proData)
-      .then((res) => console.log(res.data.result));
+      .then((res) => console.log(res.data.result))
+      .catch((err) => console.log(err));
   };
   console.log(proData);
+  console.log(Images);
 
   return (
     <div className="py-8">
@@ -36,7 +41,57 @@ export default function Index() {
           />
           <input
             placeholder="Item Photo..."
+            type={"file"}
             name="itemPhoto"
+            onChange={(e) => {
+              const url = "https://api.cloudinary.com/v1_1/lwvom2iu/upload";
+              const formData = new FormData();
+              let file: any = e.target.files[0];
+              formData.append("file", file);
+              formData.append("api_key", "384825931744178");
+              formData.append("folder", "RentMeProduct");
+              formData.append("upload_preset", "lwvom2iu");
+
+              axios.post(url, formData).then((res) => {
+                setThumbImg(res.data.secure_url);
+              });
+            }}
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/3 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          />
+          <input
+            placeholder="Item Photo..."
+            type={"file"}
+            multiple
+            name="itemSlidePhoto"
+            onChange={async (e) => {
+              console.log(e.target.value);
+              const url = "https://api.cloudinary.com/v1_1/lwvom2iu/upload";
+              const formData = new FormData();
+              let file = e.target.files;
+              // console.log(file);
+
+              const images = [];
+              for (let i = 0; i < file.length; i++) {
+                images.push(file[i]);
+              }
+              console.log(images);
+              const promise = await Promise.all(
+                images.map((file) => {
+                  formData.append("file", file);
+                  formData.append("api_key", "384825931744178");
+                  formData.append("folder", "RentMeProduct");
+                  formData.append("upload_preset", "lwvom2iu");
+                  return axios.post(url, formData);
+                })
+              );
+              let newArr: any = [];
+              console.log(promise);
+              promise.map((e) => {
+                console.log(e);
+                newArr.push(e.data.secure_url);
+                setImages(newArr);
+              });
+            }}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/3 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           />
           <input
