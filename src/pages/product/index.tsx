@@ -38,7 +38,7 @@ export default function Index() {
               key={index}
               className="w-96 py-4 text-center border border-teal-500 rounded"
             >
-              <img src={item.itemPhoto} alt="itemPhoto" />
+              <img src={item.itemPhoto} alt="itemPhoto" className="w-full" />
               <h1 className="text-xl"> {item.itemName}</h1>
               <h3 className="text-base">Description : {item.description}</h3>
               <p className="text-sm">
