@@ -8,7 +8,7 @@ import { FiShoppingBag, FiSearch } from "react-icons/fi";
 
 export const Header = () => {
   return (
-    <div className="w-full bg-head text-white sticky top-0 z-[50] bg-teal-300">
+    <div className="w-full bg-head text-white sticky top-0 z-[50] bg-gradient-to-r from-gray-900 to-gray-500">
       <div className="container py-5 border-b border-b-white/[.15] flex items-center justify-between">
         <div className="flex items-center gap-7">
           <Link href="/">

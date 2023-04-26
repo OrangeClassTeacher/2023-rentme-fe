@@ -8,7 +8,7 @@ import mainLogo from '@/images/logo.png';
 
 export const Footer = () => {
     return(
-        <div className="bg-head bg-teal-300">
+        <div className="bg-head bg-gradient-to-r from-gray-900 to-gray-500">
     <div className="container">
       <div className="py-[60px] text-white flex items-center  justify-between border-b border-b-white/[.15]">
         <div className="text-2xl-medium pb-2 hover:text-color-6">
