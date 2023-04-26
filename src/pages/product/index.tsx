@@ -25,28 +25,35 @@ export default function Index() {
     }
   };
   return (
-    <div className="flex flex-wrap gap-4 py-6 ps-4">
-      <button>
-        <Link href="/addProduct">Create news</Link>
-      </button>
-      {productData?.map((item, index): JSX.Element => {
-        return (
-          <div
-            key={index}
-            className="w-96 py-4 text-center border border-teal-500 rounded"
-          >
-            <h1 className="text-xl"> {item.itemName}</h1>
-            <h3 className="text-base">Description : {item.description}</h3>
-            <p className="text-sm">
-              Phone :
-              <a href="tel" className="underline hover:underline-offset-4">
-                {item.phoneNumber}
-              </a>
-            </p>
-            <span className="text-sm">Rental price : {item.rentalPrice}$</span>
-          </div>
-        );
-      })}
+    <div>
+      <div className="ps-4 py-4">
+        <button className="text-indigo-500 outline outline-offset-2 outline-blue-500 rounded px-3">
+          <Link href="/addProduct">Create news</Link>
+        </button>
+      </div>
+      <div className="flex flex-wrap gap-4 py-6 ps-4">
+        {productData?.map((item, index): JSX.Element => {
+          return (
+            <div
+              key={index}
+              className="w-96 py-4 text-center border border-teal-500 rounded"
+            >
+              <img src={item.itemPhoto} alt="itemPhoto" />
+              <h1 className="text-xl"> {item.itemName}</h1>
+              <h3 className="text-base">Description : {item.description}</h3>
+              <p className="text-sm">
+                Phone :
+                <a href="tel" className="underline hover:underline-offset-4">
+                  {item.phoneNumber}
+                </a>
+              </p>
+              <span className="text-sm">
+                Rental price : {item.rentalPrice}$
+              </span>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
