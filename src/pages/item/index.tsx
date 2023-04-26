@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import Link from "next/link";
+
 import { useState, useEffect, useContext } from "react";
 import { Iproduct } from "../../interfaces/product";
 import { SearchContext } from "@/context/searchTextContext";
@@ -13,6 +14,7 @@ export default function Index() {
     getData();
   }, [search]);
   //ji
+
   const getData = () => {
     if (search && search != "") {
       axios
@@ -51,6 +53,9 @@ export default function Index() {
               <span className="text-sm">
                 Rental price : {item.rentalPrice}$
               </span>
+              <button className="text-indigo-500 outline outline-offset-2 outline-blue-500 rounded px-3">
+                <Link href={`/item/${item._id}`}>Detail</Link>
+              </button>
             </div>
           );
         })}
