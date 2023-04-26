@@ -12,7 +12,7 @@ export const Header = () => {
       <div className="container py-5 border-b border-b-white/[.15] flex items-center justify-between">
         <div className="flex items-center gap-7">
           <Link href="/">
-            <Image className="w-10 h-10" src={mainLogo} alt="IntelliSense" />
+            <Image className="w-10 h-10 hover:animate-spin" src={mainLogo} alt="IntelliSense" />
           </Link>
           <button className="text-color-6 flex items-center gap-2 text-md-regular hover:text-color-6/70 duration-300">
             <RiMenu4Fill size={24} />
