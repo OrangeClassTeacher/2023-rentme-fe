@@ -46,12 +46,16 @@ export const Header = () => {
             <FiShoppingBag />
           </button>
 
-          <button className="text-white text-md-regular hover:text-white/70 duration-300">
+          <button className="text-head rounded-lg px-[34px] py-2 text-md-regular hover:bg-white/70 duration-300">
             <Link href="/login">Log In</Link>
           </button>
 
           <button className="text-head rounded-lg px-[34px] py-2 text-md-regular hover:bg-white/70 duration-300">
+
+            <Link href="/signup">
             Sign Up
+            </Link>
+  
           </button>
         </div>
       </div>

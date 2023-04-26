@@ -26,9 +26,6 @@ export default function Index() {
       .then((res) => console.log(res.data.result))
       .catch((err) => console.log(err));
   };
-  console.log(proData);
-  console.log(Images);
-
   return (
     <div className="py-8">
       <form onSubmit={createProd} className="">
