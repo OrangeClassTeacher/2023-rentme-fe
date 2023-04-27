@@ -50,6 +50,7 @@ export const Header = () => {
             <Link href="/login">Log In</Link>
           </button>
 
+<<<<<<< HEAD
           <button className="text-head rounded-lg px-[34px] py-2 text-md-regular hover:bg-white/70 duration-300">
 
             <Link href="/signup">
@@ -57,6 +58,9 @@ export const Header = () => {
             </Link>
   
           </button>
+=======
+         
+>>>>>>> c6f948b (loginsingupfixed)
         </div>
       </div>
     </div>
