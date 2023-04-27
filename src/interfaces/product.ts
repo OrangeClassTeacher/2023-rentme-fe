@@ -12,7 +12,6 @@ export interface IProductCategory {
 }
 
 export interface Iproduct {
-  _id: string;
   itemName: string;
   itemPhoto: string;
   itemSlidePhoto: string[];

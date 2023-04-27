@@ -16,25 +16,16 @@ export interface IUserRole {
 }
 
 export interface IUser {
-  _id: string;
   firstName: string;
   lastName: string;
-  fullName: string;
+  Username: string;
   birthDate: string;
   email: string;
-  phone: string;
-  address?: UserAddress;
-  avatar: string;
-  role: IUserRole;
-
-  avgRating: number;
-  socialAccounts: {
-    facebook: string;
-    twitter: string;
-    linkedin: string;
-    instagram: string;
-  };
-  bio: string;
-  createdAt: string;
-  updatedAt: string;
+  phoneNumber: string;
+  address?: string;
+  role: string;
+  favItems: string[];
+  gender: string;
+  profilePic: string;
+  password: string;
 }
