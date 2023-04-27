@@ -2,31 +2,45 @@ import axios from "axios";
 import Link from "next/link";
 import { FC, useState } from "react";
 import { FaFacebookF, FaGoogle } from "react-icons/fa";
+import { IUser } from "../../interfaces/user";
 
 const RegisterForm: FC = () => {
-  const [email, setEmail] = useState<string>("");
-  const [phone, setPhone] = useState<string>("");
-  const [firstName, setFirstName] = useState<string>("");
-  const [lastName, setLastName] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+  const [userData, setUserData] = useState<IUser>();
   const [rePassword, setRePassword] = useState<string>("");
 
-  const registerUser = async (): Promise<void> => {
-    try {
-      const res = await axios.post(
-        "http://localhost:8000/api/auth/signup",
-        {
-          email,
-          phone,
-          firstName,
-          lastName,
-          password,
-          rePassword,
-        },
-        { withCredentials: true }
-      );
+  const registerUser = async (event: any) => {
+    event.preventDefault();
+    const data: IUser = {
+      firstName: event.target.firstName.value,
+      lastName: event.target.lastName.value,
+      Username: event.target.username.value,
+      birthDate: event.target.birthDate.value,
+      email: event.target.email.value,
+      phoneNumber: event.target.phoneNumber.value,
+      address: event.target.address.value,
+      role: "User",
+      favItems: ["HI"],
+      gender: event.target.gender.value,
+      profilePic: "hi",
+      password: event.target.password.value,
+    };
+    // console.log(data);
 
-      console.log(res);
+    if (event.target.password.value == event.target.rePassword.value) {
+      setUserData(data);
+    } else {
+      alert("Нууц үг таарахгүй байна");
+    }
+
+    try {
+      if (userData) {
+        console.log(userData);
+
+        axios
+          .post("http://localhost:8000/api/user", userData)
+          .then((res) => console.log(res.data.result))
+          .catch((err) => console.log(err));
+      }
     } catch (error) {
       console.log(error);
     }
@@ -46,22 +60,21 @@ const RegisterForm: FC = () => {
         </p>
       </div>
       <form
-        onSubmit={(e): void => {
-          e.preventDefault();
-          registerUser();
+        onSubmit={(event) => {
+          registerUser(event);
         }}
         className="text-head"
       >
         <div className="grid grid-cols-2 gap-5 mb-5">
           <div className="w-full">
-            <label className="block mb-2 text-lg-medium text-teal-500" htmlFor="firstName">
+            <label
+              className="block mb-2 text-lg-medium text-teal-500"
+              htmlFor="firstName"
+            >
               Нэр
             </label>
             <input
-              value={firstName}
-              onChange={(e): void => {
-                setFirstName(e.target.value);
-              }}
+              name="firstName"
               type="text"
               id="firstName"
               className="border border-border-2 w-full py-[12px] px-[22px] rounded-lg focus:outline-none focus:ring-2 focus:ring-color-1 text-text text-md-regular"
@@ -70,30 +83,75 @@ const RegisterForm: FC = () => {
           </div>
 
           <div className="w-full">
-            <label className="block mb-2 text-lg-medium text-teal-500" htmlFor="lastName">
+            <label
+              className="block mb-2 text-lg-medium text-teal-500"
+              htmlFor="lastName"
+            >
               Овог
             </label>
             <input
-              value={lastName}
-              onChange={(e): void => {
-                setLastName(e.target.value);
-              }}
+              name="lastName"
               type="text"
               id="lastName"
               className="border border-border-2 w-full py-[12px] px-[22px] rounded-lg focus:outline-none focus:ring-2 focus:ring-color-1 text-text text-md-regular"
               placeholder="Овог"
             />
           </div>
-
           <div className="w-full">
-            <label className="block mb-2 text-lg-medium text-teal-500" htmlFor="email">
+            <label
+              className="block mb-2 text-lg-medium text-teal-500"
+              htmlFor="username"
+            >
+              Username
+            </label>
+            <input
+              name="username"
+              type="text"
+              id="username"
+              className="border border-border-2 w-full py-[12px] px-[22px] rounded-lg focus:outline-none focus:ring-2 focus:ring-color-1 text-text text-md-regular"
+              placeholder="Овог"
+            />
+          </div>
+          <div className="w-full">
+            <label
+              className="block mb-2 text-lg-medium text-teal-500"
+              htmlFor="gender"
+            >
+              Хүйс
+            </label>
+            <select
+              name="gender"
+              id="gender"
+              className="border border-border-2 w-full py-[12px] px-[22px] rounded-lg focus:outline-none focus:ring-2 focus:ring-color-1 text-text text-md-regular"
+            >
+              <option value="0">Сонгох....</option>
+              <option value="Male">Эрэгтэй</option>
+              <option value="Female">Эмэгтэй</option>
+            </select>
+          </div>
+          <div className="w-full">
+            <label
+              className="block mb-2 text-lg-medium text-teal-500"
+              htmlFor="birthDate"
+            >
+              Төрсөн өдөр
+            </label>
+            <input
+              name="birthDate"
+              type={"date"}
+              id="birthDate"
+              className="border border-border-2 w-full py-[12px] px-[22px] rounded-lg focus:outline-none focus:ring-2 focus:ring-color-1 text-text text-md-regular"
+            />
+          </div>
+          <div className="w-full">
+            <label
+              className="block mb-2 text-lg-medium text-teal-500"
+              htmlFor="email"
+            >
               И-мэйл
             </label>
             <input
-              value={email}
-              onChange={(e): void => {
-                setEmail(e.target.value);
-              }}
+              name="email"
               type="email"
               id="email"
               className="border border-border-2 w-full py-[12px] px-[22px] rounded-lg focus:outline-none focus:ring-2 focus:ring-color-1 text-text text-md-regular"
@@ -102,30 +160,44 @@ const RegisterForm: FC = () => {
           </div>
 
           <div className="w-full">
-            <label className="block mb-2 text-lg-medium text-teal-500" htmlFor="phone">
+            <label
+              className="block mb-2 text-lg-medium text-teal-500"
+              htmlFor="phone"
+            >
               Утасны дугаар
             </label>
             <input
-              value={phone}
-              onChange={(e): void => {
-                setPhone(e.target.value);
-              }}
-              type="text"
+              name="phoneNumber"
+              type="number"
               id="phone"
               className="border border-border-2 w-full py-[12px] px-[22px] rounded-lg focus:outline-none focus:ring-2 focus:ring-color-1 text-text text-md-regular"
               placeholder="Утасны дугаар"
             />
           </div>
-
+          <div className="w-full">
+            <label
+              className="block mb-2 text-lg-medium text-teal-500"
+              htmlFor="address"
+            >
+              Хаяг
+            </label>
+            <input
+              name="address"
+              type="text"
+              id="address"
+              className="border border-border-2 w-full py-[12px] px-[22px] rounded-lg focus:outline-none focus:ring-2 focus:ring-color-1 text-text text-md-regular"
+              placeholder="Оршин суугаа хаяг"
+            />
+          </div>
           <div className="w-[300px]">
-            <label className="block mb-2 text-lg-medium text-teal-500" htmlFor="password">
+            <label
+              className="block mb-2 text-lg-medium text-teal-500"
+              htmlFor="password"
+            >
               Нууц үг
             </label>
             <input
-              value={password}
-              onChange={(e): void => {
-                setPassword(e.target.value);
-              }}
+              name="password"
               type="password"
               id="password"
               className="border border-border-2 w-full py-[12px] px-[22px] rounded-lg focus:outline-none focus:ring-2 focus:ring-color-1 text-text text-md-regular"
@@ -134,7 +206,10 @@ const RegisterForm: FC = () => {
           </div>
 
           <div className="w-[300px]">
-            <label className="block mb-2 text-lg-medium text-teal-500" htmlFor="repassword">
+            <label
+              className="block mb-2 text-lg-medium text-teal-500"
+              htmlFor="repassword"
+            >
               Нууц үг давтах
             </label>
             <input
@@ -143,6 +218,7 @@ const RegisterForm: FC = () => {
                 setRePassword(e.target.value);
               }}
               type="password"
+              name="rePassword"
               id="repassword"
               className="border border-border-2 w-full py-[12px] px-[22px] rounded-lg focus:outline-none focus:ring-2 focus:ring-color-1 text-text text-md-regular"
               placeholder="Нууц үг давтах"
