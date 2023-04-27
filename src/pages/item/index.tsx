@@ -28,8 +28,8 @@ export default function Index() {
   };
   return (
     <div>
-      <div className="ps-4 py-4">
-        <button className="text-indigo-500 outline outline-offset-2 outline-blue-500 rounded px-3">
+      <div className="text-center p-4">
+        <button className="text-teal-500 outline outline-offset-2 outline-teal-500 bg-white rounded px-3">
           <Link href="/addProduct">Create news</Link>
         </button>
       </div>
@@ -41,7 +41,7 @@ export default function Index() {
               className="w-96 py-4 text-center border border-teal-500 rounded"
             >
               <img src={item.itemPhoto} alt="itemPhoto" className="w-full" />
-              <h1 className="text-xl"> {item.itemName}</h1>
+              <h1 className="text-xl "> {item.itemName}</h1>
               <h3 className="text-base">Description : {item.description}</h3>
               <p className="text-sm">
                 Phone :
@@ -52,9 +52,11 @@ export default function Index() {
               <span className="text-sm">
                 Rental price : {item.rentalPrice}$
               </span>
-              <button className="text-indigo-500 outline outline-offset-2 outline-blue-500 rounded px-3">
-                <Link href={`/item/${item._id}`}>Detail</Link>
+              <div className="p-3">
+              <button className="text-rose-500  outline outline-offset-2 outline-white rounded px-3">
+                <Link href={`/item/${item._id}`}>Product Detail</Link>
               </button>
+              </div>
             </div>
           );
         })}
