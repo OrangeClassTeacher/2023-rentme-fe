@@ -2,7 +2,8 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Link from "next/link"
-import { FaFacebookF, FaGoogle } from "react-icons/fa";
+import { FaFacebookF, FaGoogle,FaYahoo } from "react-icons/fa";
+import AuthLayout from "@/components/auth/AuthLayout";
 interface IUser {
   firstName: string;
   lastName: string;
@@ -38,7 +39,8 @@ export default function Index() {
   console.log(userData);
 
   return (
-    <div className="w-full bg-white p-8">
+    <AuthLayout>
+    <div className="w-full h-full bg-white p-8">
       <div className=" flex items-center flex-col gap-3">
         <h1 className="text-3xl text-teal-500">Нэвтрэх</h1>
         <input
@@ -91,8 +93,13 @@ export default function Index() {
             <FaGoogle />
             Google-ээр нэвтрэх
           </button>
+          <button className="flex items-center gap-2 text-[#1967d2] py-3 px-5 rounded-lg border-2 border-[#1967d2] hover:bg-[#1967d2] hover:text-white duration-300">
+            <FaYahoo />
+            Yahoo-ээр нэвтрэх
+          </button>
         </div>
       </div>
     </div>
+    </AuthLayout>
   );
 }

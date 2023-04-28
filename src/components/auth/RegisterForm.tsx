@@ -1,12 +1,43 @@
 import axios from "axios";
 import Link from "next/link";
 import { FC, useState } from "react";
-import { FaFacebookF, FaGoogle } from "react-icons/fa";
+import { FaFacebookF, FaGoogle, FaYahoo } from "react-icons/fa";
+import { BsCheckCircle, BsXCircle } from "react-icons/bs";
 import { IUser } from "../../interfaces/user";
 
 const RegisterForm: FC = () => {
   const [userData, setUserData] = useState<IUser>();
   const [rePassword, setRePassword] = useState<string>("");
+  const [isPasswordRequirementMet, setIsPasswordRequirementMet] =
+    useState<boolean>(false);
+
+  const [passwordRequirements, setPasswordRequirements] = useState([
+    {
+      title: "Хамгийн багадаа 8 тэмдэгттэй байх",
+      state: false,
+      regex: new RegExp("(?=.{8,})"),
+    },
+    {
+      title: "Дор хаяж 1 том үсэг орсон байх",
+      state: false,
+      regex: new RegExp("(?=.*[A-Z])"),
+    },
+    {
+      title: "Дор хаяж 1 жижиг үсэг орсон байх",
+      state: false,
+      regex: new RegExp("(?=.*[a-z])"),
+    },
+    {
+      title: "Дор хаяж 1 тоо орсон байх",
+      state: false,
+      regex: new RegExp("(?=.*[0-9])"),
+    },
+    {
+      title: "Дор хаяж 1 тусгай тэмдэгт орсон байх",
+      state: false,
+      regex: new RegExp("(?=.*[^A-Za-z0-9])"),
+    },
+  ]);
 
   const registerUser = async (event: any) => {
     event.preventDefault();
@@ -102,7 +133,7 @@ const RegisterForm: FC = () => {
               className="block mb-2 text-lg-medium text-teal-500"
               htmlFor="username"
             >
-              Username
+             Xэрэглэгчийн нэр
             </label>
             <input
               name="username"
@@ -225,6 +256,22 @@ const RegisterForm: FC = () => {
             />
           </div>
         </div>
+        <div className="mb-7">
+          <ul className="flex flex-col gap-1 text-md-regular">
+            {passwordRequirements.map((requirement, index) => (
+              <li
+                key={`password-requirement-${index}`}
+                className={`flex items-center gap-2 ${
+                  requirement.state ? "text-green-600" : "text-red-600"
+                }`}
+              >
+                {requirement.state && <BsCheckCircle size={15} />}
+                {!requirement.state && <BsXCircle size={15} />}
+                {requirement.title}
+              </li>
+            ))}
+          </ul>
+        </div>
 
         <div className="flex items-center gap-[10px] text-sm-regular mb-5">
           <input
@@ -247,6 +294,10 @@ const RegisterForm: FC = () => {
         <p className="text-center text-md-medium mb-5 text-teal-500">Эсвэл</p>
 
         <div className="grid grid-cols-2 gap-5">
+            <button className="flex text-teal-500 items-center justify-center gap-2 text-[#1967d2] py-3 px-5 rounded-lg border-2 border-[#1967d2] hover:bg-[#1967d2] hover:text-white duration-300" >
+                <FaYahoo/>
+                Yahoo-ээр бүртгүүлэх
+            </button>
           <button className="flex text-teal-500 items-center justify-center gap-2 text-[#1967d2] py-3 px-5 rounded-lg border-2 border-[#1967d2] hover:bg-[#1967d2] hover:text-white duration-300">
             <FaFacebookF />
             Facebook-ээр бүртгүүлэх

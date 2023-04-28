@@ -51,7 +51,7 @@ export const Header = () => {
           </button>
 
           <button className="text-head rounded-lg px-[34px] py-2 text-md-regular hover:bg-white/70 duration-300">
-            <Link href="/login">SignIn/SignUp</Link>
+            <Link href="/login">Login</Link>
           </button>
         </div>
       </div>
