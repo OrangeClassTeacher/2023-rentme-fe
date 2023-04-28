@@ -1,15 +1,18 @@
 import axios from "axios";
 import Link from "next/link";
-import { FC, useState, useEffect } from "react";
+import { FC, useState, useEffect, useContext } from "react";
 import { FaFacebookF, FaGoogle, FaYahoo } from "react-icons/fa";
 import { BsCheckCircle, BsXCircle } from "react-icons/bs";
 import { IUser } from "../../interfaces/user";
+import { userIdCon } from "@/context/userIdContext";
 
 const RegisterForm: FC = () => {
-  const [userData, setUserData] = useState<IUser>();
+  const [userData, setUserData] = useState({});
   const [rePassword, setRePassword] = useState<string>("");
   const [isPasswordRequirementMet, setIsPasswordRequirementMet] =
     useState<boolean>(false);
+  const { userId, setUserId } = useContext(userIdCon);
+  const [userInfo, setUserInfo] = useState({});
 
   const [rePasswordRequirements, setrePasswordRequirements] = useState([
     {
@@ -83,11 +86,10 @@ const RegisterForm: FC = () => {
 
     setPasswordRequirements(newPasswordRequirements);
   }, [rePassword]);
-  
 
   const registerUser = async (event: any) => {
     event.preventDefault();
-    const data: IUser = {
+    const data = {
       firstName: event.target.firstName.value,
       lastName: event.target.lastName.value,
       Username: event.target.username.value,
@@ -111,18 +113,23 @@ const RegisterForm: FC = () => {
 
     try {
       if (userData) {
-        console.log(userData);
+        // console.log(userData);
 
         axios
           .post("http://localhost:8000/api/user", userData)
-          .then((res) => console.log(res.data.result))
+          .then((res) => {
+            const { data } = res.data;
+            console.log(data, "Success");
+            if (userInfo?._id != undefined) {
+              localStorage.setItem("currentUserId", userInfo?._id);
+            }
+          })
           .catch((err) => console.log(err));
       }
     } catch (error) {
       console.log(error);
     }
   };
-  
 
   return (
     <div className="p-[50px] bg-white rounded-2xl shadow-shadow-dashboard">
@@ -180,7 +187,7 @@ const RegisterForm: FC = () => {
               className="block mb-2 text-lg-medium text-teal-500"
               htmlFor="username"
             >
-             Xэрэглэгчийн нэр
+              Xэрэглэгчийн нэр
             </label>
             <input
               name="username"
@@ -294,8 +301,6 @@ const RegisterForm: FC = () => {
               value={rePassword}
               onChange={(e): void => {
                 setRePassword(e.target.value);
-
-                
               }}
               type="password"
               name="rePassword"
@@ -343,10 +348,10 @@ const RegisterForm: FC = () => {
         <p className="text-center text-md-medium mb-5 text-teal-500">Эсвэл</p>
 
         <div className="grid grid-cols-2 gap-5">
-            <button className="flex text-teal-500 items-center justify-center gap-2 text-[#1967d2] py-3 px-5 rounded-lg border-2 border-[#1967d2] hover:bg-[#1967d2] hover:text-white duration-300" >
-                <FaYahoo/>
-                Yahoo-ээр бүртгүүлэх
-            </button>
+          <button className="flex text-teal-500 items-center justify-center gap-2 text-[#1967d2] py-3 px-5 rounded-lg border-2 border-[#1967d2] hover:bg-[#1967d2] hover:text-white duration-300">
+            <FaYahoo />
+            Yahoo-ээр бүртгүүлэх
+          </button>
           <button className="flex text-teal-500 items-center justify-center gap-2 text-[#1967d2] py-3 px-5 rounded-lg border-2 border-[#1967d2] hover:bg-[#1967d2] hover:text-white duration-300">
             <FaFacebookF />
             Facebook-ээр бүртгүүлэх

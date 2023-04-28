@@ -33,11 +33,11 @@ export default function Index() {
         password: logPassword,
       })
       .then((res) => {
-        setData(res.data.data);
-        const { data } = res.data;
-        if (data?._id != undefined) {
-          localStorage.setItem("currentUserId", data?._id);
-          setUserId(data?._id);
+        setData(res.data.result);
+        const { result } = res.data;
+        if (result?._id != undefined) {
+          localStorage.setItem("currentUserId", result?._id);
+          setUserId(result?._id);
         }
       })
       .catch((err) => console.log(err));
