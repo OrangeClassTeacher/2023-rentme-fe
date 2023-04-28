@@ -1,7 +1,7 @@
 import axios from "axios";
 import Link from "next/link";
 import { FC, useState, useEffect } from "react";
-import { FaFacebookF, FaGoogle, FaYahoo } from "react-icons/fa";
+import { FaFacebookF, FaGoogle, } from "react-icons/fa";
 import { BsCheckCircle, BsXCircle } from "react-icons/bs";
 import { IUser } from "../../interfaces/user";
 
@@ -11,33 +11,6 @@ const RegisterForm: FC = () => {
   const [isPasswordRequirementMet, setIsPasswordRequirementMet] =
     useState<boolean>(false);
 
-  const [rePasswordRequirements, setrePasswordRequirements] = useState([
-    {
-      title: "Хамгийн багадаа 8 тэмдэгттэй байх",
-      state: false,
-      regex: new RegExp("(?=.{8,})"),
-    },
-    {
-      title: "Дор хаяж 1 том үсэг орсон байх",
-      state: false,
-      regex: new RegExp("(?=.*[A-Z])"),
-    },
-    {
-      title: "Дор хаяж 1 жижиг үсэг орсон байх",
-      state: false,
-      regex: new RegExp("(?=.*[a-z])"),
-    },
-    {
-      title: "Дор хаяж 1 тоо орсон байх",
-      state: false,
-      regex: new RegExp("(?=.*[0-9])"),
-    },
-    {
-      title: "Дор хаяж 1 тусгай тэмдэгт орсон байх",
-      state: false,
-      regex: new RegExp("(?=.*[^A-Za-z0-9])"),
-    },
-  ]);
   const [passwordRequirements, setPasswordRequirements] = useState([
     {
       title: "Хамгийн багадаа 8 тэмдэгттэй байх",
@@ -155,7 +128,7 @@ const RegisterForm: FC = () => {
               name="firstName"
               type="text"
               id="firstName"
-              className="border border-border-2 w-full py-[12px] px-[22px] rounded-lg focus:outline-none focus:ring-2 focus:ring-color-1 text-text text-md-regular"
+              className="text-black border border-border-2 w-full py-[12px] px-[22px] rounded-lg focus:outline-none focus:ring-2 focus:ring-color-1 text-text text-md-regular"
               placeholder="Нэр"
             />
           </div>
@@ -171,7 +144,7 @@ const RegisterForm: FC = () => {
               name="lastName"
               type="text"
               id="lastName"
-              className="border border-border-2 w-full py-[12px] px-[22px] rounded-lg focus:outline-none focus:ring-2 focus:ring-color-1 text-text text-md-regular"
+              className="text-black border border-border-2 w-full py-[12px] px-[22px] rounded-lg focus:outline-none focus:ring-2 focus:ring-color-1 text-text text-md-regular"
               placeholder="Овог"
             />
           </div>
@@ -186,7 +159,7 @@ const RegisterForm: FC = () => {
               name="username"
               type="text"
               id="username"
-              className="border border-border-2 w-full py-[12px] px-[22px] rounded-lg focus:outline-none focus:ring-2 focus:ring-color-1 text-text text-md-regular"
+              className="text-black border border-border-2 w-full py-[12px] px-[22px] rounded-lg focus:outline-none focus:ring-2 focus:ring-color-1 text-text text-md-regular"
               placeholder="Овог"
             />
           </div>
@@ -200,7 +173,7 @@ const RegisterForm: FC = () => {
             <select
               name="gender"
               id="gender"
-              className="border border-border-2 w-full py-[12px] px-[22px] rounded-lg focus:outline-none focus:ring-2 focus:ring-color-1 text-text text-md-regular"
+              className="text-black border border-border-2 w-full py-[12px] px-[22px] rounded-lg focus:outline-none focus:ring-2 focus:ring-color-1 text-text text-md-regular"
             >
               <option value="0">Сонгох....</option>
               <option value="Male">Эрэгтэй</option>
@@ -218,7 +191,7 @@ const RegisterForm: FC = () => {
               name="birthDate"
               type={"date"}
               id="birthDate"
-              className="border border-border-2 w-full py-[12px] px-[22px] rounded-lg focus:outline-none focus:ring-2 focus:ring-color-1 text-text text-md-regular"
+              className="text-black border border-border-2 w-full py-[12px] px-[22px] rounded-lg focus:outline-none focus:ring-2 focus:ring-color-1 text-text text-md-regular"
             />
           </div>
           <div className="w-full">
@@ -232,7 +205,7 @@ const RegisterForm: FC = () => {
               name="email"
               type="email"
               id="email"
-              className="border border-border-2 w-full py-[12px] px-[22px] rounded-lg focus:outline-none focus:ring-2 focus:ring-color-1 text-text text-md-regular"
+              className="text-black border border-border-2 w-full py-[12px] px-[22px] rounded-lg focus:outline-none focus:ring-2 focus:ring-color-1 text-text text-md-regular"
               placeholder="И-мэйл"
             />
           </div>
@@ -248,7 +221,7 @@ const RegisterForm: FC = () => {
               name="phoneNumber"
               type="number"
               id="phone"
-              className="border border-border-2 w-full py-[12px] px-[22px] rounded-lg focus:outline-none focus:ring-2 focus:ring-color-1 text-text text-md-regular"
+              className="text-black border border-border-2 w-full py-[12px] px-[22px] rounded-lg focus:outline-none focus:ring-2 focus:ring-color-1 text-text text-md-regular"
               placeholder="Утасны дугаар"
             />
           </div>
@@ -263,7 +236,7 @@ const RegisterForm: FC = () => {
               name="address"
               type="text"
               id="address"
-              className="border border-border-2 w-full py-[12px] px-[22px] rounded-lg focus:outline-none focus:ring-2 focus:ring-color-1 text-text text-md-regular"
+              className="text-black border border-border-2 w-full py-[12px] px-[22px] rounded-lg focus:outline-none focus:ring-2 focus:ring-color-1 text-text text-md-regular"
               placeholder="Оршин суугаа хаяг"
             />
           </div>
@@ -278,8 +251,14 @@ const RegisterForm: FC = () => {
               name="password"
               type="password"
               id="password"
-              className="border border-border-2 w-full py-[12px] px-[22px] rounded-lg focus:outline-none focus:ring-2 focus:ring-color-1 text-text text-md-regular"
+              className="text-black border border-border-2 w-full py-[12px] px-[22px] rounded-lg focus:outline-none focus:ring-2 focus:ring-color-1 text-text text-black text-md-regular"
               placeholder="Нууц үг"
+              value={rePassword}
+              onChange={(e): void => {
+                setRePassword(e.target.value);
+
+                
+              }}
             />
           </div>
 
@@ -291,16 +270,10 @@ const RegisterForm: FC = () => {
               Нууц үг давтах
             </label>
             <input
-              value={rePassword}
-              onChange={(e): void => {
-                setRePassword(e.target.value);
-
-                
-              }}
               type="password"
               name="rePassword"
               id="repassword"
-              className="border border-border-2 w-full py-[12px] px-[22px] rounded-lg focus:outline-none focus:ring-2 focus:ring-color-1 text-text text-md-regular"
+              className="text-black border border-border-2 text-black w-full py-[12px] px-[22px] rounded-lg focus:outline-none focus:ring-2 focus:ring-color-1 text-text text-md-regular"
               placeholder="Нууц үг давтах"
             />
           </div>
@@ -343,17 +316,13 @@ const RegisterForm: FC = () => {
         <p className="text-center text-md-medium mb-5 text-teal-500">Эсвэл</p>
 
         <div className="grid grid-cols-2 gap-5">
-            <button className="flex text-teal-500 items-center justify-center gap-2 text-[#1967d2] py-3 px-5 rounded-lg border-2 border-[#1967d2] hover:bg-[#1967d2] hover:text-white duration-300" >
-                <FaYahoo/>
-                Yahoo-ээр бүртгүүлэх
-            </button>
+        <button className="flex text-teal-500 items-center justify-center gap-2 text-[#D93025] py-3 px-5 rounded-lg border-2 border-[#D93025] hover:bg-[#d93025] hover:text-white duration-300">
+            <FaGoogle />
+            Google-ээр бүртгүүлэх
+          </button>
           <button className="flex text-teal-500 items-center justify-center gap-2 text-[#1967d2] py-3 px-5 rounded-lg border-2 border-[#1967d2] hover:bg-[#1967d2] hover:text-white duration-300">
             <FaFacebookF />
             Facebook-ээр бүртгүүлэх
-          </button>
-          <button className="flex text-teal-500 items-center justify-center gap-2 text-[#D93025] py-3 px-5 rounded-lg border-2 border-[#D93025] hover:bg-[#d93025] hover:text-white duration-300">
-            <FaGoogle />
-            Google-ээр бүртгүүлэх
           </button>
         </div>
       </form>

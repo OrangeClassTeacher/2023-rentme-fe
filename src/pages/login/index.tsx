@@ -87,6 +87,7 @@ export default function Index() {
             onClick={login}
             className="text-teal-500 outline outline-offset-2 outline-teal-500 rounded px-3"
           >
+<<<<<<< HEAD
             Hэвтрэх
           </button>
 
@@ -106,6 +107,30 @@ export default function Index() {
               Yahoo-ээр нэвтрэх
             </button>
           </div>
+=======
+            Нууц үгээ мартсан уу?
+          </Link>
+        </div>
+
+        <button
+          onClick={login}
+          className="text-teal-500 outline outline-offset-2 outline-teal-500 rounded px-3"
+        >
+          Hэвтрэх
+        </button>
+
+        <p className="text-center text-md-medium mb-5 text-teal-500">Эсвэл</p>
+
+        <div className="flex items-center gap-5">
+        <button className="flex text-teal-500 items-center justify-center gap-2 text-[#D93025] py-3 px-5 rounded-lg border-2 border-[#D93025] hover:bg-[#d93025] hover:text-white duration-300">
+            <FaGoogle />
+            Google-ээр бүртгүүлэх
+          </button>
+          <button className="flex items-center gap-2 text-[#1967d2] py-3 px-5 rounded-lg border-2 border-[#1967d2] hover:bg-[#1967d2] hover:text-white duration-300">
+            <FaFacebookF />
+            Facebook-ээр нэвтрэх
+          </button>
+>>>>>>> 165cebb (signup req fixed)
         </div>
       </div>
     </AuthLayout>
