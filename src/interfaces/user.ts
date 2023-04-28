@@ -16,6 +16,7 @@ export interface IUserRole {
 }
 
 export interface IUser {
+  IUser: string;
   firstName: string;
   lastName: string;
   Username: string;
