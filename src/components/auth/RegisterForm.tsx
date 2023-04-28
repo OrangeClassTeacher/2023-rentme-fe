@@ -1,6 +1,6 @@
 import axios from "axios";
 import Link from "next/link";
-import { FC, useState } from "react";
+import { FC, useState, useEffect } from "react";
 import { FaFacebookF, FaGoogle, FaYahoo } from "react-icons/fa";
 import { BsCheckCircle, BsXCircle } from "react-icons/bs";
 import { IUser } from "../../interfaces/user";
@@ -11,6 +11,33 @@ const RegisterForm: FC = () => {
   const [isPasswordRequirementMet, setIsPasswordRequirementMet] =
     useState<boolean>(false);
 
+  const [rePasswordRequirements, setrePasswordRequirements] = useState([
+    {
+      title: "Хамгийн багадаа 8 тэмдэгттэй байх",
+      state: false,
+      regex: new RegExp("(?=.{8,})"),
+    },
+    {
+      title: "Дор хаяж 1 том үсэг орсон байх",
+      state: false,
+      regex: new RegExp("(?=.*[A-Z])"),
+    },
+    {
+      title: "Дор хаяж 1 жижиг үсэг орсон байх",
+      state: false,
+      regex: new RegExp("(?=.*[a-z])"),
+    },
+    {
+      title: "Дор хаяж 1 тоо орсон байх",
+      state: false,
+      regex: new RegExp("(?=.*[0-9])"),
+    },
+    {
+      title: "Дор хаяж 1 тусгай тэмдэгт орсон байх",
+      state: false,
+      regex: new RegExp("(?=.*[^A-Za-z0-9])"),
+    },
+  ]);
   const [passwordRequirements, setPasswordRequirements] = useState([
     {
       title: "Хамгийн багадаа 8 тэмдэгттэй байх",
@@ -38,6 +65,25 @@ const RegisterForm: FC = () => {
       regex: new RegExp("(?=.*[^A-Za-z0-9])"),
     },
   ]);
+
+  useEffect(() => {
+    for (const req of passwordRequirements) {
+      if (!req.state) return setIsPasswordRequirementMet(false);
+    }
+
+    setIsPasswordRequirementMet(true);
+  }, [passwordRequirements]);
+
+  useEffect(() => {
+    const newPasswordRequirements = [...passwordRequirements];
+    for (const req of newPasswordRequirements) {
+      if (req.regex.test(rePassword)) req.state = true;
+      else req.state = false;
+    }
+
+    setPasswordRequirements(newPasswordRequirements);
+  }, [rePassword]);
+  
 
   const registerUser = async (event: any) => {
     event.preventDefault();
@@ -76,6 +122,7 @@ const RegisterForm: FC = () => {
       console.log(error);
     }
   };
+  
 
   return (
     <div className="p-[50px] bg-white rounded-2xl shadow-shadow-dashboard">
@@ -247,6 +294,8 @@ const RegisterForm: FC = () => {
               value={rePassword}
               onChange={(e): void => {
                 setRePassword(e.target.value);
+
+                
               }}
               type="password"
               name="rePassword"
