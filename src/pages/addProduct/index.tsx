@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
 import { Iproduct } from "@/interfaces/product";
@@ -6,6 +6,7 @@ export default function Index() {
   const [proData, setProData] = useState<Iproduct>();
   const [thumbImg, setThumbImg] = useState("");
   const [Images, setImages] = useState([]);
+  const [catData, setCatData] = useState([]);
   const createProd = (event: any) => {
     event.preventDefault();
     const data: Iproduct = {
@@ -26,6 +27,13 @@ export default function Index() {
       .then((res) => console.log(res.data.result))
       .catch((err) => console.log(err));
   };
+  useEffect(() => {
+    axios
+      .get("http://localhost:8000/api/category")
+      .then((res) => setCatData(res.data.result));
+  }, []);
+  console.log(catData);
+
   return (
     <div className="py-8">
       <form onSubmit={createProd} className="">
@@ -96,11 +104,19 @@ export default function Index() {
             name="description"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-teal-500 block w-1/3 p-2.5 dark:bg-white dark:border-teal-600 dark:placeholder-gray-500 dark:text-white dark:focus:ring-teal-500 dark:focus:border-teal-500"
           />
-          <input
+          <select
             placeholder="categoryId"
             name="category"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-teal-500 block w-1/3 p-2.5 dark:bg-white dark:border-teal-600 dark:placeholder-gray-500 dark:text-white dark:focus:ring-teal-500 dark:focus:border-teal-500"
-          />
+          >
+            {catData.map((item, index) => {
+              return (
+                <option value={item._id} key={index}>
+                  {item.categoryName}
+                </option>
+              );
+            })}
+          </select>
           <input
             placeholder="Phone Number"
             name="phoneNumber"
