@@ -32,7 +32,6 @@ export default function Index() {
       .get("http://localhost:8000/api/category")
       .then((res) => setCatData(res.data.result));
   }, []);
-  console.log(catData);
 
   return (
     <div className="py-8">

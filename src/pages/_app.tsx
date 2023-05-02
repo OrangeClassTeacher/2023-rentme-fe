@@ -7,12 +7,11 @@ import { userIdCon } from "@/context/userIdContext";
 export default function App({ Component, pageProps }: AppProps) {
   const [search, setSearch] = useState("");
   const [userId, setUserId] = useState("");
-  console.log(search);
 
   return (
     <SearchContext.Provider value={{ search, setSearch }}>
       <userIdCon.Provider value={{ userId, setUserId }}>
-        <Layout>
+        <Layout className="z-0">
           <Component {...pageProps} />
         </Layout>
       </userIdCon.Provider>
