@@ -3,6 +3,7 @@ import { userIdCon } from "@/context/userIdContext";
 import axios from "axios";
 import { FiLogOut } from "react-icons/fi";
 import { TiDeleteOutline } from "react-icons/ti";
+import Link from "next/link";
 
 export const UserProfie = ({ USer, setUSer }) => {
   const [userData, setUserData] = useState({});
@@ -13,11 +14,10 @@ export const UserProfie = ({ USer, setUSer }) => {
   }, [userId]);
   const getUserData = () => {
     axios.get(`http://localhost:8000/api/user/${userId}`).then((res) => {
-      console.log(res.data.data);
+     
       setUserData(res.data.result);
     });
   };
-  console.log(userData);
   const logOut = () => {
     localStorage.removeItem("currentUserId");
     setUserId("");
@@ -34,9 +34,11 @@ export const UserProfie = ({ USer, setUSer }) => {
               className="w-full rounded-full"
             />
           </div>
-          <h1>
-            {userData.lastName} {userData.firstName}
-          </h1>
+          <Link href={"/userInfo"}>
+          {userData.Username}
+          
+          </Link>
+            
           <a href="#">{userData.email}</a>
           <a href="tel">Tel : {userData.phoneNumber}</a>
 
@@ -55,7 +57,7 @@ export const UserProfie = ({ USer, setUSer }) => {
             alt="avatar"
             className="w-12 rounded-full"
           />
-          <h1>{userData.firstName}</h1>
+          <h1>{userData.Username}</h1>
         </div>
       )}
     </div>
