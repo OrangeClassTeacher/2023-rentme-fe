@@ -6,21 +6,6 @@ import { FaFacebookF, FaGoogle, FaYahoo } from "react-icons/fa";
 import AuthLayout from "@/components/auth/AuthLayout";
 import { useContext } from "react";
 import { userIdCon } from "@/context/userIdContext";
-// interface IUser {
-//   firstName: string;
-//   lastName: string;
-//   Username: string;
-//   email: string;
-//   birthDate: Date;
-//   phoneNumber: number;
-//   role: string;
-//   address: string;
-//   profilePic: String;
-//   password: string;
-//   gender: string;
-//   favItems: string;
-// }
-
 export default function Index() {
   const [logEmail, setLogEmail] = useState<string>("");
   const [logPassword, setLogPassword] = useState<string>("");
@@ -42,8 +27,6 @@ export default function Index() {
       })
       .catch((err) => console.log(err));
   };
-
-  console.log(userId);
 
   return (
     <AuthLayout>

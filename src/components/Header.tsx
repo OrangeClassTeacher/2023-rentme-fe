@@ -7,19 +7,17 @@ import { RiMenu4Fill } from "react-icons/ri";
 import { FiShoppingBag, FiSearch } from "react-icons/fi";
 import { useContext } from "react";
 import { userIdCon } from "@/context/userIdContext";
+import { UserProfie } from "./UserProfie";
 
 export const Header = () => {
   const { userId, setUserId } = useContext(userIdCon);
+  const [user, setUser] = useState(false);
   useEffect(() => {
     userId ? "" : setUserId(localStorage.getItem("currentUserId"));
   }, []);
-  const logOut = () => {
-    localStorage.removeItem("currentUserId");
-    setUserId("");
-  };
 
   return (
-    <div className="w-full bg-head text-white sticky top-0 z-[50] bg-gradient-to-r from-gray-900 to-gray-500">
+    <div className="w-full bg-head text-white sticky top-0 z-[50] bg-gradient-to-r from-gray-900 to-gray-500 z-0">
       <div className="container py-5 border-b border-b-white/[.15] flex items-center justify-between">
         <div className="flex items-center gap-7">
           <Link href="/">
@@ -64,9 +62,9 @@ export const Header = () => {
           {userId ? (
             <button
               className="text-head rounded-lg px-[34px] py-2 text-md-regular hover:bg-white/70 duration-300"
-              onClick={logOut}
+              onClick={() => setUser(!user)}
             >
-              <Link href="/">Log Out</Link>
+              <UserProfie USer={user} setUSer={setUser} />
             </button>
           ) : (
             <button className="text-head rounded-lg px-[34px] py-2 text-md-regular hover:bg-white/70 duration-300">
