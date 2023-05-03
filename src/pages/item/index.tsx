@@ -5,10 +5,12 @@ import Link from "next/link";
 import { useState, useEffect, useContext } from "react";
 import { Iproduct } from "../../interfaces/product";
 import { SearchContext } from "@/context/searchTextContext";
+import { userIdCon } from "@/context/userIdContext";
 export default function Index() {
   const [productData, setProductData] = useState<Iproduct[]>();
   const [proData, setProData] = useState<Iproduct[]>();
   const { search } = useContext<any>(SearchContext);
+  const { userId } = useContext(userIdCon);
 
   useEffect(() => {
     getData();
@@ -29,18 +31,26 @@ export default function Index() {
   return (
     <div>
       <div className="text-center p-4">
-        <button className="text-teal-500 outline outline-offset-2 outline-teal-500 bg-white rounded px-3">
-          <Link href="/addProduct">Create news</Link>
-        </button>
+        {userId ? (
+          <button className="text-teal-500 outline outline-offset-2 outline-teal-500 bg-white rounded px-3">
+            <Link href="/addProduct">Create news</Link>
+          </button>
+        ) : (
+          ""
+        )}
       </div>
-      <div className="flex flex-wrap gap-4 py-6 ps-4">
+      <div className="flex flex-wrap gap-4 py-6 px-8 ">
         {productData?.map((item, index): JSX.Element => {
           return (
             <div
               key={index}
-              className="w-96 py-4 text-center border border-teal-500 rounded"
+              className="w-1/5 text-center border border-teal-500 rounded"
             >
-              <img src={item.itemPhoto} alt="itemPhoto" className="w-full" />
+              <img
+                src={item.itemPhoto}
+                alt="itemPhoto"
+                className="w-full h-1/3"
+              />
               <h1 className="text-xl "> {item.itemName}</h1>
               <h3 className="text-base">Description : {item.description}</h3>
               <p className="text-sm">
@@ -53,9 +63,9 @@ export default function Index() {
                 Rental price : {item.rentalPrice}$
               </span>
               <div className="p-3">
-              <button className="text-rose-500  outline outline-offset-2 outline-white rounded px-3">
-                <Link href={`/item/${item._id}`}>Product Detail</Link>
-              </button>
+                <button className="text-rose-500  outline outline-offset-2 outline-white rounded px-3">
+                  <Link href={`/item/${item._id}`}>Product Detail</Link>
+                </button>
               </div>
             </div>
           );
