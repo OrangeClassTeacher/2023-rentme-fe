@@ -55,9 +55,13 @@ export const Header = () => {
             <FiSearch />
           </button> */}
           <Search />
-          <button className="text-xl hover:opacity-70 duration-300">
-            <FiShoppingBag />
-          </button>
+          {userId ? (
+            <button className="text-xl hover:opacity-70 duration-300">
+              <FiShoppingBag />
+            </button>
+          ) : (
+            ""
+          )}
 
           {userId ? (
             <button
