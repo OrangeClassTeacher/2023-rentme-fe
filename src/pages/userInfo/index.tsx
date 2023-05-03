@@ -2,19 +2,28 @@ import React, { useEffect, useState, useContext } from "react";
 import { userIdCon } from "@/context/userIdContext";
 import axios from "axios";
 import Link from "next/link";
-import { AiFillEdit } from "react-icons/ai";
+// import { AiFillEdit } from "react-icons/ai";
 export default function Index() {
-  const { userId } = useContext(userIdCon);
+  const { userId, setUserId } = useContext(userIdCon);
   const [userData, setUserData] = useState({});
   const [update, setUpdate] = useState(false);
   useEffect(() => {
-    getUserData();
+    if (userId) {
+      console.log(userId);
+
+      getUserData();
+      setUserId(localStorage.getItem("currentUserId"));
+    }
   }, []);
 
   const getUserData = () => {
-    axios
-      .get(`http://localhost:8000/api/user/${userId}`)
-      .then((res) => setUserData(res.data.result));
+    if (userId) {
+      axios
+        .get(`http://localhost:8000/api/user/${userId}`)
+        .then((res) => setUserData(res.data.result));
+    } else {
+      alert("UserId not found");
+    }
   };
 
   const updateUserInfo = (event: any) => {
@@ -30,12 +39,19 @@ export default function Index() {
       favItems: ["hi", "hi"],
       gender: event.target.gender.value,
     };
-    console.log(updatedUserData);
-    axios
-      .put(`http://localhost:8000/api/user/${userId}`, updatedUserData)
-      .then((res) => console.log(res.data.result))
-      .catch((err) => console.log(err));
-    setUpdate(false);
+
+    if (userId) {
+      axios
+        .put(`http://localhost:8000/api/user/${userId}`, updatedUserData)
+        .then((res) => {
+          console.log(res.data.result);
+
+          setUpdate(!update);
+        })
+        .catch((err) => console.log(err));
+    } else {
+      alert("UserId not found");
+    }
     getUserData();
   };
 
@@ -65,9 +81,9 @@ export default function Index() {
           </div>
           <form
             onSubmit={updateUserInfo}
-            className="w-full flex flex-col items-center"
+            className="w-full flex flex-col items-center justify-center  "
           >
-            <div className="flex w-2/3 flex-col justify-center items-center gap-4 py-8">
+            <div className="flex w-2/3 flex-col justify-center items-center gap-4 py-8 border border-indigo-600">
               <img
                 src="https://png.pngtree.com/png-vector/20191101/ourmid/pngtree-cartoon-color-simple-male-avatar-png-image_1934459.jpg"
                 alt="avatar"
@@ -82,7 +98,7 @@ export default function Index() {
                   defaultValue={userData.firstName}
                   name="firstName"
                   type="text"
-                  className="border-bottom appearance-none w-2/4 text-start text-xl text-white bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+                  className="border-bottom appearance-none w-2/4 text-start text-xl text-black bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
                 />
               </div>
               <div className="w-2/3 flex justify-evenly">
@@ -93,7 +109,7 @@ export default function Index() {
                   defaultValue={userData.lastName}
                   name="lastName"
                   type="text"
-                  className="appearance-none text-start w-2/4 text-xl text-white bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+                  className="appearance-none text-start w-2/4 text-xl text-black bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
                 />
               </div>
               <div className="w-2/3 flex justify-evenly">
@@ -104,7 +120,7 @@ export default function Index() {
                   defaultValue={userData.Username}
                   name="username"
                   type="text"
-                  className="appearance-none text-start w-2/4 text-xl text-white bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+                  className="appearance-none text-start w-2/4 text-xl text-black bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
                 />
               </div>
               <div className="w-2/3 flex justify-evenly">
@@ -115,7 +131,7 @@ export default function Index() {
                   defaultValue={userData.email}
                   name="email"
                   type="text"
-                  className="appearance-none text-start text-xl w-2/4 text-white bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+                  className="appearance-none text-start text-xl w-2/4 text-black bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
                 />
               </div>
               <div className="w-2/3 flex justify-evenly">
@@ -126,7 +142,7 @@ export default function Index() {
                   defaultValue={userData.phoneNumber}
                   name="phone"
                   type="number"
-                  className="appearance-none text-start w-2/4 text-xl text-white bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+                  className="appearance-none text-start w-2/4 text-xl text-black bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
                 />
               </div>
               <div className="w-2/3 flex justify-evenly">
@@ -137,7 +153,7 @@ export default function Index() {
                   defaultValue={userData.birthDate}
                   name="birthDate"
                   type="text"
-                  className="appearance-none text-start w-2/4 text-xl text-white bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+                  className="appearance-none text-start w-2/4 text-xl text-black bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
                 />
               </div>
               <div className="w-2/3 flex justify-evenly">
@@ -148,7 +164,7 @@ export default function Index() {
                   defaultValue={userData.address}
                   name="address"
                   type="text"
-                  className="appearance-none text-start text-xl w-2/4 text-white bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+                  className="appearance-none text-start text-xl w-2/4 text-black bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
                 />
               </div>
               <div className="w-2/3 flex justify-evenly">
@@ -159,7 +175,7 @@ export default function Index() {
                   defaultValue={userData.gender}
                   name="gender"
                   type="text"
-                  className="appearance-none text-start text-xl w-2/4 text-white bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+                  className="appearance-none text-start text-xl w-2/4 text-black bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
                 />
               </div>
               <button

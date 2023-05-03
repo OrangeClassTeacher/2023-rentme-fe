@@ -14,7 +14,6 @@ export const UserProfie = ({ USer, setUSer }) => {
   }, [userId]);
   const getUserData = () => {
     axios.get(`http://localhost:8000/api/user/${userId}`).then((res) => {
-     
       setUserData(res.data.result);
     });
   };
@@ -34,11 +33,8 @@ export const UserProfie = ({ USer, setUSer }) => {
               className="w-full rounded-full"
             />
           </div>
-          <Link href={"/userInfo"}>
-          {userData.Username}
-          
-          </Link>
-            
+          <Link href={"/userInfo"}>{userData.Username}</Link>
+
           <a href="#">{userData.email}</a>
           <a href="tel">Tel : {userData.phoneNumber}</a>
 
@@ -46,8 +42,10 @@ export const UserProfie = ({ USer, setUSer }) => {
             onClick={logOut}
             className="text-head  w-full py-2 text-md-regular hover:bg-white/70 duration-300 flex border-t-4 justify-center items-center gap-2"
           >
-            Log Out
-            <FiLogOut className="h-full text-lg" />
+            <Link href={"/"} className="flex justify-center items-center gap-1">
+              Log Out
+              <FiLogOut className="h-full text-lg" />
+            </Link>
           </button>
         </div>
       ) : (
