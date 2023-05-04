@@ -13,7 +13,7 @@ export const Search = (props: {
       <input
         className="search-box w-full rounded-md border pt-2  border-teal-300 px-8 text-xl text-indigo-500 pb-1"
         type="search"
-        placeholder="Search..."
+        placeholder="Хайх..."
         onChange={(e) => setSearch(e.target.value)}
       />
     </div>

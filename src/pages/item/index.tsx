@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import Link from "next/link";
+import { AiOutlineArrowRight } from "react-icons/ai";
 
 import { useState, useEffect, useContext } from "react";
 import { Iproduct } from "../../interfaces/product";
@@ -33,7 +34,7 @@ export default function Index() {
       <div className="text-center p-4">
         {userId ? (
           <button className="text-teal-500 outline outline-offset-2 outline-teal-500 bg-white rounded px-3">
-            <Link href="/addProduct">Create news</Link>
+            <Link href="/addProduct">Бараа оруулах</Link>
           </button>
         ) : (
           ""
@@ -49,7 +50,7 @@ export default function Index() {
               <img
                 src={item.itemPhoto}
                 alt="itemPhoto"
-                className="w-full h-1/3"
+                className="w-full h-autp"
               />
               <h1 className="text-xl "> {item.itemName}</h1>
               <h3 className="text-base">Description : {item.description}</h3>
@@ -64,7 +65,13 @@ export default function Index() {
               </span>
               <div className="p-3">
                 <button className="text-rose-500  outline outline-offset-2 outline-white rounded px-3">
-                  <Link href={`/item/${item._id}`}>Product Detail</Link>
+                  <Link
+                    href={`/item/${item._id}`}
+                    className="flex items-center gap-1"
+                  >
+                    Дэлгэрэнгүй{" "}
+                    <AiOutlineArrowRight className="pt-1 text-base" />
+                  </Link>
                 </button>
               </div>
             </div>

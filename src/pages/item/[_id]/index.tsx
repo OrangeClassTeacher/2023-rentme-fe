@@ -36,9 +36,11 @@ const Product = () => {
       <div className="w-full flex justify-center">
         <div className="w-1/3">
           <img src={data?.itemPhoto} className="w-full" />
-          <div className="w-full flex ">
+          <div className="w-full flex gap-2 pt-2 ">
             {data?.itemSlidePhoto?.map((item, index) => {
-              return <img key={index} src={item} alt="" className="w-1/3" />;
+              return (
+                <img key={index} src={item} alt="" className="w-1/3 rounded" />
+              );
             })}
           </div>
           <h1>{data?.itemName}</h1>
