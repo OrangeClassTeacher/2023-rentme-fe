@@ -33,14 +33,14 @@ export const Header = () => {
           <nav className="w-full">
             <ul className="flex items-center justify-evenly text-md-regular">
               <li className="hover:text-white/70 duration-300">
-                <Link href="/">Home</Link>
+                <Link href="/">Нүүр</Link>
               </li>
               <li className="hover:text-white/70 duration-300">
-                <Link href="/item">Products</Link>
+                <Link href="/item">Бүтээгдэхүүн</Link>
               </li>
 
               <li className="hover:text-white/70 duration-300 ">
-                <Link href="/">Contact</Link>
+                <Link href="/">Холбоо барих</Link>
               </li>
             </ul>
           </nav>
@@ -73,7 +73,7 @@ export const Header = () => {
             </button>
           ) : (
             <button className="text-head rounded-lg px-5 py-2 text-md-regular hover:bg-white/70 duration-300">
-              <Link href="/login">Login</Link>
+              <Link href="/login">Нэвтрэх</Link>
             </button>
           )}
         </div>

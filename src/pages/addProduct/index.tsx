@@ -41,7 +41,7 @@ export default function Index() {
           <input
             placeholder="ItemName..."
             name="itemName"
-            className="text-black bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-teal-500 block w-1/3 p-2.5 dark:bg-white dark:border-teal-600 dark:placeholder-gray-500 dark:text-white dark:focus:ring-teal-500 dark:focus:border-teal-500"
+            className="bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-teal-500 block w-1/3 p-2.5 dark:bg-white dark:border-teal-600 dark:placeholder-gray-500  dark:focus:ring-teal-500 dark:focus:border-teal-500"
           />
           <input
             placeholder="Item Photo..."
@@ -60,7 +60,7 @@ export default function Index() {
                 setThumbImg(res.data.secure_url);
               });
             }}
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-teal-500 block w-1/3 p-2.5 dark:bg-white dark:border-teal-600 dark:placeholder-gray-500 dark:text-white dark:focus:ring-teal-500 dark:focus:border-teal-500"
+            className="bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-teal-500 block w-1/3 p-2.5 dark:bg-white dark:border-teal-600 dark:placeholder-gray-500  dark:focus:ring-teal-500 dark:focus:border-teal-500"
           />
           <input
             placeholder="Item Photo..."
@@ -96,12 +96,12 @@ export default function Index() {
                 setImages(newArr);
               });
             }}
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-teal-500 block w-1/3 p-2.5 dark:bg-white dark:border-teal-600 dark:placeholder-gray-500 dark:text-white dark:focus:ring-teal-500 dark:focus:border-teal-500"
+            className="bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-teal-500 block w-1/3 p-2.5 dark:bg-white dark:border-teal-600 dark:placeholder-gray-500  dark:focus:ring-teal-500 dark:focus:border-teal-500"
           />
           <input
             placeholder="Description"
             name="description"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-teal-500 block w-1/3 p-2.5 dark:bg-white dark:border-teal-600 dark:placeholder-gray-500 dark:text-white dark:focus:ring-teal-500 dark:focus:border-teal-500"
+            className="bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-teal-500 block w-1/3 p-2.5 dark:bg-white dark:border-teal-600 dark:placeholder-gray-500  dark:focus:ring-teal-500 dark:focus:border-teal-500"
           />
           <select
             placeholder="categoryId"
@@ -120,25 +120,25 @@ export default function Index() {
             placeholder="Phone Number"
             name="phoneNumber"
             type="number"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-teal-500 block w-1/3 p-2.5 dark:bg-white dark:border-teal-600 dark:placeholder-gray-500 dark:text-white dark:focus:ring-teal-500 dark:focus:border-teal-500"
+            className="bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-teal-500 block w-1/3 p-2.5 dark:bg-white dark:border-teal-600 dark:placeholder-gray-500  dark:focus:ring-teal-500 dark:focus:border-teal-500"
           />
           <input
             placeholder="rate"
             name="rating"
             type={"number"}
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-teal-500 block w-1/3 p-2.5 dark:bg-white dark:border-teal-600 dark:placeholder-gray-500 dark:text-white dark:focus:ring-teal-500 dark:focus:border-teal-500"
+            className="bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-teal-500 block w-1/3 p-2.5 dark:bg-white dark:border-teal-600 dark:placeholder-gray-500  dark:focus:ring-teal-500 dark:focus:border-teal-500"
           />
           <input
             placeholder="Rental Price"
             name="rentalPrice"
             type={"number"}
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-teal-500 block w-1/3 p-2.5 dark:bg-white dark:border-teal-600 dark:placeholder-gray-500 dark:text-white dark:focus:ring-teal-500 dark:focus:border-teal-500"
+            className="bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-teal-500 block w-1/3 p-2.5 dark:bg-white dark:border-teal-600 dark:placeholder-gray-500  dark:focus:ring-teal-500 dark:focus:border-teal-500"
           />
           <input
             placeholder="Start Date"
             name="rentStart"
             type={"date"}
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-teal-500 block w-1/3 p-2.5 dark:bg-white dark:border-teal-600 dark:placeholder-gray-500 dark:text-white dark:focus:ring-teal-500 dark:focus:border-teal-500"
+            className="bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-teal-500 block w-1/3 p-2.5 dark:bg-white dark:border-teal-600 dark:placeholder-gray-500  dark:focus:ring-teal-500 dark:focus:border-teal-500"
           />
           <input
             placeholder="End Date"

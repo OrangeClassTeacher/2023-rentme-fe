@@ -170,7 +170,7 @@ const RegisterForm: FC = () => {
               type="text"
               id="username"
               className="text-black border border-border-2 w-full py-[12px] px-[22px] rounded-lg focus:outline-none focus:ring-2 focus:ring-color-1 text-text text-md-regular"
-              placeholder="Овог"
+              placeholder="Хэрэглэгчийн нэр"
             />
           </div>
           <div className="w-full">
