@@ -33,10 +33,10 @@ export const UserProfie = ({ USer, setUSer }) => {
               className="w-full rounded-full"
             />
           </div>
-          <Link href={"/userInfo"}>{userData.Username}</Link>
+          <Link href={"/userInfo"}>{userData?.Username}</Link>
 
-          <a href="#">{userData.email}</a>
-          <a href="tel">Tel : {userData.phoneNumber}</a>
+          <a href="#">{userData?.email}</a>
+          <a href="tel">Tel : {userData?.phoneNumber}</a>
 
           <button
             onClick={logOut}
@@ -55,7 +55,7 @@ export const UserProfie = ({ USer, setUSer }) => {
             alt="avatar"
             className="w-12 rounded-full"
           />
-          <h1>{userData.Username}</h1>
+          <h1>{userData?.Username}</h1>
         </div>
       )}
     </div>
