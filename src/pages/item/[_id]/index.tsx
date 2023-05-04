@@ -31,15 +31,7 @@ const Product = () => {
         <div className="h-3/4">
           <img src={data?.itemPhoto} alt="" className="w-full" />
         </div>
-        <div className="h1/4 flex gap-3 py-5">
-          {/* {data?.itemSlidePhoto.map((item, index) => {
-            return (
-              <div key={index} className="w-1/3">
-                <img src={item} alt="" className="w-full h-full rounded" />
-              </div>
-            );
-          })} */}
-        </div>
+        <div className="h1/4 flex gap-3 py-5"></div>
       </div>
       <div className="w-2/4 ps-8 py-8 flex flex-col gap-8">
         <div>
