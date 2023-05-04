@@ -2,7 +2,6 @@ import React from "react";
 import axios from "axios";
 import Link from "next/link";
 import { AiOutlineArrowRight } from "react-icons/ai";
-
 import { useState, useEffect, useContext } from "react";
 import { Iproduct } from "../../interfaces/product";
 import { SearchContext } from "@/context/searchTextContext";
@@ -10,14 +9,13 @@ import { userIdCon } from "@/context/userIdContext";
 import RatingStar from "@/components/global/RatingStar";
 export default function Index() {
   const [productData, setProductData] = useState<Iproduct[]>();
-  const [proData, setProData] = useState<Iproduct[]>();
+
   const { search } = useContext<any>(SearchContext);
   const { userId } = useContext(userIdCon);
 
   useEffect(() => {
     getData();
   }, [search]);
-  //ji
 
   const getData = () => {
     if (search && search != "") {
