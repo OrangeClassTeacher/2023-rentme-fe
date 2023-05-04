@@ -1,7 +1,11 @@
 import React from "react";
 import axios from "axios";
 import Link from "next/link";
+
 import { AiOutlineArrowRight } from "react-icons/ai";
+
+
+
 import { useState, useEffect, useContext } from "react";
 import { Iproduct } from "../../interfaces/product";
 import { SearchContext } from "@/context/searchTextContext";
@@ -33,19 +37,25 @@ export default function Index() {
       <div className="text-center p-4">
         {userId ? (
           <button className="text-teal-500 outline outline-offset-2 outline-teal-500 bg-white rounded px-3">
-            <Link href="/addProduct">Бараа оруулах</Link>
+            <Link href="/addProduct">Create news</Link>
           </button>
         ) : (
           ""
         )}
       </div>
+
       <div className="flex flex-wrap justify-between gap-4 py-6 px-8">
         {productData?.map((item, index) => {
+
+      <div className="grid grid-cols-4 gap-10 py-6 px-8">
+        {productData?.map((item, index): JSX.Element => {
+
           return (
             <div
               key={index}
-              className="w-1/5 h-1/6 text-center border border-teal-500 rounded"
+              className="border border-teal-600 rounded-lg"
             >
+
               <div>
                 <img
                   src={item.itemPhoto}
@@ -79,6 +89,21 @@ export default function Index() {
                     </Link>
                   </button>
                 </div>
+
+              
+              <img
+                src={item.itemPhoto}
+                alt="itemPhoto"
+                className="w-full h-[200px] object-cover rounded-t-lg"
+              />
+              <div className="p-5">
+              <h1 className="text-xl text-black "> {item.itemName}</h1>
+              <h3 className="text-base text-black truncate">{item.description}</h3>
+              <div className="p-3"><RatingStar/></div>
+              <button className="w-full p-3 bg-rose-500 border border-white text-white outline outline-offset-2 outline-white rounded">
+                  <Link href={`/item/${item._id}`}>Product Detail</Link>
+                </button> 
+
               </div>
             </div>
           );
