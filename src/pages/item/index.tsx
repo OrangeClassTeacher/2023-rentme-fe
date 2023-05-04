@@ -42,43 +42,49 @@ export default function Index() {
         )}
       </div>
       <div className="flex flex-wrap justify-between gap-4 py-6 px-8">
-        {productData?.map((item, index): JSX.Element => {
+        {productData?.map((item, index) => {
           return (
             <div
               key={index}
               className="w-1/5 h-1/6 text-center border border-teal-500 rounded"
             >
               <div>
-              <img
-                src={item.itemPhoto}
-                alt="itemPhoto"
-                className="w-full h-autp"
-              />
-              <h1 className="text-xl text-black "> {item.itemName}</h1>
-              <h3 className="text-base text-black">Description : {item.description}</h3>
-              <p className="text-sm text-black">
-                Phone :
-                <a href="tel" className="underline hover:underline-offset-4 text-black">
-                  {item.phoneNumber}
-                </a>
-              </p>
-              <span className="text-sm text-black pt-5">
-                Rental price : {item.rentalPrice}$
-              </span>
-              <div className="p-3">
-                <button className="text-rose-500  outline outline-offset-2 outline-white rounded px-3">
-                  <Link
-                    href={`/item/${item._id}`}
-                    className="flex items-center gap-1"
+                <img
+                  src={item.itemPhoto}
+                  alt="itemPhoto"
+                  className="w-full h-autp"
+                />
+                <h1 className="text-xl text-black "> {item.itemName}</h1>
+                <h3 className="text-base text-black">
+                  Description : {item.description}
+                </h3>
+                <p className="text-sm text-black">
+                  Phone :
+                  <a
+                    href="tel"
+                    className="underline hover:underline-offset-4 text-black"
                   >
-                    Дэлгэрэнгүй{" "}
-                    <AiOutlineArrowRight className="pt-1 text-base" />
-                  </Link>
-                </button>
+                    {item.phoneNumber}
+                  </a>
+                </p>
+                <span className="text-sm text-black pt-5">
+                  Rental price : {item.rentalPrice}$
+                </span>
+                <div className="p-3">
+                  <button className="text-rose-500  outline outline-offset-2 outline-white rounded px-3">
+                    <Link
+                      href={`/item/${item._id}`}
+                      className="flex items-center gap-1"
+                    >
+                      Дэлгэрэнгүй
+                      <AiOutlineArrowRight className="pt-1 text-base" />
+                    </Link>
+                  </button>
+                </div>
               </div>
             </div>
           );
-        })} 
+        })}
       </div>
     </div>
   );
