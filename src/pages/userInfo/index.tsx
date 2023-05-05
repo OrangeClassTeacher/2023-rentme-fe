@@ -8,16 +8,17 @@ export default function Index() {
   const [userData, setUserData] = useState({});
   const [update, setUpdate] = useState(false);
   useEffect(() => {
+    console.log({ val: "useEffect", userId });
     if (userId) {
-      console.log(userId);
-
+      console.log({ val: "useEffect after context", userId });
       getUserData();
-      setUserId(localStorage.getItem("currentUserId"));
     }
-  }, []);
+  }, [userId]);
 
   const getUserData = () => {
     if (userId) {
+      console.log({ val: "getUserData", userId });
+
       axios
         .get(`http://localhost:8000/api/user/${userId}`)
         .then((res) => setUserData(res.data.result));
@@ -54,7 +55,6 @@ export default function Index() {
     }
     getUserData();
   };
-
   return (
     <div className="bg-white">
       {update ? (
@@ -221,7 +221,6 @@ export default function Index() {
                 First name :
               </h1>
               <h1 className="text-xl w-2/4 text-start text-black">
-                {" "}
                 {userData.firstName}
               </h1>
             </div>
@@ -230,7 +229,6 @@ export default function Index() {
                 Last name :
               </h1>
               <h1 className="text-xl w-2/4 text-start text-black">
-                {" "}
                 {userData.lastName}
               </h1>
             </div>
@@ -239,14 +237,12 @@ export default function Index() {
                 Username :
               </h1>
               <h1 className="text-xl w-2/4 text-start text-black">
-                {" "}
                 {userData.Username}
               </h1>
             </div>
             <div className="w-2/3 flex justify-evenly">
               <h1 className="text-xl w-2/4 text-center text-black">E-mail :</h1>
               <h1 className="text-xl w-2/4 text-start text-black">
-                {" "}
                 {userData.email}
               </h1>
             </div>
@@ -255,7 +251,6 @@ export default function Index() {
                 Phone number :
               </h1>
               <a href="tel" className="text-xl w-2/4 text-start text-black">
-                {" "}
                 {userData.phoneNumber}
               </a>
             </div>
@@ -264,7 +259,6 @@ export default function Index() {
                 Birth date :
               </h1>
               <h1 className="text-xl w-2/4 text-start text-black">
-                {" "}
                 {userData.birthDate}
               </h1>
             </div>
@@ -273,14 +267,12 @@ export default function Index() {
                 Address :
               </h1>
               <h1 className="text-xl w-2/4 text-start text-black">
-                {" "}
                 {userData.address}
               </h1>
             </div>
             <div className="w-2/3 flex justify-evenly">
               <h1 className="text-xl w-2/4 text-center text-black">Gender :</h1>
               <h1 className="text-xl w-2/4 text-start text-black">
-                {" "}
                 {userData.gender}
               </h1>
             </div>

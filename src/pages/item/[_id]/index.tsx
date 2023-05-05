@@ -1,6 +1,8 @@
 import React from "react";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import Swiper from "swiper";
+import "swiper/css";
 import axios from "axios";
 import { Iproduct } from "@/interfaces/product";
 import Link from "next/link";

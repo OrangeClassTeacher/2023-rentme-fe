@@ -78,11 +78,6 @@ export default function Index() {
                   </button>
                 </div>
 
-                <img
-                  src={item.itemPhoto}
-                  alt="itemPhoto"
-                  className="w-full h-[200px] object-cover rounded-t-lg"
-                />
                 <div className="p-5">
                   <h1 className="text-xl text-black "> {item.itemName}</h1>
                   <h3 className="text-base text-black truncate">
