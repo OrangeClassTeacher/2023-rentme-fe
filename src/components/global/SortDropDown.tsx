@@ -13,8 +13,8 @@ const SortDropDown: FC = () => {
   const sortItems = [
     { title: "Эрэлттэй", slug: "popular" },
     { title: "Шинэ", slug: "newest" },
-    { title: "А-Я", slug: "nameAsc" },
-    { title: "Я-А", slug: "nameDesc" },
+    { title: "A-Z", slug: "nameAsc" },
+    { title: "Z-A", slug: "nameDesc" },
   ];
 
   const [sort, setSort] = useState(sortItems[0]);
