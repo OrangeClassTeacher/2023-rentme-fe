@@ -10,6 +10,7 @@ export default function Index() {
   const createProd = (event: any) => {
     event.preventDefault();
     const data: Iproduct = {
+      createdUser: localStorage.getItem("currentUserId") || "",
       itemName: event.target.itemName.value,
       itemPhoto: thumbImg,
       itemSlidePhoto: Images,

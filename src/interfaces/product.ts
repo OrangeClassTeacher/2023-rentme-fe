@@ -12,6 +12,7 @@ export interface IProductCategory {
 }
 
 export interface Iproduct {
+  createdUser: string;
   itemName: string;
   itemPhoto: string;
   itemSlidePhoto: string[];

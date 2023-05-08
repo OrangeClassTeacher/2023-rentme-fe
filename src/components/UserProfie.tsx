@@ -33,11 +33,10 @@ export const UserProfie = ({ USer, setUSer }) => {
               className="w-full rounded-full"
             />
           </div>
-          <Link href={"/userInfo"}>{userData?.Username}</Link>
-
-          <a href="#">{userData?.email}</a>
-          <a href="tel">Tel : {userData?.phoneNumber}</a>
-
+          <p>{userData?.Username}</p>
+          <button className="text-head w-full py-2 text-md-regular hover:bg-white/70 duration-300 flex border-t-4 justify-center items-center gap-2">
+            <Link href={"/userInfo"}>Edit Profile</Link>
+          </button>
           <button
             onClick={logOut}
             className="text-head  w-full py-2 text-md-regular hover:bg-white/70 duration-300 flex border-t-4 justify-center items-center gap-2"
