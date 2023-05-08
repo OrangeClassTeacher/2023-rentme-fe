@@ -2,11 +2,14 @@ import React from "react";
 import axios from "axios";
 import Link from "next/link";
 import { AiOutlineArrowRight } from "react-icons/ai";
+import { BiFilterAlt } from "react-icons/bi";
 import { useState, useEffect, useContext } from "react";
 import { Iproduct } from "../../interfaces/product";
 import { SearchContext } from "@/context/searchTextContext";
 import { userIdCon } from "@/context/userIdContext";
 import RatingStar from "@/components/global/RatingStar";
+import Pagination from "@/components/global/Pagination";
+import SortDropDown from "@/components/global/SortDropdown";
 export default function Index() {
   const [productData, setProductData] = useState<Iproduct[]>();
 
@@ -28,6 +31,15 @@ export default function Index() {
         .then((res) => setProductData(res.data.result));
     }
   };
+  const [filterShow, setFilterShow] = useState<boolean>(false);
+
+  const showFilter = (): void => {
+    setFilterShow(true);
+  };
+
+  const closeFilter = (): void => {
+    setFilterShow(false);
+  };
   return (
     <div className="bg-white">
       <div className="text-center p-4">
@@ -38,6 +50,18 @@ export default function Index() {
         ) : (
           ""
         )}
+      </div>
+      <div>
+      <div className="flex flex-col items-start gap-5 sm:flex-row sm:items-center text-black">
+                <SortDropDown />
+                <button
+                  onClick={showFilter}
+                  className="btn-4 py-4 px-6 text-md-medium flex items-center gap-2 lg:hidden"
+                >
+                  <BiFilterAlt size={16} />
+                  Шүүлт
+                </button>
+              </div>
       </div>
 
       <div className="flex flex-wrap justify-between gap-4 py-6 px-8">
@@ -54,15 +78,6 @@ export default function Index() {
                 <h3 className="text-base text-black">
                   Description : {item.description}
                 </h3>
-                <p className="text-sm text-black">
-                  Phone :
-                  <a
-                    href="tel"
-                    className="underline hover:underline-offset-4 text-black"
-                  >
-                    {item.phoneNumber}
-                  </a>
-                </p>
                 <span className="text-sm text-black pt-5">
                   Rental price : {item.rentalPrice}$
                 </span>

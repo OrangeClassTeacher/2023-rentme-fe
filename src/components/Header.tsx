@@ -9,6 +9,7 @@ import { BsListNested } from "react-icons/bs";
 import { useContext } from "react";
 import { userIdCon } from "@/context/userIdContext";
 import { UserProfie } from "./UserProfie";
+import SortDropDown from "./global/SortDropdown";
 
 export const Header = () => {
   const { userId, setUserId } = useContext(userIdCon);
@@ -29,7 +30,7 @@ export const Header = () => {
             />
           </Link>
         </div>
-        <div className="w-2/5 hidden md:flex">
+        <div className="w-4/5 hidden md:flex">
           <nav className="w-full">
             <ul className="flex items-center justify-evenly text-md-regular">
               <li className="hover:text-white/70 duration-300">
@@ -56,6 +57,7 @@ export const Header = () => {
             <FiSearch />
           </button> */}
           <Search />
+          <SortDropDown/>
           {userId ? (
             <button className="text-xl hover:opacity-70 duration-300">
               <FiShoppingBag />
