@@ -7,10 +7,11 @@ export default function Index() {
   const { userId, setUserId } = useContext(userIdCon);
   const [userData, setUserData] = useState({});
   const [update, setUpdate] = useState(false);
+  const [productData, setProductData] = useState([]);
   useEffect(() => {
     if (userId) {
       console.log(userId);
-
+      getProducts();
       getUserData();
       setUserId(localStorage.getItem("currentUserId"));
     }
@@ -25,7 +26,21 @@ export default function Index() {
       alert("UserId not found");
     }
   };
-
+  const getProducts = () => {
+    if (userId) {
+      axios
+        .post("http://localhost:8000/api/itemUser", { createdUser: userId })
+        .then((res) => setProductData(res.data.result))
+        .catch((err) => console.log(err));
+    }
+  };
+  const deleteItem = (id) => {
+    axios
+      .delete(`http://localhost:8000/api/item/${id}`)
+      .then((res) => alert("Amjilttai ustgalaa"))
+      .catch((err) => alert("Product not found"));
+    getProducts();
+  };
   const updateUserInfo = (event: any) => {
     const updatedUserData = {
       firstName: event.target.firstName.value,
@@ -54,6 +69,7 @@ export default function Index() {
     }
     getUserData();
   };
+  // console.log(productData);
 
   return (
     <div className="bg-white">
@@ -210,79 +226,116 @@ export default function Index() {
             )}
           </div>
 
-          <div className="flex w-2/3 flex-col justify-center items-center gap-4 py-8">
-            <img
-              src="https://png.pngtree.com/png-vector/20191101/ourmid/pngtree-cartoon-color-simple-male-avatar-png-image_1934459.jpg"
-              alt="avatar"
-              className="w-2/5 rounded-full"
-            />
-            <div className="w-2/3 flex justify-evenly ">
-              <h1 className="text-xl w-2/4 text-center text-black">
-                First name :
-              </h1>
-              <h1 className="text-xl w-2/4 text-start text-black">
-                {" "}
-                {userData.firstName}
-              </h1>
+          <div className="w-full flex pt-3">
+            <div className="w-2/4 flex flex-col">
+              <h1 className="text-2xl ps-5">Хэрэглэгчийн мэдээлэл</h1>
+
+              <div className="flex w-full flex-col justify-center items-center gap-4 py-8">
+                <img
+                  src="https://png.pngtree.com/png-vector/20191101/ourmid/pngtree-cartoon-color-simple-male-avatar-png-image_1934459.jpg"
+                  alt="avatar"
+                  className="w-2/5 rounded-full"
+                />
+                <div className="w-2/3 flex justify-evenly ">
+                  <h1 className="text-xl w-2/4 text-center text-black">
+                    First name :
+                  </h1>
+                  <h1 className="text-xl w-2/4 text-start text-black">
+                    {" "}
+                    {userData.firstName}
+                  </h1>
+                </div>
+                <div className="w-2/3 flex justify-evenly">
+                  <h1 className="text-xl w-2/4 text-center text-black">
+                    Last name :
+                  </h1>
+                  <h1 className="text-xl w-2/4 text-start text-black">
+                    {" "}
+                    {userData.lastName}
+                  </h1>
+                </div>
+                <div className="w-2/3 flex justify-evenly">
+                  <h1 className="text-xl w-2/4 text-center text-black">
+                    Username :
+                  </h1>
+                  <h1 className="text-xl w-2/4 text-start text-black">
+                    {" "}
+                    {userData.Username}
+                  </h1>
+                </div>
+                <div className="w-2/3 flex justify-evenly">
+                  <h1 className="text-xl w-2/4 text-center text-black">
+                    E-mail :
+                  </h1>
+                  <h1 className="text-xl w-2/4 text-start text-black">
+                    {" "}
+                    {userData.email}
+                  </h1>
+                </div>
+                <div className="w-2/3 flex justify-evenly">
+                  <h1 className="text-xl w-2/4 text-center text-black ">
+                    Phone number :
+                  </h1>
+                  <a href="tel" className="text-xl w-2/4 text-start text-black">
+                    {" "}
+                    {userData.phoneNumber}
+                  </a>
+                </div>
+                <div className="w-2/3 flex justify-evenly">
+                  <h1 className="text-xl w-2/4 text-center text-black">
+                    Birth date :
+                  </h1>
+                  <h1 className="text-xl w-2/4 text-start text-black">
+                    {" "}
+                    {userData.birthDate}
+                  </h1>
+                </div>
+                <div className="w-2/3 flex justify-evenly">
+                  <h1 className="text-xl w-2/4 text-center text-black">
+                    Address :
+                  </h1>
+                  <h1 className="text-xl w-2/4 text-start text-black">
+                    {" "}
+                    {userData.address}
+                  </h1>
+                </div>
+                <div className="w-2/3 flex justify-evenly">
+                  <h1 className="text-xl w-2/4 text-center text-black">
+                    Gender :
+                  </h1>
+                  <h1 className="text-xl w-2/4 text-start text-black">
+                    {" "}
+                    {userData.gender}
+                  </h1>
+                </div>
+              </div>
             </div>
-            <div className="w-2/3 flex justify-evenly">
-              <h1 className="text-xl w-2/4 text-center text-black">
-                Last name :
-              </h1>
-              <h1 className="text-xl w-2/4 text-start text-black">
-                {" "}
-                {userData.lastName}
-              </h1>
-            </div>
-            <div className="w-2/3 flex justify-evenly">
-              <h1 className="text-xl w-2/4 text-center text-black">
-                Username :
-              </h1>
-              <h1 className="text-xl w-2/4 text-start text-black">
-                {" "}
-                {userData.Username}
-              </h1>
-            </div>
-            <div className="w-2/3 flex justify-evenly">
-              <h1 className="text-xl w-2/4 text-center text-black">E-mail :</h1>
-              <h1 className="text-xl w-2/4 text-start text-black">
-                {" "}
-                {userData.email}
-              </h1>
-            </div>
-            <div className="w-2/3 flex justify-evenly">
-              <h1 className="text-xl w-2/4 text-center text-black ">
-                Phone number :
-              </h1>
-              <a href="tel" className="text-xl w-2/4 text-start text-black">
-                {" "}
-                {userData.phoneNumber}
-              </a>
-            </div>
-            <div className="w-2/3 flex justify-evenly">
-              <h1 className="text-xl w-2/4 text-center text-black">
-                Birth date :
-              </h1>
-              <h1 className="text-xl w-2/4 text-start text-black">
-                {" "}
-                {userData.birthDate}
-              </h1>
-            </div>
-            <div className="w-2/3 flex justify-evenly">
-              <h1 className="text-xl w-2/4 text-center text-black">
-                Address :
-              </h1>
-              <h1 className="text-xl w-2/4 text-start text-black">
-                {" "}
-                {userData.address}
-              </h1>
-            </div>
-            <div className="w-2/3 flex justify-evenly">
-              <h1 className="text-xl w-2/4 text-center text-black">Gender :</h1>
-              <h1 className="text-xl w-2/4 text-start text-black">
-                {" "}
-                {userData.gender}
-              </h1>
+            <div className="w-2/4 flex flex-col gap-4">
+              <h1 className="text-2xl">Хэрэглэгчийн оруулсан зар</h1>
+              <div className="w-full flex flex-wrap gap-10">
+                {productData.map((item, index) => {
+                  return (
+                    <div key={index} className="w-1/3 flex flex-col">
+                      <div className="w-full">
+                        <img src={item.itemPhoto} alt="" className="w-full" />
+                      </div>
+                      <div className="w-full flex flex-col text-center">
+                        <h1>{item.itemName}</h1>
+                        <p>{item.description}</p>
+                        <p>{item.rentalPrice}</p>
+                        <div className="flex w-full">
+                          <button
+                            className="w-full bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                            onClick={() => deleteItem(item._id)}
+                          >
+                            Delete
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>
