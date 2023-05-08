@@ -1,11 +1,11 @@
 import { Inter } from "next/font/google";
-// import NewsImageSection from "../components/Home/NewsImagesSection"
+import { Category } from "../components/landingPage/Category";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   return (
     <div>
-      {/* <NewsImageSection/> */}
+      <Category />
     </div>
   );
 }
