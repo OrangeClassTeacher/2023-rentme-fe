@@ -9,7 +9,11 @@ import { SearchContext } from "@/context/searchTextContext";
 import { userIdCon } from "@/context/userIdContext";
 import RatingStar from "@/components/global/RatingStar";
 import Pagination from "@/components/global/Pagination";
+<<<<<<< HEAD
 import SortDropDown from "@/components/global/SortDropdown";
+=======
+// import SortDropDown from "@/components/global/SortDropdown";
+>>>>>>> 1c052cc (f)
 export default function Index() {
   const [productData, setProductData] = useState<Iproduct[]>();
 
@@ -52,22 +56,24 @@ export default function Index() {
         )}
       </div>
       <div>
-      <div className="flex flex-col items-start gap-5 sm:flex-row sm:items-center text-black">
-                <SortDropDown />
-                <button
-                  onClick={showFilter}
-                  className="btn-4 py-4 px-6 text-md-medium flex items-center gap-2 lg:hidden"
-                >
-                  <BiFilterAlt size={16} />
-                  Шүүлт
-                </button>
-              </div>
+        <div className="flex flex-col items-start gap-5 sm:flex-row sm:items-center text-black">
+          <button
+            onClick={showFilter}
+            className="btn-4 py-4 px-6 text-md-medium flex items-center gap-2 lg:hidden"
+          >
+            <BiFilterAlt size={16} />
+            Шүүлт
+          </button>
+        </div>
       </div>
 
-      <div className="flex flex-wrap justify-between gap-4 py-6 px-8">
+      <div className="flex flex-wrap justify-evenly gap-4 py-6 px-8">
         {productData?.map((item, index) => {
           return (
-            <div key={index} className="border border-teal-600 rounded-lg">
+            <div
+              key={index}
+              className="border w-1/5 border-teal-600 rounded-lg"
+            >
               <div>
                 <img
                   src={item.itemPhoto}
@@ -103,6 +109,7 @@ export default function Index() {
                   <h3 className="text-base text-black truncate">
                     {item.description}
                   </h3>
+                  <h3>{item.rentalPrice}$</h3>
                   <div className="p-3">
                     <RatingStar />
                   </div>
