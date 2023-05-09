@@ -10,12 +10,12 @@ interface RatingStarProps {
 }
 
 const RatingStar: FC<RatingStarProps> = ({ rating = 0, count = 5, gap = 10, size = 14 }) => (
-  <div className={`flex justify-center`} style={{ gap: gap }}>
+  <div className={`flex items-center`} style={{ gap: gap }}>
     {Array.from(Array(Math.round(rating)), (value, index) => (
-      <AiFillStar size={size} key={`rating-star-${index}`} color="#422006" />
+      <AiFillStar size={size} key={`rating-star-${index}`} color="#E59819" />
     ))}
     {Array.from(Array(count - Math.round(rating)), (value, index) => (
-      <AiOutlineStar size={size} key={`rating-star-empty-${index}`} color="#422006" />
+      <AiOutlineStar size={size} key={`rating-star-empty-${index}`} color="#E59819" />
     ))}
   </div>
 );
