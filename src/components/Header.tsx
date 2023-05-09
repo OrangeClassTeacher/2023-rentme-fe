@@ -9,7 +9,8 @@ import { BsListNested } from "react-icons/bs";
 import { useContext } from "react";
 import { userIdCon } from "@/context/userIdContext";
 import { UserProfie } from "./UserProfie";
-import SortDropDown from "./global/SortDropdown";
+import SortDropDown from "./global/SortDropDown";
+import { LoadingContext } from "@/context/LoadingContext";
 
 export const Header = () => {
   const { userId, setUserId } = useContext(userIdCon);
@@ -57,7 +58,7 @@ export const Header = () => {
             <FiSearch />
           </button> */}
           <Search />
-          <SortDropDown/>
+          <SortDropDown />
           {userId ? (
             <button className="text-xl hover:opacity-70 duration-300">
               <FiShoppingBag />
