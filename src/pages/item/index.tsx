@@ -76,13 +76,16 @@ export default function Index() {
                   alt="itemPhoto"
                   className="w-full h-autp"
                 />
-                <h1 className="text-xl text-black "> {item.itemName}</h1>
-                <h3 className="text-base text-black">
+                <h1 className="text-xl text-black text-center"> {item.itemName}</h1>
+                <h3 className="text-base text-black truncate">
                   Description : {item.description}
                 </h3>
                 <span className="text-sm text-black pt-5">
                   Rental price : {item.rentalPrice}$
                 </span>
+                <div className="px-20 py-5">
+                  <RatingStar/>
+                </div>
                 <div className="p-3">
                   <button className="text-rose-500  outline outline-offset-2 outline-white rounded px-3">
                     <Link
@@ -92,25 +95,6 @@ export default function Index() {
                       Дэлгэрэнгүй
                       <AiOutlineArrowRight className="pt-1 text-base" />
                     </Link>
-                  </button>
-                </div>
-
-                <img
-                  src={item.itemPhoto}
-                  alt="itemPhoto"
-                  className="w-full h-[200px] object-cover rounded-t-lg"
-                />
-                <div className="p-5">
-                  <h1 className="text-xl text-black "> {item.itemName}</h1>
-                  <h3 className="text-base text-black truncate">
-                    {item.description}
-                  </h3>
-                  <h3>{item.rentalPrice}$</h3>
-                  <div className="p-3">
-                    <RatingStar />
-                  </div>
-                  <button className="w-full p-3 bg-rose-500 border border-white text-white outline outline-offset-2 outline-white rounded">
-                    <Link href={`/item/${item._id}`}>Product Detail</Link>
                   </button>
                 </div>
               </div>
