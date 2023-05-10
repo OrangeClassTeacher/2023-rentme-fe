@@ -12,6 +12,7 @@ const RegisterForm: FC = () => {
     useState<boolean>(false);
   // const { userId } = useContext(userIdCon);
   const [confirm, setConfirm] = useState(false);
+  const [proPic, setProPic] = useState("");
   const [passwordRequirements, setPasswordRequirements] = useState([
     {
       title: "Хамгийн багадаа 8 тэмдэгттэй байх",
@@ -71,7 +72,7 @@ const RegisterForm: FC = () => {
       role: "User",
       favItems: ["HI"],
       gender: event.target.gender.value,
-      profilePic: "hi",
+      profilePic: proPic ? proPic : "",
       password: event.target.password.value,
     };
     // console.log(data);
@@ -252,6 +253,33 @@ const RegisterForm: FC = () => {
           </div>
           <div className="w-[300px]">
             <label
+              htmlFor="profilePic"
+              className="block mb02 text-lg-medium text-teal-500"
+            >
+              Profile picture
+            </label>
+            <input
+              placeholder="Profile pic..."
+              type={"file"}
+              name="profilePic"
+              onChange={(e) => {
+                const url = "https://api.cloudinary.com/v1_1/lwvom2iu/upload";
+                const formData = new FormData();
+                let file: any = e.target.files[0];
+                formData.append("file", file);
+                formData.append("api_key", "384825931744178");
+                formData.append("folder", "RentMeUser");
+                formData.append("upload_preset", "lwvom2iu");
+
+                axios.post(url, formData).then((res) => {
+                  setProPic(res.data.secure_url);
+                });
+              }}
+              className="text-black border border-border-2 w-full py-[12px] px-[22px] rounded-lg focus:outline-none focus:ring-2 focus:ring-color-1 text-text text-black text-md-regular"
+            />
+          </div>
+          <div className="w-[300px]">
+            <label
               className="block mb-2 text-lg-medium text-teal-500"
               htmlFor="password"
             >
@@ -338,10 +366,6 @@ const RegisterForm: FC = () => {
           <button className="flex text-teal-500 items-center justify-center gap-2 text-[#1967d2] py-3 px-5 rounded-lg border-2 border-[#1967d2] hover:bg-[#1967d2] hover:text-white duration-300">
             <FaFacebookF />
             Facebook-ээр бүртгүүлэх
-          </button>
-          <button className="flex text-teal-500 items-center justify-center gap-2 text-[#D93025] py-3 px-5 rounded-lg border-2 border-[#D93025] hover:bg-[#d93025] hover:text-white duration-300">
-            <FaGoogle />
-            Google-ээр бүртгүүлэх
           </button>
         </div>
       </form>

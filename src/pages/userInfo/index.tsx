@@ -15,7 +15,7 @@ export default function Index() {
       getUserData();
       setUserId(localStorage.getItem("currentUserId"));
     }
-  }, []);
+  }, [userId]);
 
   const getUserData = () => {
     if (userId) {
@@ -30,7 +30,9 @@ export default function Index() {
     if (userId) {
       axios
         .post("http://localhost:8000/api/itemUser", { createdUser: userId })
-        .then((res) => setProductData(res.data.result))
+        .then((res) => {
+          setProductData(res.data.result), console.log(res.data.result);
+        })
         .catch((err) => console.log(err));
     }
   };
@@ -40,6 +42,7 @@ export default function Index() {
       .then((res) => alert("Amjilttai ustgalaa"))
       .catch((err) => alert("Product not found"));
     getProducts();
+    getUserData();
   };
   const updateUserInfo = (event: any) => {
     const updatedUserData = {
@@ -101,7 +104,7 @@ export default function Index() {
           >
             <div className="flex w-2/3 flex-col justify-center items-center gap-4 py-8 border border-indigo-600">
               <img
-                src="https://png.pngtree.com/png-vector/20191101/ourmid/pngtree-cartoon-color-simple-male-avatar-png-image_1934459.jpg"
+                src={userData?.profilePic}
                 alt="avatar"
                 className="w-2/5 rounded-full"
               />
@@ -232,7 +235,7 @@ export default function Index() {
 
               <div className="flex w-full flex-col justify-center items-center gap-4 py-8">
                 <img
-                  src="https://png.pngtree.com/png-vector/20191101/ourmid/pngtree-cartoon-color-simple-male-avatar-png-image_1934459.jpg"
+                  src={userData?.profilePic}
                   alt="avatar"
                   className="w-2/5 rounded-full"
                 />
@@ -241,8 +244,7 @@ export default function Index() {
                     First name :
                   </h1>
                   <h1 className="text-xl w-2/4 text-start text-black">
-                    {" "}
-                    {userData.firstName}
+                    {userData?.firstName}
                   </h1>
                 </div>
                 <div className="w-2/3 flex justify-evenly">
@@ -250,8 +252,7 @@ export default function Index() {
                     Last name :
                   </h1>
                   <h1 className="text-xl w-2/4 text-start text-black">
-                    {" "}
-                    {userData.lastName}
+                    {userData?.lastName}
                   </h1>
                 </div>
                 <div className="w-2/3 flex justify-evenly">
@@ -259,8 +260,7 @@ export default function Index() {
                     Username :
                   </h1>
                   <h1 className="text-xl w-2/4 text-start text-black">
-                    {" "}
-                    {userData.Username}
+                    {userData?.Username}
                   </h1>
                 </div>
                 <div className="w-2/3 flex justify-evenly">
@@ -268,8 +268,7 @@ export default function Index() {
                     E-mail :
                   </h1>
                   <h1 className="text-xl w-2/4 text-start text-black">
-                    {" "}
-                    {userData.email}
+                    {userData?.email}
                   </h1>
                 </div>
                 <div className="w-2/3 flex justify-evenly">
@@ -277,8 +276,7 @@ export default function Index() {
                     Phone number :
                   </h1>
                   <a href="tel" className="text-xl w-2/4 text-start text-black">
-                    {" "}
-                    {userData.phoneNumber}
+                    {userData?.phoneNumber}
                   </a>
                 </div>
                 <div className="w-2/3 flex justify-evenly">
@@ -286,8 +284,7 @@ export default function Index() {
                     Birth date :
                   </h1>
                   <h1 className="text-xl w-2/4 text-start text-black">
-                    {" "}
-                    {userData.birthDate}
+                    {userData?.birthDate}
                   </h1>
                 </div>
                 <div className="w-2/3 flex justify-evenly">
@@ -295,8 +292,7 @@ export default function Index() {
                     Address :
                   </h1>
                   <h1 className="text-xl w-2/4 text-start text-black">
-                    {" "}
-                    {userData.address}
+                    {userData?.address}
                   </h1>
                 </div>
                 <div className="w-2/3 flex justify-evenly">
@@ -304,8 +300,7 @@ export default function Index() {
                     Gender :
                   </h1>
                   <h1 className="text-xl w-2/4 text-start text-black">
-                    {" "}
-                    {userData.gender}
+                    {userData?.gender}
                   </h1>
                 </div>
               </div>
@@ -313,16 +308,18 @@ export default function Index() {
             <div className="w-2/4 flex flex-col gap-4">
               <h1 className="text-2xl">Хэрэглэгчийн оруулсан зар</h1>
               <div className="w-full flex flex-wrap gap-10">
-                {productData.map((item, index) => {
+                {productData?.map((item, index) => {
+                  console.log(productData);
+
                   return (
                     <div key={index} className="w-1/3 flex flex-col">
                       <div className="w-full">
                         <img src={item.itemPhoto} alt="" className="w-full" />
                       </div>
                       <div className="w-full flex flex-col text-center">
-                        <h1>{item.itemName}</h1>
-                        <p>{item.description}</p>
-                        <p>{item.rentalPrice}</p>
+                        <h1>{item?.itemName}</h1>
+                        <p>{item?.description}</p>
+                        <p>{item?.rentalPrice}</p>
                         <div className="flex w-full">
                           <button
                             className="w-full bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"

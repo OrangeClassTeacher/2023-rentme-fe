@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Link from "next/link";
 import { FaFacebookF, FaGoogle, FaYahoo } from "react-icons/fa";
+
 import AuthLayout from "@/components/auth/AuthLayout";
 import { useContext } from "react";
 import { userIdCon } from "@/context/userIdContext";
@@ -84,10 +85,6 @@ export default function Index() {
             <button className="flex items-center gap-2 text-[#D93025] py-3 px-5 rounded-lg border-2 border-[#D93025] hover:bg-[#d93025] hover:text-white duration-300">
               <FaGoogle />
               Google-ээр нэвтрэх
-            </button>
-            <button className="flex items-center gap-2 text-[#1967d2] py-3 px-5 rounded-lg border-2 border-[#1967d2] hover:bg-[#1967d2] hover:text-white duration-300">
-              <FaYahoo />
-              Yahoo-ээр нэвтрэх
             </button>
           </div>
         </div>
