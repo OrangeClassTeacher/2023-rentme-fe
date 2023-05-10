@@ -21,8 +21,8 @@ export function Category() {
   };
 
   return (
-    <div className="relative w-full overflow-hidden  dark:bg-white pb-8">
-      <div className="w-full flex bg-head text-white sticky top-0 z-[50] bg-gradient-to-r from-gray-900 to-gray-500 z-0">
+    <div className="relative w-full overflow-hidden  dark:bg-white py-8">
+      <div className="w-full flex bg-head text-white sticky top-0 ">
         {catData.map((item, index) => {
           if (!item.parentId) {
             return (

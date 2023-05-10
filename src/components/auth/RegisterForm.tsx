@@ -1,7 +1,7 @@
 import axios from "axios";
 import Link from "next/link";
 import { FC, useState, useEffect, useContext, useRef } from "react";
-import { FaFacebookF, FaGoogle, FaYahoo } from "react-icons/fa";
+import { FaFacebookF, FaGoogle } from "react-icons/fa";
 import { BsCheckCircle, BsXCircle } from "react-icons/bs";
 import { IUser } from "../../interfaces/user";
 
@@ -360,8 +360,8 @@ const RegisterForm: FC = () => {
 
         <div className="grid grid-cols-2 gap-5">
           <button className="flex text-teal-500 items-center justify-center gap-2 text-[#1967d2] py-3 px-5 rounded-lg border-2 border-[#1967d2] hover:bg-[#1967d2] hover:text-white duration-300">
-            <FaYahoo />
-            Yahoo-ээр бүртгүүлэх
+            <FaGoogle />
+            Google-ээр бүртгүүлэх
           </button>
           <button className="flex text-teal-500 items-center justify-center gap-2 text-[#1967d2] py-3 px-5 rounded-lg border-2 border-[#1967d2] hover:bg-[#1967d2] hover:text-white duration-300">
             <FaFacebookF />
