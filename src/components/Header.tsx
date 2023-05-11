@@ -20,8 +20,8 @@ export const Header = () => {
   }, []);
 
   return (
-    <div className="w-5/5 ps-5 bg-head text-white sticky top-0 z-[50] bg-gradient-to-r from-gray-900 to-gray-500 z-0">
-      <div className="ps-5 w-full py-5 border-b border-b-white/[.15] flex items-center justify-between">
+    <div className="w-full px-8 bg-head text-white sticky top-0 z-[50] bg-gradient-to-r from-gray-900 to-gray-500 z-0">
+      <div className="py-5 w-full px-8 border-b border-b-white/[.15] flex items-center justify-between">
         <div className="flex w-1/5 items-center gap-7 hidden md:flex">
           <Link href="/">
             <Image

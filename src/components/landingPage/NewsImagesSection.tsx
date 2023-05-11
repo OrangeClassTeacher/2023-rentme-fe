@@ -1,16 +1,18 @@
 import React, { FC } from "react";
 import Image from "next/image";
-import bimage from "../../assets/backimg.svg"
+import bimage from "../../assets/backimg.svg";
 import Link from "next/link";
 import { HiOutlineArrowUpRight } from "react-icons/hi2";
+import newsImageSection from "./NewsSection";
 
 const NewsSection: FC = () => (
   <div className="container text-head mt-[60px] mb-[69px] lg:mt-[120px] lg:mb-[112px]">
     <div className="flex flex-col items-start mb-[30px] lg:flex-row lg:items-center lg:justify-between lg:mb-[51px] gap-[30px]">
-      <div>
+      {/* <div>
         <h1 className="text-3xl-bold mb-[9px]">Rental Newss</h1>
         <p className="text-text font-md-regular">Latest Rental Item</p>
-      </div>
+      </div> */}
+      <newsImageSection />
 
       <Link className="arrow-btn-1" href="/item">
         All Rental Items
@@ -125,7 +127,9 @@ const NewsSection: FC = () => (
             <Link
               className="block text-lg-medium mb-[10px] w-[20ch] hover:text-head/70 duration-300"
               href="/"
-            >  Bag
+            >
+              {" "}
+              Bag
             </Link>
             <span className="block text-text text-xs-regular">
               December 16, 2022
@@ -154,8 +158,8 @@ const NewsSection: FC = () => (
             <Link
               className="block text-lg-medium mb-[10px] w-[20ch] hover:text-head/70 duration-300"
               href="/"
-            >        
-            Bag                  
+            >
+              Bag
             </Link>
             <span className="block text-text text-xs-regular">
               December 16, 2022
