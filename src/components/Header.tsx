@@ -11,24 +11,56 @@ import { userIdCon } from "@/context/userIdContext";
 import { UserProfie } from "./UserProfie";
 import SortDropDown from "./global/SortDropDown";
 import { LoadingContext } from "@/context/LoadingContext";
+import axios from "axios";
 
 export const Header = () => {
+  // Collections that start with `hidden-*` are hidden from the search page.
+  const [productData, setProductData] = useState<Iproduct[]>();
+  const [proData, setProData] = useState<Iproduct[]>();
+  const [catData, setCatData] = useState([]);
+  useEffect(() => {
+    getCatData();
+  }, []);
+  const getCatData = () => {
+    axios
+      .get("http://localhost:8000/api/category")
+      .then((res) => setCatData(res.data.result))
+      .catch((err) => console.log(err));
+  };
+
   const { userId, setUserId } = useContext(userIdCon);
   const [user, setUser] = useState(false);
   useEffect(() => {
     userId ? "" : setUserId(localStorage.getItem("currentUserId"));
   }, []);
+  let lastScrollTop = 0;
+  if (typeof window !== "undefined") {
+    window.addEventListener("scroll", function () {
+      const Navbar = (document.getElementById("Navbar") as HTMLElement) || null;
+      var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      console.log(scrollTop);
+
+      if (scrollTop > lastScrollTop) {
+        Navbar.style.top = "-200px";
+      } else {
+        Navbar.style.top = `0px`;
+
+        // Navbar.style.color = "black";
+        Navbar.style.zIndex = "100";
+      }
+      lastScrollTop = scrollTop;
+    });
+  }
 
   return (
-    <div className="w-full px-8 bg-head text-white sticky top-0 z-[50] bg-gradient-to-r from-gray-900 to-gray-500 z-0">
+    <div
+      className="w-full px-8 bg-head text-white fixed top-0 z-[50] bg-gradient-to-r from-gray-900 to-gray-500 z-0 ease-in-out duration-100"
+      id="Navbar"
+    >
       <div className="py-5 w-full px-8 border-b border-b-white/[.15] flex items-center justify-between">
         <div className="flex w-1/5 items-center gap-7 hidden md:flex">
           <Link href="/">
-            <Image
-              className="w-full h-10 hover:animate-spin"
-              src={mainLogo}
-              alt="IntelliSense"
-            />
+            <Image className="w-full h-10" src={mainLogo} alt="IntelliSense" />
           </Link>
         </div>
         <div className="w-4/5 hidden md:flex">
@@ -79,6 +111,31 @@ export const Header = () => {
               <Link href="/login">Нэвтрэх</Link>
             </button>
           )}
+        </div>
+      </div>
+      <div className="relative w-full overflow-hidden  dark:bg-white ">
+        <div className="w-full flex bg-head text-white sticky top-0 ">
+          {catData.map((item, index) => {
+            if (!item.parentId) {
+              return (
+                <select
+                  key={index}
+                  className="text-black border border-border-2 w-full py-[12px] px-[22px] rounded-lg focus:outline-none focus:ring-2 focus:ring-color-1 text-text text-md-regular"
+                >
+                  <option value={item?._id}>{item.categoryName}</option>
+                  {catData.map((e, index) => {
+                    if (e.parentId == item._id) {
+                      return (
+                        <option key={index} value={item._id}>
+                          {e.categoryName}
+                        </option>
+                      );
+                    }
+                  })}
+                </select>
+              );
+            }
+          })}
         </div>
       </div>
     </div>

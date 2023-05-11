@@ -8,9 +8,9 @@ import { HiOutlineArrowUpRight } from "react-icons/hi2";
 
 export const NewsSection = () => {
   return (
-    <div className="flex flex-col w-full">
+    <div className="flex flex-col w-full pt-8">
       <div className="w-full">
-        <h1>News Section</h1>
+        <h1 className="ps-6">News Section</h1>
       </div>
 
       <div className="w-full h-96 flex justify-evenly  my-8">
