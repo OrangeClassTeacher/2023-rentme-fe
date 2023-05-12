@@ -18,9 +18,27 @@ export const Header = () => {
   useEffect(() => {
     userId ? "" : setUserId(localStorage.getItem("currentUserId"));
   }, []);
+  let lastScrollTop = 0;
+  if (typeof window !== "undefined") {
+    window.addEventListener("scroll", function () {
+      const Navbar = (document.getElementById("Navbar") as HTMLElement) || null;
+      var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      if (scrollTop > lastScrollTop) {
+        Navbar.style.top = "-200px";
+      } else {
+        Navbar.style.top = "0px";
+        Navbar.style.color = "black";
+        Navbar.style.zIndex = "100";
+      }
+      lastScrollTop = scrollTop;
+    });
+  }
 
   return (
-    <div className="w-5/5 ps-5 bg-head text-white sticky top-0 z-[50] bg-gradient-to-r from-gray-900 to-gray-500 z-0">
+    <div
+      className="w-5/5 ps-5 bg-head text-white sticky top-0 z-[50] bg-gradient-to-r from-gray-900 to-gray-500 z-0 ease-out duration-300"
+      id="Navbar"
+    >
       <div className="ps-5 w-full py-5 border-b border-b-white/[.15] flex items-center justify-between">
         <div className="flex w-1/5 items-center gap-7 hidden md:flex">
           <Link href="/">
