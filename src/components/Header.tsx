@@ -27,6 +27,24 @@ export const Header = () => {
     getCatData();
     userId ? "" : setUserId(localStorage.getItem("currentUserId"));
   }, []);
+  let lastScrollTop = 0;
+  if (typeof window !== "undefined") {
+    window.addEventListener("scroll", function () {
+      const Navbar = (document.getElementById("Navbar") as HTMLElement) || null;
+      var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      console.log(scrollTop);
+
+      if (scrollTop > lastScrollTop) {
+        Navbar.style.top = "-200px";
+      } else {
+        Navbar.style.top = `0px`;
+
+        // Navbar.style.color = "black";
+        Navbar.style.zIndex = "100";
+      }
+      lastScrollTop = scrollTop;
+    });
+  }
 
   const getCatData = () => {
     axios
