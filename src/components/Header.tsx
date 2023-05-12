@@ -12,15 +12,22 @@ import { UserProfie } from "./UserProfie";
 import SortDropDown from "./global/SortDropDown";
 import { LoadingContext } from "@/context/LoadingContext";
 import axios from "axios";
+import { Iproduct } from "@/interfaces/product";
 
 export const Header = () => {
   // Collections that start with `hidden-*` are hidden from the search page.
   const [productData, setProductData] = useState<Iproduct[]>();
   const [proData, setProData] = useState<Iproduct[]>();
   const [catData, setCatData] = useState([]);
+
+  const { userId, setUserId } = useContext(userIdCon);
+  const [user, setUser] = useState(false);
+
   useEffect(() => {
     getCatData();
+    userId ? "" : setUserId(localStorage.getItem("currentUserId"));
   }, []);
+
   const getCatData = () => {
     axios
       .get("http://localhost:8000/api/category")
@@ -28,11 +35,6 @@ export const Header = () => {
       .catch((err) => console.log(err));
   };
 
-  const { userId, setUserId } = useContext(userIdCon);
-  const [user, setUser] = useState(false);
-  useEffect(() => {
-    userId ? "" : setUserId(localStorage.getItem("currentUserId"));
-  }, []);
   let lastScrollTop = 0;
   if (typeof window !== "undefined") {
     window.addEventListener("scroll", function () {

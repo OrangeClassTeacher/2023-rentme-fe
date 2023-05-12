@@ -43,12 +43,10 @@ export default function Index() {
   return (
     <div className="bg-white">
       <div className="text-center p-4">
-        {userId ? (
+        {userId && (
           <button className="text-teal-500 outline outline-offset-2 outline-teal-500 bg-white rounded px-3">
             <Link href="/addProduct">Create news</Link>
           </button>
-        ) : (
-          ""
         )}
       </div>
       <div>
@@ -76,7 +74,10 @@ export default function Index() {
                   alt="itemPhoto"
                   className="w-full h-autp"
                 />
-                <h1 className="text-xl text-black text-center"> {item.itemName}</h1>
+                <h1 className="text-xl text-black text-center">
+                  {" "}
+                  {item.itemName}
+                </h1>
                 <h3 className="text-base text-black truncate">
                   Description : {item.description}
                 </h3>
@@ -84,7 +85,7 @@ export default function Index() {
                   Rental price : {item.rentalPrice}$
                 </span>
                 <div className="px-20 py-5">
-                  <RatingStar/>
+                  <RatingStar />
                 </div>
                 <div className="p-3">
                   <button className="text-rose-500  outline outline-offset-2 outline-white rounded px-3">

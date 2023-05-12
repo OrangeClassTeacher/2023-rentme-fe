@@ -20,7 +20,7 @@ export default function Index() {
       })
       .then((res) => {
         setData(res.data.result);
-        const { result } = res.data;
+        const { result, status, message } = res.data;
         if (result?._id != undefined) {
           localStorage.setItem("currentUserId", result?._id);
           setUserId(result?._id);
