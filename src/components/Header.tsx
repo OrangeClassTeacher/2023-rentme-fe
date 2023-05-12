@@ -42,7 +42,7 @@ export const Header = () => {
               </li>
 
               <li className="hover:text-white/70 duration-300 ">
-                <Link href="/">Холбоо барих</Link>
+                <Link href="/contact-us">Холбоо барих</Link>
               </li>
             </ul>
           </nav>
