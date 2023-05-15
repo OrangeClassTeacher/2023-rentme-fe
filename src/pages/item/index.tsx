@@ -10,26 +10,24 @@ import { userIdCon } from "@/context/userIdContext";
 import RatingStar from "@/components/global/RatingStar";
 import Pagination from "@/components/global/Pagination";
 import SortDropDown from "@/components/global/SortDropdown";
+import { sortValContext } from "@/context/SortContext";
 export default function Index() {
   const [productData, setProductData] = useState<Iproduct[]>();
-
+  const { sortVal } = useContext(sortValContext);
   const { search } = useContext<any>(SearchContext);
   const { userId } = useContext(userIdCon);
 
   useEffect(() => {
     getData();
-  }, [search]);
+  }, [search, sortVal]);
 
   const getData = () => {
-    if (search && search != "") {
-      axios
-        .post("http://localhost:8000/api/items", { searchText: search })
-        .then((res) => setProductData(res.data.result));
-    } else if (search == "" || search === undefined) {
-      axios
-        .get("http://localhost:8000/api/item")
-        .then((res) => setProductData(res.data.result));
-    }
+    axios
+      .post("http://localhost:8000/api/items", {
+        searchText: search,
+        sort: sortVal,
+      })
+      .then((res) => setProductData(res.data.result));
   };
   const [filterShow, setFilterShow] = useState<boolean>(false);
 
@@ -74,9 +72,12 @@ export default function Index() {
                 <img
                   src={item.itemPhoto}
                   alt="itemPhoto"
-                  className="w-full h-autp"
+                  className="w-full h-auto border rounded"
                 />
-                <h1 className="text-xl text-black text-center"> {item.itemName}</h1>
+                <h1 className="text-xl text-black text-center">
+                  {" "}
+                  {item.itemName}
+                </h1>
                 <h3 className="text-base text-black truncate">
                   Description : {item.description}
                 </h3>
@@ -84,7 +85,7 @@ export default function Index() {
                   Rental price : {item.rentalPrice}$
                 </span>
                 <div className="px-20 py-5">
-                  <RatingStar/>
+                  <RatingStar />
                 </div>
                 <div className="p-3">
                   <button className="text-rose-500  outline outline-offset-2 outline-white rounded px-3">
