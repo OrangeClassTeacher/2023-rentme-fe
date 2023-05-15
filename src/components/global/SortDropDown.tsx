@@ -1,9 +1,10 @@
-import { FC, useState, useEffect } from "react";
+import { FC, useState, useEffect, useContext } from "react";
 import { useRouter } from "next/router";
-
+import { sortValContext } from "@/context/SortContext";
 import { BsChevronDown } from "react-icons/bs";
 
 const SortDropDown: FC = () => {
+  const { setSortVal } = useContext(sortValContext);
   const router = useRouter();
   const [dropSort, setDropSort] = useState(false);
   const dropSortHandler = (): void => {
@@ -11,20 +12,11 @@ const SortDropDown: FC = () => {
   };
 
   const sortItems = [
-    { title: "Эрэлттэй", slug: "popular" },
-    { title: "Шинэ", slug: "newest" },
-    { title: "A-Z", slug: "nameAsc" },
-    { title: "Z-A", slug: "nameDesc" },
+    { title: "Price up", slug: { rentalPrice: 1 } },
+    { title: "Price down", slug: { rentalPrice: -1 } },
+    { title: "A-Z", slug: { itemName: 1 } },
+    { title: "Z-A", slug: { itemName: -1 } },
   ];
-
-  const [sort, setSort] = useState(sortItems[0]);
-
-  useEffect(() => {
-    if (router.query.sort) {
-      sortItems.map((item) => item.slug === router.query.sort && setSort(item));
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [router.query]);
 
   return (
     <div className="relative">
@@ -34,7 +26,7 @@ const SortDropDown: FC = () => {
           onClick={dropSortHandler}
           className="bg-bg-4 whitespace-nowrap rounded-lg py-4 px-[15px] flex items-center justify-between text-text text-sm-regular w-[25ch]"
         >
-          {sort.title}
+          {sortItems[0].title}
           <BsChevronDown
             className={`duration-300  ${
               dropSort ? "rotate-[-180deg]" : "rotate-0"
@@ -50,14 +42,9 @@ const SortDropDown: FC = () => {
         <ul className="flex flex-col font-[400] text-[15px] leading-[35px] text-head">
           {sortItems.map((item, index) => (
             <li
-              onClick={(): void => {
-                router.push({
-                  query: { ...router.query, sort: item.slug },
-                });
-                setSort(item);
-              }}
+              onClick={() => setSortVal(item.slug)}
               key={`sort-item-${index}`}
-              className="hover:text-color-1 whitespace-nowrap cursor-pointer hover:underline "
+              className="hover:text-color-1 whitespace-nowrap text-black cursor-pointer hover:underline "
             >
               {item.title}
             </li>
