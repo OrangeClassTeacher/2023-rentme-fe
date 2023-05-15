@@ -7,6 +7,7 @@ import Link from "next/link";
 const Product = () => {
   const [data, setData] = useState<Iproduct>();
   const [catData, setCatData] = useState([]);
+  const [userData, setUserData] = useState([]);
   const router = useRouter();
   const path = router.query;
   console.log(path);
@@ -21,6 +22,10 @@ const Product = () => {
     axios
       .get("http://localhost:8000/api/category")
       .then((res) => setCatData(res.data.result))
+      .catch((err) => console.log(err));
+    axios
+      .get("http://localhost:8000/api/users")
+      .then((res) => setUserData(res.data.result))
       .catch((err) => console.log(err));
   };
   console.log(data);
@@ -59,12 +64,21 @@ const Product = () => {
           Rental End :
           <span className="text-xl text-yellow-600">{data?.rentalEndDate}</span>
         </p>
-        <p className="text-xl text-neutral-600 flex gap-2">
-          Created user :{" "}
-          <Link href="/" className="underline underline-offset-1">
-            GAnzoo
-          </Link>
-        </p>
+        {userData.map((user, index) => {
+          if (user._id == data?.createdUser) {
+            return (
+              <p className="text-xl text-neutral-600 flex gap-2" key={index}>
+                CreatedUser :
+                <Link
+                  href={`/userInfo/${user._id}`}
+                  className="underline underline-offset-1"
+                >
+                  {user.Username}
+                </Link>
+              </p>
+            );
+          }
+        })}
         <p className="text-2xl">
           Rental Price :{" "}
           <span className="text-2xl text-green-600">{data?.rentalPrice}$</span>

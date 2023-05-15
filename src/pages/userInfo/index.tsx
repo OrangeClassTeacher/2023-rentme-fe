@@ -2,12 +2,17 @@ import React, { useEffect, useState, useContext } from "react";
 import { userIdCon } from "@/context/userIdContext";
 import axios from "axios";
 import Link from "next/link";
+import { useRouter } from "next/router";
 // import { AiFillEdit } from "react-icons/ai";
-export default function Index() {
+function Index() {
   const { userId, setUserId } = useContext(userIdCon);
   const [userData, setUserData] = useState({});
   const [update, setUpdate] = useState(false);
   const [productData, setProductData] = useState([]);
+  const router = useRouter();
+  const { _id } = router.query;
+  console.log(_id);
+
   useEffect(() => {
     if (userId) {
       console.log(userId);
@@ -18,7 +23,11 @@ export default function Index() {
   }, [userId]);
 
   const getUserData = () => {
-    if (userId) {
+    if (_id) {
+      axios
+        .get(`http://localhost:8000/api/user/${_id}`)
+        .then((res) => setUserData(res.data.result));
+    } else if (userId) {
       axios
         .get(`http://localhost:8000/api/user/${userId}`)
         .then((res) => setUserData(res.data.result));
@@ -340,3 +349,4 @@ export default function Index() {
     </div>
   );
 }
+export default Index;
