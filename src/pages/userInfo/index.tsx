@@ -316,7 +316,7 @@ function Index() {
             </div>
             <div className="w-2/4 flex flex-col gap-4">
               <h1 className="text-2xl">Хэрэглэгчийн оруулсан зар</h1>
-              <div className="w-full flex flex-wrap gap-10">
+              <div className="w-full flex flex-wrap gap-10 h-[85vh] overflow-auto">
                 {productData?.map((item, index) => {
                   console.log(productData);
 
