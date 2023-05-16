@@ -9,11 +9,7 @@ import { SearchContext } from "@/context/searchTextContext";
 import { userIdCon } from "@/context/userIdContext";
 import RatingStar from "@/components/global/RatingStar";
 import Pagination from "@/components/global/Pagination";
-<<<<<<< HEAD
-import SortDropDown from "@/components/global/SortDropdown";
-=======
 // import SortDropDown from "@/components/global/SortDropdown";
->>>>>>> 1c052cc (f)
 export default function Index() {
   const [productData, setProductData] = useState<Iproduct[]>();
 

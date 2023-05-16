@@ -61,7 +61,7 @@ const RegisterForm: FC = () => {
   const registerUser = async (event: any) => {
     event.preventDefault();
     const data: IUser = {
-      firstName: event.target.firstName.value,
+      firstName: event.target.8.value,
       lastName: event.target.lastName.value,
       Username: event.target.username.value,
       birthDate: event.target.birthDate.value,

@@ -30,8 +30,8 @@ export default function Index() {
 
   return (
     <AuthLayout>
-      <div className="w-full h-full bg-white p-8">
-        <div className=" flex items-center flex-col gap-3">
+      <div className="w-full h-full bg-white py-8">
+        <div className=" flex items-center flex-col py-8 gap-3">
           <h1 className="text-3xl text-teal-500">Нэвтрэх</h1>
           <input
             onChange={(e) => setLogEmail(e.target.value)}
