@@ -10,7 +10,6 @@ export default function App({ Component, pageProps }: AppProps) {
   const [search, setSearch] = useState("");
   const [userId, setUserId] = useState("");
   const [sortVal, setSortVal] = useState({});
-  console.log(sortVal);
 
   return (
     <SearchContext.Provider value={{ search, setSearch }}>

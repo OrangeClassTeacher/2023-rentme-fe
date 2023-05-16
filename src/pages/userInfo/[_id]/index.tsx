@@ -13,8 +13,6 @@ export default function Index() {
   const [catData, setCatData] = useState([]);
   const router = useRouter();
   const { _id } = router.query;
-  console.log(_id);
-
   useEffect(() => {
     if (_id) {
       getProducts();
