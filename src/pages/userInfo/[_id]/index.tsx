@@ -16,6 +16,7 @@ export default function Index() {
   const router = useRouter();
   const { _id } = router.query;
   const { followers, following } = userData;
+
   useEffect(() => {
     if (_id) {
       getProducts();
@@ -23,11 +24,6 @@ export default function Index() {
       getCategories();
     }
   }, [_id, followers, following]);
-  // useEffect(() => {
-  //   getProducts();
-  //   getUserData();
-  //   getCategories();
-  // }, [followers, following]);
 
   const getUserData = () => {
     if (_id) {
@@ -43,7 +39,7 @@ export default function Index() {
       axios
         .post("http://localhost:8000/api/itemUser", { createdUser: _id })
         .then((res) => {
-          setProductData(res.data.result), console.log(res.data.result);
+          setProductData(res.data.result);
         })
         .catch((err) => console.log(err));
     }
@@ -54,15 +50,26 @@ export default function Index() {
       .then((res) => setCatData(res.data.result))
       .catch((err) => console.log(err));
   };
-  const followReq = (id) => {
+  const followReq = (id: any) => {
+    console.log(id);
+
     const newArr = [...followers];
     newArr.push(localStorage.getItem("currentUserId"));
     axios
       .put(`http://localhost:8000/api/user/${id}`, { followers: newArr })
-      .then((res) => console.log("Follow success"))
+      .then((res) => {
+        const user = [...following];
+        user.push(id);
+        setUserData({ ...userData, following: user });
+        axios
+          .put(`http://localhost:8000/api/user/${userId}`, {
+            following: userData,
+          })
+          .then((res) => console.log("success"))
+          .catch((err) => console.log(err));
+      })
       .catch((err) => console.log(err));
   };
-  // console.log(productData);
   return (
     <div className="bg-white">
       <div className="flex flex-col items-center justify-center py-3 relative">
@@ -176,8 +183,6 @@ export default function Index() {
             <h1 className="text-2xl">Хэрэглэгчийн оруулсан зар</h1>
             <div className="w-full flex flex-wrap gap-10 h-[85vh] overflow-auto">
               {productData?.map((item, index) => {
-                console.log(productData);
-
                 return (
                   <div
                     key={index}

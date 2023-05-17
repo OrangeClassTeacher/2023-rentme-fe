@@ -8,19 +8,23 @@ function Index() {
   const { userId, setUserId } = useContext(userIdCon);
   const [userData, setUserData] = useState({});
   const [update, setUpdate] = useState(false);
+  const [showFollowers, setShowFollowers] = useState(false);
+  const [showFollowing, setShowFollowing] = useState(false);
   const [productData, setProductData] = useState([]);
   const router = useRouter();
   const { _id } = router.query;
-  console.log(_id);
+  // console.log(_id);
+  const { followers, following } = userData;
+  // console.log(following);
 
   useEffect(() => {
     if (userId) {
-      console.log(userId);
       getProducts();
       getUserData();
       setUserId(localStorage.getItem("currentUserId"));
+      // console.log(following);
     }
-  }, [userId]);
+  }, [userId, followers, following]);
 
   const getUserData = () => {
     if (_id) {
@@ -40,7 +44,7 @@ function Index() {
       axios
         .post("http://localhost:8000/api/itemUser", { createdUser: userId })
         .then((res) => {
-          setProductData(res.data.result), console.log(res.data.result);
+          setProductData(res.data.result);
         })
         .catch((err) => console.log(err));
     }
@@ -248,6 +252,54 @@ function Index() {
                   alt="avatar"
                   className="w-2/5 rounded-full"
                 />
+                <div className="w-2/3 flex justify-evenly">
+                  <div className="w-1/3 flex flex-col items-center border-r-2 border-black">
+                    <button onClick={() => setShowFollowers(!showFollowers)}>
+                      Followers
+                    </button>
+                    <p className="text-center"> {followers?.length}</p>
+                  </div>
+                  <div className="w-1/3 flex flex-col items-center border-r-2 border-black">
+                    <button onClick={() => setShowFollowing(!showFollowing)}>
+                      {" "}
+                      Following{" "}
+                    </button>
+                    <p>{following?.length}</p>
+                  </div>
+                  <div className="w-1/3 flex flex-col items-center">
+                    <p>Posts</p> <p>{productData.length}</p>
+                  </div>
+                </div>
+                <div>
+                  {showFollowers ? (
+                    <div className="absolute bg-black">
+                      <h1 className="text-3xl text-white">Followers</h1>
+                      {followers?.map((item: any, index: number) => {
+                        return (
+                          <div key={index}>
+                            <h1 className="text-white">{item}</h1>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  ) : (
+                    ""
+                  )}
+                  {showFollowing ? (
+                    <div className="absolute bg-black">
+                      <h1 className="text-3xl text-white">Following </h1>
+                      {following?.map((item: any, index: number) => {
+                        return (
+                          <div key={index}>
+                            <h1 className="text-white">{item}</h1>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  ) : (
+                    ""
+                  )}
+                </div>
                 <div className="w-2/3 flex justify-evenly ">
                   <h1 className="text-xl w-2/4 text-center text-black">
                     First name :
@@ -318,8 +370,6 @@ function Index() {
               <h1 className="text-2xl">Хэрэглэгчийн оруулсан зар</h1>
               <div className="w-full flex flex-wrap gap-10 h-[85vh] overflow-auto">
                 {productData?.map((item, index) => {
-                  console.log(productData);
-
                   return (
                     <div key={index} className="w-1/3 flex flex-col">
                       <div className="w-full">
