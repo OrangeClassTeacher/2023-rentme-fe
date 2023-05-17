@@ -43,7 +43,7 @@ export default function Index() {
       axios
         .post("http://localhost:8000/api/itemUser", { createdUser: _id })
         .then((res) => {
-          setProductData(res.data.result), console.log(res.data.result);
+          setProductData(res.data.result)
         })
         .catch((err) => console.log(err));
     }
@@ -176,8 +176,7 @@ export default function Index() {
             <h1 className="text-2xl">Хэрэглэгчийн оруулсан зар</h1>
             <div className="w-full flex flex-wrap gap-10 h-[85vh] overflow-auto">
               {productData?.map((item, index) => {
-                console.log(productData);
-
+                
                 return (
                   <div
                     key={index}

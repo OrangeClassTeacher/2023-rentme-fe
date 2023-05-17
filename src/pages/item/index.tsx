@@ -11,6 +11,7 @@ import RatingStar from "@/components/global/RatingStar";
 import Pagination from "@/components/global/Pagination";
 import SortDropDown from "@/components/global/SortDropdown";
 import { sortValContext } from "@/context/SortContext";
+
 export default function Index() {
   const [productData, setProductData] = useState<Iproduct[]>();
   const { sortVal } = useContext(sortValContext);
@@ -43,7 +44,7 @@ export default function Index() {
       <div className="text-center p-4">
         {userId ? (
           <button className="text-teal-500 outline outline-offset-2 outline-teal-500 bg-white rounded px-3">
-            <Link href="/addProduct">Create news</Link>
+            <Link href="/addProduct">Түрээслэх Бараа Нэмэх</Link>
           </button>
         ) : (
           ""
@@ -105,9 +106,11 @@ export default function Index() {
                 </div>
               </div>
             </div>
+            
           );
         })}
       </div>
+      {totalCourses > 0 && <Pagination totalPage={totalPages} />}
     </div>
   );
 }

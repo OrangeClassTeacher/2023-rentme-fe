@@ -8,7 +8,8 @@ import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import Image from 'next/image';
-import biamge from '@/assets/backimg.svg';
+import biamge from '@/assets/giphy.gif';
+import image from '@/images/dog.png'
 
 
 
@@ -16,7 +17,7 @@ import biamge from '@/assets/backimg.svg';
 import { EffectCoverflow, Pagination } from "swiper";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 const CarouselSection: FC = () => (
-    <div className="">
+    <div className="container mx-[78px]">
         <Swiper
             effect={"coverflow"}
             grabCursor={true}
@@ -34,48 +35,13 @@ const CarouselSection: FC = () => (
             className="mySwiper"
         >
             <SwiperSlide>
-                <div className="w-1/2 h-1/2">
-                    <Image src={biamge} alt="" className="w-full h-full object-cover" />
+                <div className="">
+                    <Image src={biamge} alt="" className="w-full h-[600px] object-cover" />
                 </div>
             </SwiperSlide>
             <SwiperSlide>
-                <div className="w-1/2 h-1/2">
-                    <Image src={biamge} alt="" className="w-full h-full object-cover" />
-                </div>
-            </SwiperSlide>
-            <SwiperSlide>
-                <div className="w-1/2 h-1/2">
-                    <Image src={biamge} alt="" className="w-full h-full object-cover" />
-                </div>
-            </SwiperSlide>
-            <SwiperSlide>
-                <div className="w-1/2 h-1/2">
-                    <Image src={biamge} alt="" className="w-full h-full object-cover" />
-                </div>
-            </SwiperSlide>
-            <SwiperSlide>
-                <div className="w-1/2 h-1/2">
-                    <Image src={biamge} alt="" className="w-full h-full object-cover" />
-                </div>
-            </SwiperSlide>
-            <SwiperSlide>
-                <div className="w-1/2 h-1/2">
-                    <Image src={biamge} alt="" className="w-full h-full object-cover" />
-                </div>
-            </SwiperSlide>
-            <SwiperSlide>
-                <div className="w-1/2 h-1/2">
-                    <Image src={biamge} alt="" className="w-full h-full object-cover" />
-                </div>
-            </SwiperSlide>
-            <SwiperSlide>
-                <div className="w-1/2 h-1/2">
-                    <Image src={biamge} alt="" className="w-full h-full object-cover" />
-                </div>
-            </SwiperSlide>
-            <SwiperSlide>
-                <div className="w-1/2 h-1/2">
-                    <Image src={biamge} alt="" className="w-full h-full object-cover" />
+                <div className="">
+                    <Image src={image} alt="" className="w-full h-[600px] object-cover" />
                 </div>
             </SwiperSlide>
         </Swiper>

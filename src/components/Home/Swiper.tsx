@@ -10,7 +10,7 @@ import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 
 const SwiperSection: FC = () => (
   <div className="bg-color-1 pt-[10px] pb-[10px] text-white">
-    <div className="container">
+    <div className="">
       <div className="text-center mb-[31px]">
         <h1 className="text-black text-3xl-bold mb-[10px]">
           Item 
@@ -38,6 +38,7 @@ const SwiperSection: FC = () => (
         modules={[Navigation]}
         className="mb-[30px] md:mb-[40px] lg:mb-[56px]"
       >
+        
         <SwiperSlide>
           <ProductSwiperCard />
         </SwiperSlide>

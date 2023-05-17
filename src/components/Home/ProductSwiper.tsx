@@ -1,12 +1,12 @@
 import { FC } from 'react';
 import Image from 'next/image';
 
-import bimage from '@/assets/backimg.svg';
+import gif from '@/assets/giphy.gif';
 
 const UserCommentCard: FC = () => (
     <>
-  <div className="w-[300px] h-[600px]">
-  <Image src={bimage} alt="" className="w-full h-full object-cover" />
+  <div className="w-full h-[600px]">
+  <Image src={gif} alt="" className="w-full h-full object-cover" />
 </div>
 </>
 );
