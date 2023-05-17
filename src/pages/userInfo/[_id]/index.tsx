@@ -10,16 +10,24 @@ export default function Index() {
   const { userId, setUserId } = useContext(userIdCon);
   const [userData, setUserData] = useState({});
   const [productData, setProductData] = useState([]);
+  const [showFollowers, setShowFollowers] = useState(false);
+  const [showFollowing, setShowFollowing] = useState(false);
   const [catData, setCatData] = useState([]);
   const router = useRouter();
   const { _id } = router.query;
+  const { followers, following } = userData;
   useEffect(() => {
     if (_id) {
       getProducts();
       getUserData();
       getCategories();
     }
-  }, [_id]);
+  }, [_id, followers, following]);
+  // useEffect(() => {
+  //   getProducts();
+  //   getUserData();
+  //   getCategories();
+  // }, [followers, following]);
 
   const getUserData = () => {
     if (_id) {
@@ -46,11 +54,47 @@ export default function Index() {
       .then((res) => setCatData(res.data.result))
       .catch((err) => console.log(err));
   };
-
+  const followReq = (id) => {
+    const newArr = [...followers];
+    newArr.push(localStorage.getItem("currentUserId"));
+    axios
+      .put(`http://localhost:8000/api/user/${id}`, { followers: newArr })
+      .then((res) => console.log("Follow success"))
+      .catch((err) => console.log(err));
+  };
   // console.log(productData);
   return (
     <div className="bg-white">
-      <div className="flex flex-col items-center justify-center py-3">
+      <div className="flex flex-col items-center justify-center py-3 relative">
+        {showFollowers ? (
+          <div className="absolute bg-black">
+            <h1 className="text-3xl text-white">Followers</h1>
+            {followers?.map((item: any, index: number) => {
+              return (
+                <div key={index}>
+                  <h1 className="text-white">{item}</h1>
+                </div>
+              );
+            })}
+          </div>
+        ) : (
+          ""
+        )}
+        {showFollowing ? (
+          <div className="absolute bg-black">
+            <h1 className="text-3xl text-white">Following </h1>
+            {following?.map((item: any, index: number) => {
+              return (
+                <div key={index}>
+                  <h1 className="text-white">{item}</h1>
+                </div>
+              );
+            })}
+          </div>
+        ) : (
+          ""
+        )}
+
         <div className="w-full flex justify-between px-5">
           <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
             <Link href="/">Буцах</Link>
@@ -67,7 +111,24 @@ export default function Index() {
                 alt="avatar"
                 className="w-2/5 rounded-full"
               />
-
+              <div className="w-2/3 flex justify-evenly">
+                <div className="w-1/3 flex flex-col items-center border-r-2 border-black">
+                  <button onClick={() => setShowFollowers(!showFollowers)}>
+                    Followers
+                  </button>
+                  <p className="text-center"> {followers?.length}</p>
+                </div>
+                <div className="w-1/3 flex flex-col items-center border-r-2 border-black">
+                  <button onClick={() => setShowFollowing(!showFollowing)}>
+                    {" "}
+                    Following{" "}
+                  </button>
+                  <p>{following?.length}</p>
+                </div>
+                <div className="w-1/3 flex flex-col items-center">
+                  <p>Posts</p> <p>{productData.length}</p>
+                </div>
+              </div>
               <div className="w-2/3 flex justify-evenly">
                 <h1 className="text-xl w-2/4 text-center text-black">
                   Username :
@@ -102,7 +163,10 @@ export default function Index() {
                 <button className="bg-green-500 w-1/4 hover:bg-green-400 text-white font-bold py-2 px-4 border-b-4 border-green-700 hover:border-green-500 rounded">
                   Chat
                 </button>
-                <button className="bg-blue-500 w-1/4 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+                <button
+                  onClick={() => followReq(userData._id)}
+                  className="bg-blue-500 w-1/4 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
+                >
                   Follow
                 </button>
               </div>
