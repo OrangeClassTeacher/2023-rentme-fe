@@ -268,6 +268,7 @@ function Index() {
                   </div>
                   <div className="w-1/3 flex flex-col items-center">
                     <p>Posts</p> <p>{productData.length}</p>
+                    {/* test */}
                   </div>
                 </div>
                 <div>
