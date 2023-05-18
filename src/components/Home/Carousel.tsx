@@ -17,7 +17,7 @@ import image from '@/images/dog.png'
 import { EffectCoverflow, Pagination } from "swiper";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 const CarouselSection: FC = () => (
-    <div className="container mx-[78px]">
+    <div className="container mx-[40px]">
         <Swiper
             effect={"coverflow"}
             grabCursor={true}
