@@ -6,6 +6,7 @@ import { GrSend } from "react-icons/gr";
 import { useRouter } from "next/router";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import Image from "next/image";
+import { log } from "console";
 export default function Index() {
   const { userId, setUserId } = useContext(userIdCon);
   const [userData, setUserData] = useState({});
@@ -13,9 +14,10 @@ export default function Index() {
   const [showFollowers, setShowFollowers] = useState(false);
   const [showFollowing, setShowFollowing] = useState(false);
   const [catData, setCatData] = useState([]);
+  const [userData2, setUserData2] = useState({});
   const router = useRouter();
   const { _id } = router.query;
-  const { followers, following } = userData;
+  const { followers, following }: any = userData;
   useEffect(() => {
     if (_id) {
       getProducts();
@@ -34,6 +36,10 @@ export default function Index() {
       axios
         .get(`http://localhost:8000/api/user/${_id}`)
         .then((res) => setUserData(res.data.result));
+      axios
+        .get(`http://localhost:8000/api/user/${userId}`)
+        .then((res) => setUserData2(res.data.result))
+        .catch((Err) => console.log(Err));
     } else {
       alert("UserId not found");
     }
@@ -43,7 +49,7 @@ export default function Index() {
       axios
         .post("http://localhost:8000/api/itemUser", { createdUser: _id })
         .then((res) => {
-          setProductData(res.data.result)
+          setProductData(res.data.result);
         })
         .catch((err) => console.log(err));
     }
@@ -56,10 +62,20 @@ export default function Index() {
   };
   const followReq = (id) => {
     const newArr = [...followers];
+
     newArr.push(localStorage.getItem("currentUserId"));
     axios
       .put(`http://localhost:8000/api/user/${id}`, { followers: newArr })
-      .then((res) => console.log("Follow success"))
+      .then((res) => {
+        let newArr = [...userData2?.following];
+        newArr.push(id);
+        axios
+          .put(`http://localhost:8000/api/user/${userId}`, {
+            following: newArr,
+          })
+          .then((res) => console.log("Success"))
+          .catch((err) => console.log(err));
+      })
       .catch((err) => console.log(err));
   };
   // console.log(productData);
@@ -176,7 +192,6 @@ export default function Index() {
             <h1 className="text-2xl">Хэрэглэгчийн оруулсан зар</h1>
             <div className="w-full flex flex-wrap gap-10 h-[85vh] overflow-auto">
               {productData?.map((item, index) => {
-                
                 return (
                   <div
                     key={index}
