@@ -163,18 +163,6 @@ export default function Index() {
                 </a>
               </div>
 
-              <div className="w-2/3 flex pt-3">
-                <textarea
-                  id="message"
-                  className="w-3/4 block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="Write your thoughts here..."
-                ></textarea>
-                <div className="w-full w-1/4 flex justify-end py-4 px-6">
-                  <button className="bg-yellow-500 w-full flex justify-center items-center w-2/4 hover:bg-yellow-400 text-white font-bold border-b-4 border-yellow-700 hover:border-yellow-500 rounded ">
-                    Send
-                  </button>
-                </div>
-              </div>
               <div className="w-2/3 flex justify-evenly pt-5">
                 <button className="bg-green-500 w-1/4 hover:bg-green-400 text-white font-bold py-2 px-4 border-b-4 border-green-700 hover:border-green-500 rounded">
                   Chat

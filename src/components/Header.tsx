@@ -8,7 +8,7 @@ import { FiShoppingBag, FiSearch } from "react-icons/fi";
 import { BsListNested } from "react-icons/bs";
 import { useContext } from "react";
 import { userIdCon } from "@/context/userIdContext";
-import { UserProfie } from "./UserProfie";
+import MyModal from "./UserProfie";
 import SortDropDown from "./global/SortDropDown";
 import { LoadingContext } from "@/context/LoadingContext";
 
@@ -90,7 +90,7 @@ export const Header = () => {
               className="text-head rounded-lg px-[34px] py-2 text-md-regular hover:bg-white/70 duration-300"
               onClick={() => setUser(!user)}
             >
-              <UserProfie USer={user} setUSer={setUser} />
+              <MyModal USer={user} setUSer={setUser} />
             </button>
           ) : (
             <button className="text-head rounded-lg px-5 py-2 text-md-regular hover:bg-white/70 duration-300">
