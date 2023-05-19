@@ -5,6 +5,7 @@ import { FaFacebookF, FaGoogle } from "react-icons/fa";
 import { BsCheckCircle, BsXCircle } from "react-icons/bs";
 import { IUser } from "../../interfaces/user";
 
+
 const RegisterForm: FC = () => {
   const [userData, setUserData] = useState<IUser>();
   const [rePassword, setRePassword] = useState<string>("");
@@ -74,6 +75,7 @@ const RegisterForm: FC = () => {
       gender: event.target.gender.value,
       profilePic: proPic ? proPic : "",
       password: event.target.password.value,
+      IUser: ""
     };
     // console.log(data);
 

@@ -4,6 +4,11 @@ import Link from "next/link";
 import { Iproduct } from "../../interfaces/product";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { IProductCategory } from "../../interfaces/product";
+
+interface ICategoryProps {
+
+}
 
 export function Category() {
   // Collections that start with `hidden-*` are hidden from the search page.

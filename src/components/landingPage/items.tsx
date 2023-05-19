@@ -18,6 +18,9 @@ export const Items = () => {
       .catch((err) => console.log(err));
   };
   console.log(itemData);
+  interface ProductProps {
+    
+  }
 
   return (
     <div className="w-full flex flex-col gap-4">

@@ -9,7 +9,7 @@ import { SearchContext } from "@/context/searchTextContext";
 import { userIdCon } from "@/context/userIdContext";
 import RatingStar from "@/components/global/RatingStar";
 import Pagination from "@/components/global/Pagination";
-import SortDropDown from "@/components/global/SortDropdown";
+import SortDropDown from "@/components/global/SortDropDown";
 import { sortValContext } from "@/context/SortContext";
 
 export default function Index() {
