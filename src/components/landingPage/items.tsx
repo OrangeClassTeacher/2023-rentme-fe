@@ -5,6 +5,7 @@ import RatingStar from "../global/RatingStar";
 import Link from "next/link";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import { BiFilterAlt } from "react-icons/bi";
+import { Iproduct } from "@/interfaces/product";
 
 export const Items = () => {
   const [itemData, setItemData] = useState([]);
@@ -18,15 +19,12 @@ export const Items = () => {
       .catch((err) => console.log(err));
   };
   console.log(itemData);
-  interface ProductProps {
-    
-  }
-
+  
   return (
     <div className="w-full flex flex-col gap-4">
       <h1 className="ps-8 text-3xl">Шинээр нэмэгдсэн</h1>
       <div className="w-full flex flex-wrap justify-evenly gap-2">
-        {itemData.map((item, index) => {
+        {itemData.map((item:Iproduct, index) => {
           return (
             <div
               key={index}

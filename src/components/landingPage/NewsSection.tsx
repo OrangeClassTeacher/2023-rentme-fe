@@ -12,10 +12,10 @@ export const NewsSection = () => {
       </div>
 
       <div className="w-full h-96 flex justify-evenly  my-8">
-        <Image src={dog} className="w-auto h-auto" />
-        <Image src={dog} className="w-auto h-auto" />
-        <Image src={dog} className="w-auto h-auto" />
-        <Image src={dog} className="w-auto h-auto" />
+        <Image src={dog} alt="dog" className="w-auto h-auto" />
+        <Image src={dog} alt="dog" className="w-auto h-auto" />
+        <Image src={dog} alt="dog" className="w-auto h-auto" />
+        <Image src={dog} alt="dog"className="w-auto h-auto" />
         {/* <div className="w-2/4">
         <Image src={harizm} className="w-full h-full" />
       </div>

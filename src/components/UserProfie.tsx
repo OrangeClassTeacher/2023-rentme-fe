@@ -4,9 +4,10 @@ import axios from "axios";
 import { FiLogOut } from "react-icons/fi";
 import { TiDeleteOutline } from "react-icons/ti";
 import Link from "next/link";
+import { IUser } from "@/interfaces/user";
 
-export const UserProfie = ({ USer, setUSer }) => {
-  const [userData, setUserData] = useState({});
+export const UserProfie = ({ USer, setUSer }: any) => {
+  const [userData, setUserData] = useState<IUser>();
   const { userId, setUserId } = useContext(userIdCon);
 
   useEffect(() => {

@@ -2,7 +2,8 @@ import { IUser } from "./user";
 
 export interface IProductCategory {
   _id: string;
-  name: string;
+  categoryName: string;
+  parentId:string
   description?: string;
   image: string;
   slug: string;

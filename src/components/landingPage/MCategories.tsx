@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { IProductCategory } from "@/interfaces/product";
 
 export const MCategories = () => {
-  const [catData, setCatData] = useState([]);
-  const [catID, setCatID] = useState([]);
+  const [catData, setCatData] = useState<IProductCategory[]>([]);
+  const [catID, setCatID] = useState<IProductCategory[]>([]);
 
   useEffect(() => {
     getCatData(), getData();

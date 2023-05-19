@@ -10,11 +10,11 @@ interface ICategoryProps {
 
 }
 
-export function Category() {
+export function  Category() {
   // Collections that start with `hidden-*` are hidden from the search page.
   const [productData, setProductData] = useState<Iproduct[]>();
   const [proData, setProData] = useState<Iproduct[]>();
-  const [catData, setCatData] = useState([]);
+  const [catData, setCatData] = useState<IProductCategory[]>([]);
   useEffect(() => {
     getCatData();
   }, []);
@@ -28,7 +28,7 @@ export function Category() {
   return (
     <div className="relative w-full overflow-hidden  dark:bg-white py-8">
       <div className="w-full flex bg-head text-white sticky top-0 ">
-        {catData.map((item, index) => {
+        {catData.map((item:IProductCategory, index) => {
           if (!item.parentId) {
             return (
               <select
