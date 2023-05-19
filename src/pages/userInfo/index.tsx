@@ -1,16 +1,18 @@
 import React, { useEffect, useState, useContext } from "react";
 import { userIdCon } from "@/context/userIdContext";
 import axios from "axios";
+import { IUser } from "../../interfaces/user";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { Iproduct } from "@/interfaces/product";
 // import { AiFillEdit } from "react-icons/ai";
 function Index() {
   const { userId, setUserId } = useContext(userIdCon);
-  const [userData, setUserData] = useState({});
+  const [userData, setUserData] = useState<IUser>();
   const [update, setUpdate] = useState(false);
   const [showFollowers, setShowFollowers] = useState(false);
   const [showFollowing, setShowFollowing] = useState(false);
-  const [productData, setProductData] = useState([]);
+  const [productData, setProductData] = useState<Iproduct[]>([]);
   const router = useRouter();
   const { _id } = router.query;
   // console.log(_id);
@@ -49,7 +51,7 @@ function Index() {
         .catch((err) => console.log(err));
     }
   };
-  const deleteItem = (id) => {
+  const deleteItem = (id: string) => {
     axios
       .delete(`http://localhost:8000/api/item/${id}`)
       .then((res) => alert("Amjilttai ustgalaa"))
@@ -127,7 +129,7 @@ function Index() {
                 </h1>
 
                 <input
-                  defaultValue={userData.firstName}
+                  defaultValue={userData?.firstName}
                   name="firstName"
                   type="text"
                   className="border-bottom appearance-none w-2/4 text-start text-xl text-black bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
@@ -138,7 +140,7 @@ function Index() {
                   Last name :
                 </h1>
                 <input
-                  defaultValue={userData.lastName}
+                  defaultValue={userData?.lastName}
                   name="lastName"
                   type="text"
                   className="appearance-none text-start w-2/4 text-xl text-black bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
@@ -149,7 +151,7 @@ function Index() {
                   Username :
                 </h1>
                 <input
-                  defaultValue={userData.Username}
+                  defaultValue={userData?.Username}
                   name="username"
                   type="text"
                   className="appearance-none text-start w-2/4 text-xl text-black bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
@@ -160,7 +162,7 @@ function Index() {
                   E-mail :
                 </h1>
                 <input
-                  defaultValue={userData.email}
+                  defaultValue={userData?.email}
                   name="email"
                   type="text"
                   className="appearance-none text-start text-xl w-2/4 text-black bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
@@ -171,7 +173,7 @@ function Index() {
                   Phone number :
                 </h1>
                 <input
-                  defaultValue={userData.phoneNumber}
+                  defaultValue={userData?.phoneNumber}
                   name="phone"
                   type="number"
                   className="appearance-none text-start w-2/4 text-xl text-black bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
@@ -182,7 +184,7 @@ function Index() {
                   Birth date :
                 </h1>
                 <input
-                  defaultValue={userData.birthDate}
+                  defaultValue={userData?.birthDate}
                   name="birthDate"
                   type="text"
                   className="appearance-none text-start w-2/4 text-xl text-black bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
@@ -193,7 +195,7 @@ function Index() {
                   Address :
                 </h1>
                 <input
-                  defaultValue={userData.address}
+                  defaultValue={userData?.address}
                   name="address"
                   type="text"
                   className="appearance-none text-start text-xl w-2/4 text-black bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
@@ -204,7 +206,7 @@ function Index() {
                   Gender :
                 </h1>
                 <input
-                  defaultValue={userData.gender}
+                  defaultValue={userData?.gender}
                   name="gender"
                   type="text"
                   className="appearance-none text-start text-xl w-2/4 text-black bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
@@ -383,7 +385,9 @@ function Index() {
                         <div className="flex w-full">
                           <button
                             className="w-full bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-                            onClick={() => deleteItem(item._id)}
+                            onClick={() =>
+                              deleteItem(item?._id ? item._id : "")
+                            }
                           >
                             Delete
                           </button>

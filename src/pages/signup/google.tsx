@@ -1,34 +1,36 @@
-import LoadingScreen from "@/utils/LoadingScreen";
-import { axiosInstance } from "@/utils/axiosInstance";
-import { useRouter } from "next/router";
-import { ReactNode, useEffect } from "react";
-import { NextPageWithLayout } from "../_app";
-import NoLayout from "@/layouts/NoLayout";
+import react from "react";
 
-const GoogleLoginPage: NextPageWithLayout = () => {
-  const router = useRouter();
+// import LoadingScreen from "@/utils/LoadingScreen";
+// import { axiosInstance } from "@/utils/axiosInstance";
+// import { useRouter } from "next/router";
+// import { ReactNode, useEffect } from "react";
+// import { NextPageWithLayout } from "../_app";
+// import NoLayout from "@/layouts/NoLayout";
 
-  useEffect(() => {
-    const code = router.query.code;
+// const GoogleLoginPage: NextPageWithLayout = () => {
+//   const router = useRouter();
 
-    if (code !== undefined) {
-      axiosInstance
-        .get(`/api/auth/google?code=${code}`)
-        .then((res) => {
-          if (res.status === 201) {
-            localStorage.setItem("loggedIn", JSON.stringify(true));
-            router.push("/");
-          }
-        })
-        .catch((err) => console.log(err));
-    }
-  }, [router]);
+//   useEffect(() => {
+//     const code = router.query.code;
 
-  return <LoadingScreen state={true} />;
-};
+//     if (code !== undefined) {
+//       axiosInstance
+//         .get(`/api/auth/google?code=${code}`)
+//         .then((res) => {
+//           if (res.status === 201) {
+//             localStorage.setItem("loggedIn", JSON.stringify(true));
+//             router.push("/");
+//           }
+//         })
+//         .catch((err) => console.log(err));
+//     }
+//   }, [router]);
 
-export default GoogleLoginPage;
+//   return <LoadingScreen state={true} />;
+// };
 
-GoogleLoginPage.getLayout = function getLayout(page): ReactNode {
-  return <NoLayout>{page}</NoLayout>;
-};
+// export default GoogleLoginPage;
+
+// GoogleLoginPage.getLayout = function getLayout(page): ReactNode {
+//   return <NoLayout>{page}</NoLayout>;
+// };

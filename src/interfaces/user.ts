@@ -17,6 +17,7 @@ export interface IUserRole {
 
 export interface IUser {
   IUser: string;
+  _id: string;
   firstName: string;
   lastName: string;
   Username: string;
@@ -29,4 +30,6 @@ export interface IUser {
   gender: string;
   profilePic: string;
   password: string;
+  following: string[];
+  followers: string[];
 }

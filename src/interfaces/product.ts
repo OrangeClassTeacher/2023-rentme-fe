@@ -12,7 +12,7 @@ export interface IProductCategory {
 }
 
 export interface Iproduct {
-  _id:string
+  _id?: string;
   createdUser: string;
   itemName: string;
   itemPhoto: string;
@@ -21,16 +21,12 @@ export interface Iproduct {
   categoryId: string;
   phoneNumber: number;
   rating: number;
-  discountPrice: number;
-  isPublished: boolean;
-  avgRating: number;
-  review:IProductReview
   rentalPrice: number;
-  rentalStartDate: Date;
-  rentalEndDate: Date;
+  rentalStartDate?: Date;
+  rentalEndDate?: Date;
 }
 
-export interface IProductReview{
+export interface IProductReview {
   _id: string;
   title: string;
   text?: string;
