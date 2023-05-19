@@ -3,9 +3,7 @@ import React from "react";
 import { useContext } from "react";
 import { SearchContext } from "@/context/searchTextContext";
 
-export const Search = (props: {
-  handleChange: React.ChangeEventHandler<HTMLInputElement> | undefined;
-}): JSX.Element => {
+export const Search = (): JSX.Element => {
   const { search, setSearch } = useContext(SearchContext);
 
   return (

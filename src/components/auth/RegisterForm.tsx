@@ -5,7 +5,6 @@ import { FaFacebookF, FaGoogle } from "react-icons/fa";
 import { BsCheckCircle, BsXCircle } from "react-icons/bs";
 import { IUser } from "../../interfaces/user";
 
-
 const RegisterForm: FC = () => {
   const [userData, setUserData] = useState<IUser>();
   const [rePassword, setRePassword] = useState<string>("");
@@ -75,7 +74,10 @@ const RegisterForm: FC = () => {
       gender: event.target.gender.value,
       profilePic: proPic ? proPic : "",
       password: event.target.password.value,
-      IUser: ""
+      IUser: "",
+      _id: "",
+      following: [],
+      followers: [],
     };
     // console.log(data);
 
@@ -267,7 +269,7 @@ const RegisterForm: FC = () => {
               onChange={(e) => {
                 const url = "https://api.cloudinary.com/v1_1/lwvom2iu/upload";
                 const formData = new FormData();
-                let file: any = e.target.files[0];
+                let file: any = e.target.files;
                 formData.append("file", file);
                 formData.append("api_key", "384825931744178");
                 formData.append("folder", "RentMeUser");
