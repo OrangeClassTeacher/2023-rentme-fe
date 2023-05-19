@@ -12,7 +12,7 @@ export function Search(): JSX.Element {
         className="search-box w-full rounded-md border pt-2  border-teal-300 px-8 text-xl text-black pb-1"
         type="search"
         placeholder="Хайх..."
-        onChange={(e) => setSearch(e.target.value)}
+        onChange={(e):void => setSearch(e.target.value)}
       />
     </div>
   );

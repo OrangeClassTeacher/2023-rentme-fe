@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { userIdCon } from "@/context/userIdContext";
 import axios from "axios";
+import Image from "next/image";
 import { FiLogOut } from "react-icons/fi";
 import Link from "next/link";
 import { IUser } from "@/interfaces/user";
@@ -11,23 +12,23 @@ export function UserProfie({ USer }: any): JSX.Element {
 
   useEffect(() => {
     getUserData();
-  }, [userId]);
-  const getUserData = () => {
+  },);
+  function getUserData  ():void  {
     axios.get(`http://localhost:8000/api/user/${userId}`).then((res) => {
       setUserData(res.data.result);
-    });
-  };
-  const logOut = () => {
+    }
+   )
+  }
+  function logOut ():void  {
     localStorage.removeItem("currentUserId");
-    setUserId("");
-  };
-
+    setUserId("")
+}
   return (
     <div className="realtive">
       {USer ? (
         <div className="absolute  z-0 h-auto w-auto flex py-6 flex-col items-center gap-3 bg-gradient-to-r from-gray-900 to-gray-500 rounded ">
           <div className="w-2/5">
-            <img
+            <Image
               src="https://png.pngtree.com/png-vector/20191101/ourmid/pngtree-cartoon-color-simple-male-avatar-png-image_1934459.jpg"
               alt="avatar"
               className="w-full rounded-full"
@@ -49,7 +50,7 @@ export function UserProfie({ USer }: any): JSX.Element {
         </div>
       ) : (
         <div className="flex items-center gap-1">
-          <img
+          <Image
             src="https://png.pngtree.com/png-vector/20191101/ourmid/pngtree-cartoon-color-simple-male-avatar-png-image_1934459.jpg"
             alt="avatar"
             className="w-12 rounded-full"

@@ -10,7 +10,7 @@ import Link from "next/link";
 import { IUser } from "@/interfaces/user";
 import { IComment } from "@/interfaces/comment";
 
-const Product = () => {
+function Product ():JSX.Element  {
   const [data, setData] = useState<Iproduct>();
   const [catData, setCatData] = useState([]);
   const [userData, setUserData] = useState<IUser[]>();
@@ -21,12 +21,12 @@ const Product = () => {
   const router = useRouter();
   const path = router.query;
 
-  const { rentalEndDate, rentalStartDate, description } = data || {};
+  const { rentalEndDate, rentalStartDate } = data || {};
 
   useEffect(() => {
     getData();
-  }, [ren]);
-  const getData = () => {
+  }, );
+  function getData ():void {
     axios
       .get(`http://localhost:8000/api/item/${path._id}`)
       .then((res) => setData(res.data.result));
@@ -40,10 +40,10 @@ const Product = () => {
       .catch((err) => console.log(err));
     axios
       .post("http://localhost:8000/api/comments", { itemId: path._id })
-      .then((res) => setCommentData(res?.data.result))
+      .then((res) => setCommentData(res.data.result))
       .catch((err) => console.log(err));
-  };
-  const createComment = (id: any) => {
+    }
+  function createComment  (id: any):void {
     axios
       .post("http://localhost:8000/api/comment", {
         itemId: id,
@@ -54,14 +54,13 @@ const Product = () => {
         console.log(res.data.result), setRen(!ren);
       })
       .catch((err) => console.log(err));
-  };
-
+    }
   return (
     <div className="flex flex-col w-full">
       <div className="w-full flex px-4 pt-8">
         <div className="w-2/4 h-full py-8 flex flex-col">
           <div className="h-3/4">
-            <img src={data?.itemPhoto} alt="" className="w-full" />
+            <img src={data?.itemPhoto} alt="Link" className="w-full" />
           </div>
           <div className="h1/4 flex gap-3 py-5" />
         </div>
@@ -69,7 +68,7 @@ const Product = () => {
           <div>
             <h1 className="text-7xl">{data?.itemName}</h1>
             {catData.map((item: ICategory, index) => {
-              if (item?._id == data?.categoryId) {
+              if (item._id == data?.categoryId) {
                 return (
                   <p key={index} className="text-gray-500">
                     {item.categoryName}
@@ -115,13 +114,15 @@ const Product = () => {
               id="message"
               className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Write your thoughts here..."
-              onChange={(e) => setComment(e.target.value)}
-            ></textarea>
+              onChange={(e):void => setComment(e.target.value)}
+            >
+              ...
+            </textarea>
           </div>
           <div className="flex gap-8">
             <button
               className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded-full w-2/4"
-              onClick={() => createComment(data?._id)}
+              onClick={():void => createComment(data?._id)}
             >
               Comment
             </button>
@@ -140,7 +141,7 @@ const Product = () => {
                   <div className="relative flex gap-4">
                     <div className="flex flex-col w-full">
                       <div className="flex flex-row justify-between">
-                        <div className="">
+                        <div>
                           {userData && (
                             <div>
                               {userData.map((user, index) => {
@@ -157,7 +158,7 @@ const Product = () => {
                           )}
                         </div>
                         <a className="text-gray-500 text-xl" href="#">
-                          <i className="fa-solid fa-trash"></i>
+                          <i className="fa-solid fa-trash"/>
                         </a>
                       </div>
                       <p className="text-gray-400 text-sm">
@@ -165,15 +166,13 @@ const Product = () => {
                       </p>
                     </div>
                   </div>
-                  <p className="-mt-4 text-gray-500">{com?.comment}</p>
+                  <p className="-mt-4 text-gray-500">{com.comment}</p>
                 </div>
               </div>
             ))}
           </div>
         )}
       </div>
-    </div>
-  );
-};
-
+    </div>);
+}
 export default Product;

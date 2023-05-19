@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { JsxElement } from "typescript";
 import { Search } from "./Search";
 import mainLogo from "@/images/logo.png";
 import { FiShoppingBag } from "react-icons/fi";
@@ -16,12 +15,12 @@ export function Header(): JSX.Element {
   const [user, setUser] = useState(false);
   useEffect(() => {
     userId ? "" : setUserId(localStorage.getItem("currentUserId"));
-  }, []);
+  }, );
   let lastScrollTop = 0;
   if (typeof window !== "undefined") {
     window.addEventListener("scroll", function () {
       const Navbar = (document.getElementById("Navbar") as HTMLElement) || null;
-      let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
       if (scrollTop > lastScrollTop) {
         Navbar.style.top = "-200px";
       } else {
@@ -86,7 +85,7 @@ export function Header(): JSX.Element {
           {userId ? (
             <button
               className="text-head rounded-lg px-[34px] py-2 text-md-regular hover:bg-white/70 duration-300"
-              onClick={() => setUser(!user)}
+              onClick={():void => setUser(!user)}
             >
               <UserProfie USer={user} setUSer={setUser} />
             </button>

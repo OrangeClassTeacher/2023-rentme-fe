@@ -8,8 +8,6 @@ import { Iproduct } from "../../interfaces/product";
 import { SearchContext } from "@/context/searchTextContext";
 import { userIdCon } from "@/context/userIdContext";
 import RatingStar from "@/components/global/RatingStar";
-import Pagination from "@/components/global/Pagination";
-import SortDropDown from "@/components/global/SortDropDown";
 import { sortValContext } from "@/context/SortContext";
 
 export default function Index(): JSX.Element {
@@ -22,22 +20,18 @@ export default function Index(): JSX.Element {
     getData();
   }, [search, sortVal]);
 
-  const getData = () => {
+  function getData(): void {
     axios
       .post("http://localhost:8000/api/items", {
         searchText: search,
         sort: sortVal,
       })
-      .then((res) => setProductData(res.data.result));
-  };
-  const [filterShow, setFilterShow] = useState<boolean>(false);
-
+      .then((res) => setProductData(res.data.result)
+      );
+  }
+  const [, setFilterShow] = useState<boolean>(false);
   const showFilter = (): void => {
     setFilterShow(true);
-  };
-
-  const closeFilter = (): void => {
-    setFilterShow(false);
   };
   return (
     <div className="bg-white">

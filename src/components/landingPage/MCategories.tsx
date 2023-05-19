@@ -9,13 +9,13 @@ export function MCategories(): JSX.Element {
   useEffect(() => {
     getCatData(), getData();
   }, []);
-  const getCatData = () => {
+  const getCatData = ():void => {
     axios
       .get("http://localhost:8000/api/category")
       .then((res) => setCatData(res.data.result))
       .catch((err) => console.log(err));
   };
-  const getData = () => {
+  const getData = ():void => {
     axios
       .get("http://localhost:8000/api/items")
       .then((res) => setCatID(res.data.result))

@@ -8,13 +8,13 @@ export default function Index(): JSX.Element {
   const [thumbImg, setThumbImg] = useState("");
   const [Images, setImages] = useState([]);
   const [catData, setCatData] = useState([]);
-  const createProd = (event: any) => {
+  const createProd = (event: any):void => {
     event.preventDefault();
     const data: Iproduct = {
       createdUser: localStorage.getItem("currentUserId") || "",
       itemName: event.target.itemName.value || "",
       itemPhoto: thumbImg || "",
-      itemSlidePhoto: Images || "",
+      itemSlidePhoto: Images ,
       description: event.target.description.value || "",
       categoryId: event.target.category.value || "",
       phoneNumber: event.target.phoneNumber.value || 11111111,
@@ -49,10 +49,10 @@ export default function Index(): JSX.Element {
             placeholder="Item Photo..."
             type={"file"}
             name="itemPhoto"
-            onChange={(e) => {
+            onChange={(e):void => {
               const url = "https://api.cloudinary.com/v1_1/lwvom2iu/upload";
               const formData = new FormData();
-              let file: any = e.target.files;
+              const file: any = e.target.files;
               formData.append("file", file);
               formData.append("api_key", "384825931744178");
               formData.append("folder", "RentMeProduct");

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import RatingStar from "../global/RatingStar";
 import Link from "next/link";
+import Image from "next/image";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import { Iproduct } from "@/interfaces/product";
 
@@ -10,7 +11,7 @@ export function Items(): JSX.Element {
   useEffect(() => {
     getItemData();
   }, []);
-  const getItemData = () => {
+  const getItemData = ():void => {
     axios
       .get("http://localhost:8000/api/itemsDate")
       .then((res) => setItemData(res.data.result))
@@ -28,7 +29,7 @@ export function Items(): JSX.Element {
             className="w-full max-w-sm bg-white rounded-lg shadow "
           >
             <div>
-              <img
+              <Image
                 src={item.itemPhoto}
                 alt="itemPhoto"
                 className="w-full rounded-t-lg"

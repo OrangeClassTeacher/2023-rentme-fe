@@ -8,7 +8,6 @@ import { IUser } from "../../interfaces/user";
 const RegisterForm: FC = (): JSX.Element => {
   const [userData, setUserData] = useState<IUser>();
   const [rePassword, setRePassword] = useState<string>("");
-  const [setIsPasswordRequirementMet] = useState<boolean>(false);
   const [confirm, setConfirm] = useState(false);
   const [proPic, setProPic] = useState("");
   const [passwordRequirements, setPasswordRequirements] = useState([
@@ -44,11 +43,9 @@ const RegisterForm: FC = (): JSX.Element => {
       if (req.regex.test(rePassword)) req.state = true;
       else req.state = false;
     }
-
     setPasswordRequirements(newPasswordRequirements);
-  }, [rePassword]);
-
-  const registerUser = (event: any) => {
+  }, );
+  const registerUser = (event: any):void => {
     event.preventDefault();
     const data: IUser = {
       firstName: event.target.firstName.value,
@@ -115,7 +112,7 @@ const RegisterForm: FC = (): JSX.Element => {
         </p>
       </div>
       <form
-        onSubmit={(event) => {
+        onSubmit={(event):void => {
           registerUser(event);
         }}
         className="text-head"
@@ -177,8 +174,7 @@ const RegisterForm: FC = (): JSX.Element => {
             <select
               name="gender"
               id="gender"
-              className="text-black border border-border-2 w-full py-[12px] px-[22px] rounded-lg focus:outline-none focus:ring-2 focus:ring-color-1 text-text text-md-regular"
-            >
+              className="text-black border border-border-2 w-full py-[12px] px-[22px] rounded-lg focus:outline-none focus:ring-2 focus:ring-color-1 text-text text-md-regular">
               <option value="0">Сонгох....</option>
               <option value="Male">Эрэгтэй</option>
               <option value="Female">Эмэгтэй</option>
@@ -255,7 +251,7 @@ const RegisterForm: FC = (): JSX.Element => {
               placeholder="Profile pic..."
               type={"file"}
               name="profilePic"
-              onChange={(e) => {
+              onChange={(e):void => {
                 const url = "https://api.cloudinary.com/v1_1/lwvom2iu/upload";
                 const formData = new FormData();
                 const file: any = e.target.files;
@@ -329,7 +325,7 @@ const RegisterForm: FC = (): JSX.Element => {
             type="checkbox"
             id="accept"
             className="w-[15px] h-[15px] border-2 border-icon"
-            onClick={() => setConfirm(!confirm)}
+            onClick={():void => setConfirm(!confirm)}
           />
           <label className="text-text text-teal-500" htmlFor="accept">
             Үйлчилгээний нөхцөл зөвшөөрөх

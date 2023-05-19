@@ -3,7 +3,6 @@ import "swiper/css/navigation";
 
 import { FC } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
@@ -15,7 +14,7 @@ import image from '@/images/dog.png'
 
 
 import { EffectCoverflow, Pagination } from "swiper";
-import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
+
 const CarouselSection: FC = () => (
     <div className="container mx-[40px]">
         <Swiper

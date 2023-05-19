@@ -1,4 +1,4 @@
-export function ErrorPage(): JSX.Element {
+function ErrorPage(): JSX.Element {
   return (
     <div>
       <h1>Error</h1>
@@ -6,3 +6,4 @@ export function ErrorPage(): JSX.Element {
     </div>
   );
 }
+export default ErrorPage

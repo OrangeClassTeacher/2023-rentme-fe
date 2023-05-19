@@ -1,4 +1,4 @@
-export function NotFoundPage(): JSX.Element {
+function NotFoundPage(): JSX.Element {
   return (
     <div>
       <h1>Not found</h1>
@@ -6,3 +6,4 @@ export function NotFoundPage(): JSX.Element {
     </div>
   );
 }
+export default NotFoundPage

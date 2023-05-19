@@ -2,16 +2,13 @@ import React, { useEffect, useState, useContext } from "react";
 import { userIdCon } from "@/context/userIdContext";
 import axios from "axios";
 import Link from "next/link";
-import { GrSend } from "react-icons/gr";
 import { useRouter } from "next/router";
-import { AiOutlineArrowRight } from "react-icons/ai";
 import Image from "next/image";
-import { log } from "console";
 import { IUser } from "@/interfaces/user";
 import { Iproduct } from "@/interfaces/product";
 import { ICategory } from "@/interfaces/category";
-export default function Index() {
-  const { userId, setUserId } = useContext(userIdCon);
+export default function Index():JSX.Element {
+  const { userId } = useContext(userIdCon);
   const [userData, setUserData] = useState<IUser>();
   const [productData, setProductData] = useState<Iproduct[]>();
   const [showFollowers, setShowFollowers] = useState(false);
@@ -27,8 +24,8 @@ export default function Index() {
       getUserData();
       getCategories();
     }
-  }, [_id, followers, following]);
-  const getUserData = () => {
+  },);
+  function getUserData ():void {
     if (_id) {
       axios
         .get(`http://localhost:8000/api/user/${_id}`)
@@ -40,8 +37,8 @@ export default function Index() {
     } else {
       alert("UserId not found");
     }
-  };
-  const getProducts = () => {
+  }
+  function getProducts  ():void  {
     if (_id) {
       axios
         .post("http://localhost:8000/api/itemUser", { createdUser: _id })
@@ -50,33 +47,33 @@ export default function Index() {
         })
         .catch((err) => console.log(err));
     }
-  };
-  const getCategories = () => {
+  }
+  function getCategories  ():void  {
     axios
       .get("http://localhost:8000/api/category")
       .then((res) => setCatData(res.data.result))
       .catch((err) => console.log(err));
-  };
-  const followReq = (id: any) => {
+  }
+  function followReq  (id: any):void {
     const newArr = [...followers];
 
     newArr.push(localStorage.getItem("currentUserId"));
     axios
       .put(`http://localhost:8000/api/user/${id}`, { followers: newArr })
-      .then((res) => {
+      .then(() => {
         if (userData2) {
-          let newArr = [...userData2.following];
+          const newArr = [...userData2.following];
           newArr.push(id);
         }
         axios
           .put(`http://localhost:8000/api/user/${userId}`, {
             following: newArr,
           })
-          .then((res) => console.log("Success"))
+          .then(() => console.log("Success"))
           .catch((err) => console.log(err));
       })
       .catch((err) => console.log(err));
-  };
+  }
   // console.log(productData);
   return (
     <div className="bg-white">
@@ -124,13 +121,13 @@ export default function Index() {
               />
               <div className="w-2/3 flex justify-evenly">
                 <div className="w-1/3 flex flex-col items-center border-r-2 border-black">
-                  <button onClick={() => setShowFollowers(!showFollowers)}>
+                  <button onClick={():void => setShowFollowers(!showFollowers)}>
                     Followers
                   </button>
                   <p className="text-center"> {followers?.length}</p>
                 </div>
                 <div className="w-1/3 flex flex-col items-center border-r-2 border-black">
-                  <button onClick={() => setShowFollowing(!showFollowing)}>
+                  <button onClick={():void => setShowFollowing(!showFollowing)}>
                     {" "}
                     Following{" "}
                   </button>
@@ -163,7 +160,7 @@ export default function Index() {
                   id="message"
                   className="w-3/4 block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="Write your thoughts here..."
-                ></textarea>
+                />
                 <div className="w-full w-1/4 flex justify-end py-4 px-6">
                   <button className="bg-yellow-500 w-full flex justify-center items-center w-2/4 hover:bg-yellow-400 text-white font-bold border-b-4 border-yellow-700 hover:border-yellow-500 rounded ">
                     Send
@@ -175,7 +172,7 @@ export default function Index() {
                   Chat
                 </button>
                 <button
-                  onClick={() => followReq(userData?._id ? userData._id : "")}
+                  onClick={():void => followReq(userData?._id ? userData._id : "")}
                   className="bg-blue-500 w-1/4 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
                 >
                   Follow

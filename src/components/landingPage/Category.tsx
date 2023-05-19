@@ -1,4 +1,3 @@
-import { Iproduct } from "../../interfaces/product";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { IProductCategory } from "../../interfaces/product";
@@ -8,7 +7,7 @@ export function Category(): JSX.Element {
   useEffect(() => {
     getCatData();
   }, []);
-  const getCatData = () => {
+  const getCatData = ():void => {
     axios
       .get("http://localhost:8000/api/category")
       .then((res) => setCatData(res.data.result))
