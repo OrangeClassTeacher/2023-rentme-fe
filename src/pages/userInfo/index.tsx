@@ -6,10 +6,10 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { Iproduct } from "@/interfaces/product";
 // import { AiFillEdit } from "react-icons/ai";
-function Index() {
+function Index(): JSX.Element {
   const { userId, setUserId } = useContext(userIdCon);
   const [userData, setUserData] = useState<IUser>();
-  const [update, setUpdate] = useState(false);
+  const [update, setUpdate] = useState(true);
   const [showFollowers, setShowFollowers] = useState(false);
   const [showFollowing, setShowFollowing] = useState(false);
   const [productData, setProductData] = useState<Iproduct[]>([]);
@@ -54,8 +54,8 @@ function Index() {
   const deleteItem = (id: string) => {
     axios
       .delete(`http://localhost:8000/api/item/${id}`)
-      .then((res) => alert("Amjilttai ustgalaa"))
-      .catch((err) => alert("Product not found"));
+      .then(() => alert("Amjilttai ustgalaa"))
+      .catch(() => alert("Product not found"));
     getProducts();
     getUserData();
   };
@@ -99,14 +99,14 @@ function Index() {
             </button>
             {update ? (
               <button
-                onClick={() => setUpdate(!update)}
+                onClick={(): void => setUpdate(update)}
                 className="bg-yellow-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-full"
               >
                 Буцах
               </button>
             ) : (
               <button
-                onClick={() => setUpdate(!update)}
+                onClick={() => setUpdate(update)}
                 className="bg-yellow-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-full"
               >
                 Edit profile
@@ -277,13 +277,11 @@ function Index() {
                   {showFollowers ? (
                     <div className="absolute bg-black">
                       <h1 className="text-3xl text-white">Followers</h1>
-                      {followers?.map((item: any, index: number) => {
-                        return (
-                          <div key={index}>
-                            <h1 className="text-white">{item}</h1>
-                          </div>
-                        );
-                      })}
+                      {followers?.map((item: any, index: number) => (
+                        <div key={index}>
+                          <h1 className="text-white">{item}</h1>
+                        </div>
+                      ))}
                     </div>
                   ) : (
                     ""
@@ -291,13 +289,11 @@ function Index() {
                   {showFollowing ? (
                     <div className="absolute bg-black">
                       <h1 className="text-3xl text-white">Following </h1>
-                      {following?.map((item: any, index: number) => {
-                        return (
-                          <div key={index}>
-                            <h1 className="text-white">{item}</h1>
-                          </div>
-                        );
-                      })}
+                      {following?.map((item: any, index: number) => (
+                        <div key={index}>
+                          <h1 className="text-white">{item}</h1>
+                        </div>
+                      ))}
                     </div>
                   ) : (
                     ""

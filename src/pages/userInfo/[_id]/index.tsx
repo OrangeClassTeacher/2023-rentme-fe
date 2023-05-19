@@ -84,13 +84,11 @@ export default function Index() {
         {showFollowers ? (
           <div className="absolute bg-black">
             <h1 className="text-3xl text-white">Followers</h1>
-            {followers?.map((item: any, index: number) => {
-              return (
-                <div key={index}>
-                  <h1 className="text-white">{item}</h1>
-                </div>
-              );
-            })}
+            {followers?.map((item: any, index: number) => (
+              <div key={index}>
+                <h1 className="text-white">{item}</h1>
+              </div>
+            ))}
           </div>
         ) : (
           ""
@@ -98,13 +96,11 @@ export default function Index() {
         {showFollowing ? (
           <div className="absolute bg-black">
             <h1 className="text-3xl text-white">Following </h1>
-            {following?.map((item: any, index: number) => {
-              return (
-                <div key={index}>
-                  <h1 className="text-white">{item}</h1>
-                </div>
-              );
-            })}
+            {following?.map((item: any, index: number) => (
+              <div key={index}>
+                <h1 className="text-white">{item}</h1>
+              </div>
+            ))}
           </div>
         ) : (
           ""
@@ -190,44 +186,42 @@ export default function Index() {
           <div className="w-2/4 flex flex-col gap-4">
             <h1 className="text-2xl">Хэрэглэгчийн оруулсан зар</h1>
             <div className="w-full flex flex-wrap gap-10 h-[85vh] overflow-auto">
-              {productData?.map((item, index) => {
-                return (
-                  <div
-                    key={index}
-                    className=" lg:max-w-full  rounded overflow-hidden shadow-lg"
-                  >
-                    <Image
-                      src={item.itemPhoto}
-                      className="w-full"
-                      width={600}
-                      height={600}
-                      alt="product"
-                    />
-                    <div className="px-6 py-4">
-                      <div className="font-bold text-xl mb-2">
-                        {item.itemName}
-                      </div>
-                      <p className="text-gray-700 text-base">
-                        {item.description}
-                      </p>
+              {productData?.map((item, index) => (
+                <div
+                  key={index}
+                  className=" lg:max-w-full  rounded overflow-hidden shadow-lg"
+                >
+                  <Image
+                    src={item.itemPhoto}
+                    className="w-full"
+                    width={600}
+                    height={600}
+                    alt="product"
+                  />
+                  <div className="px-6 py-4">
+                    <div className="font-bold text-xl mb-2">
+                      {item.itemName}
                     </div>
-                    <div className="px-6 pt-4 pb-2">
-                      {catData?.map((cat, index) => {
-                        if (cat?._id == item?.categoryId) {
-                          return (
-                            <span
-                              className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
-                              key={index}
-                            >
-                              #{cat?.categoryName}
-                            </span>
-                          );
-                        }
-                      })}
-                    </div>
+                    <p className="text-gray-700 text-base">
+                      {item.description}
+                    </p>
                   </div>
-                );
-              })}
+                  <div className="px-6 pt-4 pb-2">
+                    {catData?.map((cat, index) => {
+                      if (cat?._id == item?.categoryId) {
+                        return (
+                          <span
+                            className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
+                            key={index}
+                          >
+                            #{cat?.categoryName}
+                          </span>
+                        );
+                      }
+                    })}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>

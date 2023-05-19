@@ -15,7 +15,6 @@ const SwiperSection: FC = () => (
         <h1 className="text-black text-3xl-bold mb-[10px] text-2xl p-5">
           --- Онцлох Түрүүсийн Бараа ---
         </h1>
-        <p className="text-black text-md-regular"></p>
       </div>
 
       <Swiper
@@ -38,7 +37,6 @@ const SwiperSection: FC = () => (
         modules={[Navigation]}
         className="mb-[30px] md:mb-[40px] lg:mb-[56px]"
       >
-        
         <SwiperSlide>
           <ProductSwiperCard />
         </SwiperSlide>

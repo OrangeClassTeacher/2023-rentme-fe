@@ -3,8 +3,8 @@ import React from "react";
 import { useContext } from "react";
 import { SearchContext } from "@/context/searchTextContext";
 
-export const Search = (): JSX.Element => {
-  const { search, setSearch } = useContext(SearchContext);
+export function Search(): JSX.Element {
+  const { setSearch } = useContext(SearchContext);
 
   return (
     <div className="w-full">
@@ -16,4 +16,4 @@ export const Search = (): JSX.Element => {
       />
     </div>
   );
-};
+}

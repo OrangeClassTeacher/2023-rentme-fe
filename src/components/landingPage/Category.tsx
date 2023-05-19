@@ -1,19 +1,9 @@
-import react from "react";
-import Image from "next/image";
-import Link from "next/link";
 import { Iproduct } from "../../interfaces/product";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { IProductCategory } from "../../interfaces/product";
 
-interface ICategoryProps {
-
-}
-
-export function  Category() {
-  // Collections that start with `hidden-*` are hidden from the search page.
-  const [productData, setProductData] = useState<Iproduct[]>();
-  const [proData, setProData] = useState<Iproduct[]>();
+export function Category(): JSX.Element {
   const [catData, setCatData] = useState<IProductCategory[]>([]);
   useEffect(() => {
     getCatData();
@@ -28,14 +18,14 @@ export function  Category() {
   return (
     <div className="relative w-full overflow-hidden  dark:bg-white py-8">
       <div className="w-full flex bg-head text-white sticky top-0 ">
-        {catData.map((item:IProductCategory, index) => {
+        {catData.map((item: IProductCategory, index) => {
           if (!item.parentId) {
             return (
               <select
                 key={index}
                 className="text-black border border-border-2 w-full py-[12px] px-[22px] rounded-lg focus:outline-none focus:ring-2 focus:ring-color-1 text-text text-md-regular"
               >
-                <option value={item?._id}>{item.categoryName}</option>
+                <option value={item._id}>{item.categoryName}</option>
                 {catData.map((e, index) => {
                   if (e.parentId == item._id) {
                     return (

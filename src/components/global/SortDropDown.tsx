@@ -1,11 +1,9 @@
-import { FC, useState, useEffect, useContext } from "react";
-import { useRouter } from "next/router";
+import { FC, useState, useContext } from "react";
 import { sortValContext } from "@/context/SortContext";
 import { BsChevronDown } from "react-icons/bs";
 
-const SortDropDown: FC = () => {
+const SortDropDown: FC = (): JSX.Element => {
   const { setSortVal } = useContext(sortValContext);
-  const router = useRouter();
   const [dropSort, setDropSort] = useState(false);
   const dropSortHandler = (): void => {
     setDropSort(!dropSort);
@@ -42,7 +40,7 @@ const SortDropDown: FC = () => {
         <ul className="flex flex-col font-[400] text-[15px] leading-[35px] text-head">
           {sortItems.map((item, index) => (
             <li
-              onClick={() => setSortVal(item.slug)}
+              onClick={(): void => setSortVal(item.slug)}
               key={`sort-item-${index}`}
               className="hover:text-color-1 whitespace-nowrap text-black cursor-pointer hover:underline "
             >

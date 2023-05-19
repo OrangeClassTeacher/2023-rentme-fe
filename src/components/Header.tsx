@@ -1,18 +1,17 @@
-import react, { FC, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { JsxElement } from "typescript";
 import { Search } from "./Search";
 import mainLogo from "@/images/logo.png";
-import { RiMenu4Fill } from "react-icons/ri";
-import { FiShoppingBag, FiSearch } from "react-icons/fi";
+import { FiShoppingBag } from "react-icons/fi";
 import { BsListNested } from "react-icons/bs";
 import { useContext } from "react";
 import { userIdCon } from "@/context/userIdContext";
 import { UserProfie } from "./UserProfie";
 import SortDropDown from "./global/SortDropDown";
-import { LoadingContext } from "@/context/LoadingContext";
 
-export const Header = () => {
+export function Header(): JSX.Element {
   const { userId, setUserId } = useContext(userIdCon);
   const [user, setUser] = useState(false);
   useEffect(() => {
@@ -22,7 +21,7 @@ export const Header = () => {
   if (typeof window !== "undefined") {
     window.addEventListener("scroll", function () {
       const Navbar = (document.getElementById("Navbar") as HTMLElement) || null;
-      var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
       if (scrollTop > lastScrollTop) {
         Navbar.style.top = "-200px";
       } else {
@@ -33,7 +32,6 @@ export const Header = () => {
       lastScrollTop = scrollTop;
     });
   }
-
   return (
     <div
       className="w-5/5 ps-5 bg-head text-white sticky top-0 z-[50] bg-gradient-to-r from-gray-900 to-gray-500 z-0 ease-out duration-300"
@@ -101,4 +99,4 @@ export const Header = () => {
       </div>
     </div>
   );
-};
+}

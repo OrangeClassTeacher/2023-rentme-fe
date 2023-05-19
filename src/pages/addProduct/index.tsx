@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
-import { Iproduct, IProductReview } from "@/interfaces/product";
+import { Iproduct } from "@/interfaces/product";
 import { ICategory } from "../../interfaces/category";
-export default function Index() {
+export default function Index(): JSX.Element {
   const [proData, setProData] = useState<Iproduct>();
   const [thumbImg, setThumbImg] = useState("");
   const [Images, setImages] = useState([]);
@@ -69,11 +69,11 @@ export default function Index() {
             type={"file"}
             multiple
             name="itemSlidePhoto"
-            onChange={async (e) => {
+            onChange={async (e): Promise<void> => {
               console.log(e.target.value);
               const url = "https://api.cloudinary.com/v1_1/lwvom2iu/upload";
               const formData = new FormData();
-              let file: FileList | null = e.target.files;
+              const file: FileList | null = e.target.files;
               const images = [];
               if (file != null) {
                 for (let i = 0; i < file.length; i++) {
@@ -90,7 +90,7 @@ export default function Index() {
                   return axios.post(url, formData);
                 })
               );
-              let newArr: any = [];
+              const newArr: any = [];
               console.log(promise);
               promise.map((e) => {
                 console.log(e);
@@ -110,13 +110,11 @@ export default function Index() {
             name="category"
             className="text-black bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-teal-500 block w-1/3 p-2.5 dark:bg-white dark:border-teal-600 dark:placeholder-gray-500 dark:text-white dark:focus:ring-teal-500 dark:focus:border-teal-500"
           >
-            {catData.map((item: ICategory, index) => {
-              return (
-                <option value={item._id} key={index}>
-                  {item.categoryName}
-                </option>
-              );
-            })}
+            {catData.map((item: ICategory, index) => (
+              <option value={item._id} key={index}>
+                {item.categoryName}
+              </option>
+            ))}
           </select>
           <input
             placeholder="Phone Number"

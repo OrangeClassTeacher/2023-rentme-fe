@@ -134,43 +134,41 @@ const Product = () => {
       <div className="flex flex-col w-full px-12 pb-12">
         {commentData && (
           <div>
-            {commentData.map((com, index) => {
-              return (
-                <div key={index}>
-                  <div className="relative grid grid-cols-1 gap-4 p-4 mb-8 border rounded-lg bg-white shadow-lg">
-                    <div className="relative flex gap-4">
-                      <div className="flex flex-col w-full">
-                        <div className="flex flex-row justify-between">
-                          <div className="">
-                            {userData && (
-                              <div>
-                                {userData.map((user, index) => {
-                                  if (user._id == data?.createdUser)
-                                    return (
-                                      <div key={index}>
-                                        <h1 className="relative text-xl whitespace-nowrap truncate overflow-hidden">
-                                          {user.Username}
-                                        </h1>
-                                      </div>
-                                    );
-                                })}
-                              </div>
-                            )}
-                          </div>
-                          <a className="text-gray-500 text-xl" href="#">
-                            <i className="fa-solid fa-trash"></i>
-                          </a>
+            {commentData.map((com, index) => (
+              <div key={index}>
+                <div className="relative grid grid-cols-1 gap-4 p-4 mb-8 border rounded-lg bg-white shadow-lg">
+                  <div className="relative flex gap-4">
+                    <div className="flex flex-col w-full">
+                      <div className="flex flex-row justify-between">
+                        <div className="">
+                          {userData && (
+                            <div>
+                              {userData.map((user, index) => {
+                                if (user._id == data?.createdUser)
+                                  return (
+                                    <div key={index}>
+                                      <h1 className="relative text-xl whitespace-nowrap truncate overflow-hidden">
+                                        {user.Username}
+                                      </h1>
+                                    </div>
+                                  );
+                              })}
+                            </div>
+                          )}
                         </div>
-                        <p className="text-gray-400 text-sm">
-                          <BudgetDate />
-                        </p>
+                        <a className="text-gray-500 text-xl" href="#">
+                          <i className="fa-solid fa-trash"></i>
+                        </a>
                       </div>
+                      <p className="text-gray-400 text-sm">
+                        <BudgetDate />
+                      </p>
                     </div>
-                    <p className="-mt-4 text-gray-500">{com?.comment}</p>
                   </div>
+                  <p className="-mt-4 text-gray-500">{com?.comment}</p>
                 </div>
-              );
-            })}
+              </div>
+            ))}
           </div>
         )}
       </div>

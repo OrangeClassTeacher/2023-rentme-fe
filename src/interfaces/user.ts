@@ -1,12 +1,3 @@
-import { Iproduct } from "./product";
-
-interface UserAddress {
-  country: string;
-  city: string;
-  disctrict: string;
-  apartment: string;
-}
-
 export interface IUserRole {
   _id: string;
   role: string;

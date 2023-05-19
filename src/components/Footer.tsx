@@ -1,12 +1,5 @@
-import { FC } from "react";
 import Link from "next/link";
-import Image from "next/image";
-import { ImFacebook, ImTwitter, ImLinkedin2 } from "react-icons/im";
-import { BsInstagram } from "react-icons/bs";
-
-import mainLogo from "@/images/logo.png";
-
-export const Footer = () => {
+export function Footer(): JSX.Element {
   return (
     <div className="bg-head bg-gradient-to-r from-gray-900 to-gray-500">
       <div className="flex items-center justify-between py-6   text-white text-xs-regular">
@@ -34,4 +27,4 @@ export const Footer = () => {
       </div>
     </div>
   );
-};
+}

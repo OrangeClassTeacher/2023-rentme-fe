@@ -4,7 +4,7 @@ import React from "react";
 import dog from "../../images/dog.png";
 import Image from "next/image";
 
-export const NewsSection = () => {
+export function NewsSection(): JSX.Element {
   return (
     <div className="flex flex-col w-full">
       <div className="w-full">
@@ -15,7 +15,7 @@ export const NewsSection = () => {
         <Image src={dog} alt="dog" className="w-auto h-auto" />
         <Image src={dog} alt="dog" className="w-auto h-auto" />
         <Image src={dog} alt="dog" className="w-auto h-auto" />
-        <Image src={dog} alt="dog"className="w-auto h-auto" />
+        <Image src={dog} alt="dog" className="w-auto h-auto" />
         {/* <div className="w-2/4">
         <Image src={harizm} className="w-full h-full" />
       </div>
@@ -25,4 +25,4 @@ export const NewsSection = () => {
       </div>
     </div>
   );
-};
+}
