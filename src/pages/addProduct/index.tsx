@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
-import { Iproduct } from "@/interfaces/product";
+import { Iproduct, IProductReview } from "@/interfaces/product";
+import { ICategory } from "../../interfaces/category";
 export default function Index() {
   const [proData, setProData] = useState<Iproduct>();
   const [thumbImg, setThumbImg] = useState("");
@@ -11,16 +12,16 @@ export default function Index() {
     event.preventDefault();
     const data: Iproduct = {
       createdUser: localStorage.getItem("currentUserId") || "",
-      itemName: event.target.itemName.value,
-      itemPhoto: thumbImg,
-      itemSlidePhoto: Images,
-      description: event.target.description.value,
-      categoryId: event.target.category.value,
-      phoneNumber: event.target.phoneNumber.value,
-      rating: event.target.rating.value,
-      rentalPrice: event.target.rentalPrice.value,
-      rentalStartDate: event.target.rentStart.value,
-      rentalEndDate: event.target.rentEnd.value,
+      itemName: event.target.itemName.value || "",
+      itemPhoto: thumbImg || "",
+      itemSlidePhoto: Images || "",
+      description: event.target.description.value || "",
+      categoryId: event.target.category.value || "",
+      phoneNumber: event.target.phoneNumber.value || 11111111,
+      rating: event.target.rating.value || 5,
+      rentalPrice: event.target.rentalPrice.value || 1000,
+      rentalStartDate: event.target.rentStart.value || "2023-12-12",
+      rentalEndDate: event.target.rentEnd.value || "2023-12-13",
     };
     setProData(data);
     axios
@@ -51,7 +52,7 @@ export default function Index() {
             onChange={(e) => {
               const url = "https://api.cloudinary.com/v1_1/lwvom2iu/upload";
               const formData = new FormData();
-              let file: any = e.target.files[0];
+              let file: any = e.target.files;
               formData.append("file", file);
               formData.append("api_key", "384825931744178");
               formData.append("folder", "RentMeProduct");
@@ -72,12 +73,12 @@ export default function Index() {
               console.log(e.target.value);
               const url = "https://api.cloudinary.com/v1_1/lwvom2iu/upload";
               const formData = new FormData();
-              let file = e.target.files;
-              // console.log(file);
-
+              let file: FileList | null = e.target.files;
               const images = [];
-              for (let i = 0; i < file.length; i++) {
-                images.push(file[i]);
+              if (file != null) {
+                for (let i = 0; i < file.length; i++) {
+                  images.push(file[i]);
+                }
               }
               console.log(images);
               const promise = await Promise.all(
@@ -109,7 +110,7 @@ export default function Index() {
             name="category"
             className="text-black bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-teal-500 block w-1/3 p-2.5 dark:bg-white dark:border-teal-600 dark:placeholder-gray-500 dark:text-white dark:focus:ring-teal-500 dark:focus:border-teal-500"
           >
-            {catData.map((item, index) => {
+            {catData.map((item: ICategory, index) => {
               return (
                 <option value={item._id} key={index}>
                   {item.categoryName}

@@ -7,14 +7,17 @@ import { useRouter } from "next/router";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import Image from "next/image";
 import { log } from "console";
+import { IUser } from "@/interfaces/user";
+import { Iproduct } from "@/interfaces/product";
+import { ICategory } from "@/interfaces/category";
 export default function Index() {
   const { userId, setUserId } = useContext(userIdCon);
-  const [userData, setUserData] = useState({});
-  const [productData, setProductData] = useState([]);
+  const [userData, setUserData] = useState<IUser>();
+  const [productData, setProductData] = useState<Iproduct[]>();
   const [showFollowers, setShowFollowers] = useState(false);
   const [showFollowing, setShowFollowing] = useState(false);
-  const [catData, setCatData] = useState([]);
-  const [userData2, setUserData2] = useState({});
+  const [catData, setCatData] = useState<ICategory[]>();
+  const [userData2, setUserData2] = useState<IUser>();
   const router = useRouter();
   const { _id } = router.query;
   const { followers, following }: any = userData;
@@ -25,12 +28,6 @@ export default function Index() {
       getCategories();
     }
   }, [_id, followers, following]);
-  // useEffect(() => {
-  //   getProducts();
-  //   getUserData();
-  //   getCategories();
-  // }, [followers, following]);
-
   const getUserData = () => {
     if (_id) {
       axios
@@ -60,15 +57,17 @@ export default function Index() {
       .then((res) => setCatData(res.data.result))
       .catch((err) => console.log(err));
   };
-  const followReq = (id) => {
+  const followReq = (id: any) => {
     const newArr = [...followers];
 
     newArr.push(localStorage.getItem("currentUserId"));
     axios
       .put(`http://localhost:8000/api/user/${id}`, { followers: newArr })
       .then((res) => {
-        let newArr = [...userData2?.following];
-        newArr.push(id);
+        if (userData2) {
+          let newArr = [...userData2.following];
+          newArr.push(id);
+        }
         axios
           .put(`http://localhost:8000/api/user/${userId}`, {
             following: newArr,
@@ -142,7 +141,7 @@ export default function Index() {
                   <p>{following?.length}</p>
                 </div>
                 <div className="w-1/3 flex flex-col items-center">
-                  <p>Posts</p> <p>{productData.length}</p>
+                  <p>Posts</p> <p>{productData?.length}</p>
                 </div>
               </div>
               <div className="w-2/3 flex justify-evenly">
@@ -180,7 +179,7 @@ export default function Index() {
                   Chat
                 </button>
                 <button
-                  onClick={() => followReq(userData._id)}
+                  onClick={() => followReq(userData?._id ? userData._id : "")}
                   className="bg-blue-500 w-1/4 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
                 >
                   Follow
@@ -202,6 +201,7 @@ export default function Index() {
                       className="w-full"
                       width={600}
                       height={600}
+                      alt="product"
                     />
                     <div className="px-6 py-4">
                       <div className="font-bold text-xl mb-2">
@@ -212,7 +212,7 @@ export default function Index() {
                       </p>
                     </div>
                     <div className="px-6 pt-4 pb-2">
-                      {catData.map((cat, index) => {
+                      {catData?.map((cat, index) => {
                         if (cat?._id == item?.categoryId) {
                           return (
                             <span

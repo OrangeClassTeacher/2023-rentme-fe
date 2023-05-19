@@ -4,23 +4,24 @@ import { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { Iproduct } from "@/interfaces/product";
 import { userIdCon } from "@/context/userIdContext";
-import BudgetDate from "@/components/global/date"
+import BudgetDate from "@/components/global/date";
+import { ICategory } from "../../../interfaces/category";
 import Link from "next/link";
-import {IUser} from "@/interfaces/user"
-interface IUserProps {
-  Username:string
-}
+import { IUser } from "@/interfaces/user";
+import { IComment } from "@/interfaces/comment";
+
 const Product = () => {
   const [data, setData] = useState<Iproduct>();
   const [catData, setCatData] = useState([]);
-  const [userData, setUserData] = useState([]);
-  const [commentData, setCommentData] = useState([]);
+  const [userData, setUserData] = useState<IUser[]>();
+  const [commentData, setCommentData] = useState<IComment[]>();
   const [comment, setComment] = useState("");
   const [ren, setRen] = useState(false);
   const { userId } = useContext(userIdCon);
   const router = useRouter();
   const path = router.query;
-  console.log(path);
+
+  const { rentalEndDate, rentalStartDate, description } = data || {};
 
   useEffect(() => {
     getData();
@@ -62,12 +63,12 @@ const Product = () => {
           <div className="h-3/4">
             <img src={data?.itemPhoto} alt="" className="w-full" />
           </div>
-          <div className="h1/4 flex gap-3 py-5"></div>
+          <div className="h1/4 flex gap-3 py-5" />
         </div>
         <div className="w-2/4 ps-8 py-8 flex flex-col gap-8">
           <div>
             <h1 className="text-7xl">{data?.itemName}</h1>
-            {catData.map((item, index) => {
+            {catData.map((item: ICategory, index) => {
               if (item?._id == data?.categoryId) {
                 return (
                   <p key={index} className="text-gray-500">
@@ -82,17 +83,13 @@ const Product = () => {
 
           <p className="text-xl text-neutral-600 flex gap-2">
             Rental Start :
-            <span className="text-xl text-yellow-600">
-              {data?.rentalStartDate}
-            </span>
+            <span className="text-xl text-yellow-600">{!rentalStartDate}</span>
           </p>
           <p className="text-xl text-neutral-600 flex gap-2">
             Rental End :
-            <span className="text-xl text-yellow-600">
-              {data?.rentalEndDate}
-            </span>
+            <span className="text-xl text-yellow-600">{!rentalEndDate}</span>
           </p>
-          {userData.map((user, index) => {
+          {userData?.map((user, index) => {
             if (user._id == data?.createdUser) {
               return (
                 <p className="text-xl text-neutral-600 flex gap-2" key={index}>
@@ -122,66 +119,60 @@ const Product = () => {
             ></textarea>
           </div>
           <div className="flex gap-8">
-            <button className=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full w-2/4">
-              <Link href="/item"> Буцах</Link>
-            </button>
             <button
-              className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full w-2/4"
+              className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded-full w-2/4"
               onClick={() => createComment(data?._id)}
             >
               Comment
+            </button>
+            <button className=" bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full w-2/4">
+              Rent
             </button>
           </div>
         </div>
       </div>
       <div className="flex flex-col w-full px-12 pb-12">
-        {
-          commentData && (
-            <div>
-              {commentData.map((com, index) => {
-                return (
-                  <div key={index}>
-                    <div className="relative grid grid-cols-1 gap-4 p-4 mb-8 border rounded-lg bg-white shadow-lg">
-                      <div className="relative flex gap-4">
-                          <div className="flex flex-col w-full">
-                            <div className="flex flex-row justify-between">
-                              <div className="">
-                                {
-                                  userData && (
-                                    <div>
-                                      {userData.map((user,index) =>{
-                                        if (user._id == data?.createdUser)
-                                        return(
-                                          <div key={index}>
-                                            <h1 className="relative text-xl whitespace-nowrap truncate overflow-hidden">{user.Username}</h1>
-                                          </div>
-                                        )
-                                      })}
-                                    </div>
-                                  )
-                                }
+        {commentData && (
+          <div>
+            {commentData.map((com, index) => {
+              return (
+                <div key={index}>
+                  <div className="relative grid grid-cols-1 gap-4 p-4 mb-8 border rounded-lg bg-white shadow-lg">
+                    <div className="relative flex gap-4">
+                      <div className="flex flex-col w-full">
+                        <div className="flex flex-row justify-between">
+                          <div className="">
+                            {userData && (
+                              <div>
+                                {userData.map((user, index) => {
+                                  if (user._id == data?.createdUser)
+                                    return (
+                                      <div key={index}>
+                                        <h1 className="relative text-xl whitespace-nowrap truncate overflow-hidden">
+                                          {user.Username}
+                                        </h1>
+                                      </div>
+                                    );
+                                })}
                               </div>
-                              <a className="text-gray-500 text-xl" href="#"><i className="fa-solid fa-trash"></i></a>
-                            </div>
-                            <p className="text-gray-400 text-sm">
-                              <BudgetDate/>
-                            </p>
+                            )}
                           </div>
+                          <a className="text-gray-500 text-xl" href="#">
+                            <i className="fa-solid fa-trash"></i>
+                          </a>
+                        </div>
+                        <p className="text-gray-400 text-sm">
+                          <BudgetDate />
+                        </p>
                       </div>
-                      <p className="-mt-4 text-gray-500">{com?.comment}
-                      </p>
                     </div>
+                    <p className="-mt-4 text-gray-500">{com?.comment}</p>
                   </div>
-                );
-              })}
-            </div>
-          )
-          // : (
-          //   <div>
-          //     <h1>COmsaiocnsudb</h1>
-          //   </div>
-          // )
-        }
+                </div>
+              );
+            })}
+          </div>
+        )}
       </div>
     </div>
   );
