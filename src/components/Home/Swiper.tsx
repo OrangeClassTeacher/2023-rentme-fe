@@ -11,11 +11,11 @@ import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 const SwiperSection: FC = () => (
   <div className="bg-color-1 pt-[10px] pb-[10px] text-white">
     <div className="">
-      <div className="text-center mb-[31px]">
-        <h1 className="text-black text-3xl-bold mb-[10px]">
-          Item 
+      <div className="text-center mb-[31px] px-[360px]">
+        <h1 className="text-black text-3xl-bold mb-[10px] text-2xl p-5">
+          --- Онцлох Түрүүсийн Бараа ---
         </h1>
-        <p className="text-black text-md-regular">Product swiper</p>
+        <p className="text-black text-md-regular"></p>
       </div>
 
       <Swiper
