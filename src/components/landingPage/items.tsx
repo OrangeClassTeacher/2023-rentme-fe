@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import RatingStar from "../global/RatingStar";
 import Link from "next/link";
-import Image from "next/image";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import { Iproduct } from "@/interfaces/product";
 
@@ -29,7 +28,7 @@ export function Items(): JSX.Element {
             className="w-full max-w-sm bg-white rounded-lg shadow "
           >
             <div>
-              <Image
+              <img
                 src={item.itemPhoto}
                 alt="itemPhoto"
                 className="w-full rounded-t-lg"

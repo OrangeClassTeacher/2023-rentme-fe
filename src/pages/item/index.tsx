@@ -9,6 +9,7 @@ import { SearchContext } from "@/context/searchTextContext";
 import { userIdCon } from "@/context/userIdContext";
 import RatingStar from "@/components/global/RatingStar";
 import { sortValContext } from "@/context/SortContext";
+import SortDropDown from "@/components/global/SortDropDown";
 
 export default function Index(): JSX.Element {
   const [productData, setProductData] = useState<Iproduct[]>();
@@ -43,6 +44,9 @@ export default function Index(): JSX.Element {
         ) : (
           ""
         )}
+      </div>
+      <div>
+        <SortDropDown/>
       </div>
       <div>
         <div className="flex flex-col items-start gap-5 sm:flex-row sm:items-center text-black">

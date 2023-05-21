@@ -18,7 +18,7 @@ const SortDropDown: FC = (): JSX.Element => {
 
   return (
     <div className="relative">
-      <div className="flex items-center gap-5">
+      <div className="flex items-center gap-5 bg-gray-100">
         <span className="text-head text-sm-medium">Эрэмбэ: </span>
         <button
           onClick={dropSortHandler}
@@ -35,14 +35,14 @@ const SortDropDown: FC = (): JSX.Element => {
       <div
         className={`${
           dropSort ? "opacity-100" : "opacity-0 pointer-events-none"
-        } absolute top-[60px] z-[10] bg-bg-4 rounded-lg py-[22px] pl-[30px] pr-[50px] duration-300 shadow-lg w-full`}
+        } absolute top-[60px] z-[10] bg-bg-4 rounded-lg py-[22px] pl-[30px] pr-[50px] duration-300 w-full`}
       >
         <ul className="flex flex-col font-[400] text-[15px] leading-[35px] text-head">
           {sortItems.map((item, index) => (
             <li
               onClick={(): void => setSortVal(item.slug)}
               key={`sort-item-${index}`}
-              className="hover:text-color-1 whitespace-nowrap text-black cursor-pointer hover:underline "
+              className="hover:text-color-1 whitespace-nowrap bg-gray-100 w-[200px] text-black cursor-pointer"
             >
               {item.title}
             </li>

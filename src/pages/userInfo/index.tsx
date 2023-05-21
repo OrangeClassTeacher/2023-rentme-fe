@@ -16,7 +16,7 @@ function Index(): JSX.Element {
   const router = useRouter();
   const { _id } = router.query;
   // console.log(_id);
-  const { followers, following }: any = userData;
+  const { followers, following } :any= userData;
   // console.log(following);
 
   useEffect(() => {

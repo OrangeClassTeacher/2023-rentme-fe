@@ -8,7 +8,6 @@ import { BsListNested } from "react-icons/bs";
 import { useContext } from "react";
 import { userIdCon } from "@/context/userIdContext";
 import { UserProfie } from "./UserProfie";
-import SortDropDown from "./global/SortDropDown";
 
 export function Header(): JSX.Element {
   const { userId, setUserId } = useContext(userIdCon);
@@ -37,13 +36,14 @@ export function Header(): JSX.Element {
       id="Navbar"
     >
       <div className="ps-5 w-full py-5 border-b border-b-white/[.15] flex items-center justify-between">
-        <div className="flex w-1/5 items-center gap-7 hidden md:flex">
+        <div className="flex w-1/5 items-center gap-7 hidden md:flex text-white">
           <Link href="/">
             <Image
               className="w-full h-10 hover:animate-spin"
               src={mainLogo}
               alt="IntelliSense"
             />
+              Rent Me
           </Link>
         </div>
         <div className="w-4/5 hidden md:flex">
@@ -73,7 +73,6 @@ export function Header(): JSX.Element {
             <FiSearch />
           </button> */}
           <Search />
-          <SortDropDown />
           {userId ? (
             <button className="text-xl hover:opacity-70 duration-300">
               <FiShoppingBag />
