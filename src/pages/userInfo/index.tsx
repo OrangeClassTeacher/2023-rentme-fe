@@ -92,19 +92,19 @@ function Index(): JSX.Element {
             <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
               <Link href="/">Буцах</Link>
             </button>
-            {!update ? (
+            {update ? (
               <button
                 onClick={(): void => setUpdate(update)}
                 className="bg-yellow-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-full"
               >
-                Буцах
+                Edit profile
               </button>
             ) : (
               <button
                 onClick={(): void => setUpdate(update)}
                 className="bg-yellow-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-full"
               >
-                Edit profile
+                Буцах
               </button>
             )}
           </div>

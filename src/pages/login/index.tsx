@@ -5,6 +5,7 @@ import Link from "next/link";
 import { FaFacebookF, FaGoogle } from "react-icons/fa";
 import AuthLayout from "@/components/auth/AuthLayout";
 import { useContext } from "react";
+import { useRouter } from "next/router";
 import { userIdCon } from "@/context/userIdContext";
 import { Utils } from "../../utils/helper";
 
@@ -13,6 +14,8 @@ export default function Index(): JSX.Element {
   const [logPassword, setLogPassword] = useState<string>("");
   const [, setData] = useState({});
   const { setUserId } = useContext(userIdCon);
+  const route = useRouter();
+
   function login(): void {
     axios
       .post(`${Utils.API_URL}/login`, {
@@ -25,6 +28,8 @@ export default function Index(): JSX.Element {
         if (result?._id != undefined) {
           localStorage.setItem("currentUserId", result?._id);
           setUserId(result?._id);
+          alert("Амжилттай нэвтэрлээ");
+          route.push("/");
         }
       })
       .catch((err) => console.log(err));

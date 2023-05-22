@@ -17,7 +17,6 @@ export default function Index(): JSX.Element {
   const { sortVal } = useContext(sortValContext);
   const { search } = useContext<any>(SearchContext);
   const { userId } = useContext(userIdCon);
-
   useEffect(() => {
     getData();
   }, [search, sortVal]);

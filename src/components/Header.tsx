@@ -14,11 +14,11 @@ export function Header(): JSX.Element {
   const [user, setUser] = useState(false);
   useEffect(() => {
     userId ? "" : setUserId(localStorage.getItem("currentUserId"));
-  });
+  }, []);
   let lastScrollTop = 0;
   if (typeof window !== "undefined") {
     window.addEventListener("scroll", function () {
-      const Navbar = (document.getElementById("Navbar") as HTMLElement) || null;
+      const Navbar = document.getElementById("Navbar") as HTMLElement;
       const scrollTop =
         window.pageYOffset || document.documentElement.scrollTop;
       if (scrollTop > lastScrollTop) {

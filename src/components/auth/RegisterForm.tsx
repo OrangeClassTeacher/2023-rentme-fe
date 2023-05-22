@@ -5,6 +5,7 @@ import { FaFacebookF, FaGoogle } from "react-icons/fa";
 import { BsCheckCircle, BsXCircle } from "react-icons/bs";
 import { IUser } from "../../interfaces/user";
 import { Utils } from "../../utils/helper";
+import { useRouter } from "next/router";
 
 const RegisterForm: FC = (): JSX.Element => {
   const [userData, setUserData] = useState<IUser>();
@@ -38,6 +39,9 @@ const RegisterForm: FC = (): JSX.Element => {
       regex: new RegExp("(?=.*[^A-Za-z0-9])"),
     },
   ]);
+  // console.log(proPic);
+
+  const route = useRouter();
   useEffect(() => {
     const newPasswordRequirements = [...passwordRequirements];
     for (const req of newPasswordRequirements) {
@@ -45,7 +49,7 @@ const RegisterForm: FC = (): JSX.Element => {
       else req.state = false;
     }
     setPasswordRequirements(newPasswordRequirements);
-  });
+  }, []);
   const registerUser = (event: any): void => {
     event.preventDefault();
     const data: IUser = {
@@ -83,8 +87,8 @@ const RegisterForm: FC = (): JSX.Element => {
           .then((res) => {
             if (res.data.result) {
               console.log(res.data.result);
-
-              alert("Amjilttai bvrtgelee");
+              alert("Амжилттай нэвтэрлээ бүртгэлээрээ нэвтрэнэ үү!!");
+              route.push("/login");
             } else {
               alert("Medeellee bvren bugluuuc!!!!");
             }
@@ -96,7 +100,6 @@ const RegisterForm: FC = (): JSX.Element => {
     } catch (error) {
       console.log(error);
     }
-    // setIsLog(true);
   };
 
   return (

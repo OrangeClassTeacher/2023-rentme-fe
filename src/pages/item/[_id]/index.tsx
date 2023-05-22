@@ -141,7 +141,7 @@ function Product(): JSX.Element {
                 </button>
                 <button
                   className=" bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full w-2/4"
-                  onClick={() => setShowModal(!showModal)}
+                  onClick={(): void => setShowModal(!showModal)}
                 >
                   Rent
                 </button>
@@ -161,7 +161,7 @@ function Product(): JSX.Element {
                               {userData && (
                                 <div>
                                   {userData.map((user, index) => {
-                                    if (user._id == user?.Username)
+                                    if (user._id == user.Username)
                                       return (
                                         <div key={index}>
                                           <h1 className="relative text-xl whitespace-nowrap truncate overflow-hidden">

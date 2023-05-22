@@ -17,8 +17,6 @@ export function Items(): JSX.Element {
       .then((res) => setItemData(res.data.result))
       .catch((err) => console.log(err));
   };
-  console.log(itemData);
-
   return (
     <div className="w-full flex flex-col gap-4">
       <h1 className="ps-8 text-3xl">Шинээр нэмэгдсэн</h1>
