@@ -14,12 +14,13 @@ export function Header(): JSX.Element {
   const [user, setUser] = useState(false);
   useEffect(() => {
     userId ? "" : setUserId(localStorage.getItem("currentUserId"));
-  }, );
+  });
   let lastScrollTop = 0;
   if (typeof window !== "undefined") {
     window.addEventListener("scroll", function () {
       const Navbar = (document.getElementById("Navbar") as HTMLElement) || null;
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const scrollTop =
+        window.pageYOffset || document.documentElement.scrollTop;
       if (scrollTop > lastScrollTop) {
         Navbar.style.top = "-200px";
       } else {
@@ -43,7 +44,7 @@ export function Header(): JSX.Element {
               src={mainLogo}
               alt="IntelliSense"
             />
-              Rent Me
+            Rent Me
           </Link>
         </div>
         <div className="w-4/5 hidden md:flex">
@@ -84,7 +85,7 @@ export function Header(): JSX.Element {
           {userId ? (
             <button
               className="text-head rounded-lg px-[34px] py-2 text-md-regular hover:bg-white/70 duration-300"
-              onClick={():void => setUser(!user)}
+              onClick={(): void => setUser(!user)}
             >
               <UserProfie USer={user} setUSer={setUser} />
             </button>
