@@ -10,6 +10,7 @@ import { userIdCon } from "@/context/userIdContext";
 import RatingStar from "@/components/global/RatingStar";
 import { sortValContext } from "@/context/SortContext";
 import SortDropDown from "@/components/global/SortDropDown";
+import { Utils } from "../../utils/helper";
 
 export default function Index(): JSX.Element {
   const [productData, setProductData] = useState<Iproduct[]>();
@@ -23,12 +24,11 @@ export default function Index(): JSX.Element {
 
   function getData(): void {
     axios
-      .post("http://localhost:8000/api/items", {
+      .post(`${Utils.API_URL}/items`, {
         searchText: search,
         sort: sortVal,
       })
-      .then((res) => setProductData(res.data.result)
-      );
+      .then((res) => setProductData(res.data.result));
   }
   const [, setFilterShow] = useState<boolean>(false);
   const showFilter = (): void => {
@@ -46,7 +46,7 @@ export default function Index(): JSX.Element {
         )}
       </div>
       <div>
-        <SortDropDown/>
+        <SortDropDown />
       </div>
       <div>
         <div className="flex flex-col items-start gap-5 sm:flex-row sm:items-center text-black">

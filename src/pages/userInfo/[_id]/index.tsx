@@ -7,7 +7,8 @@ import Image from "next/image";
 import { IUser } from "@/interfaces/user";
 import { Iproduct } from "@/interfaces/product";
 import { ICategory } from "@/interfaces/category";
-export default function Index():JSX.Element {
+import { Utils } from "../../../utils/helper";
+export default function Index(): JSX.Element {
   const { userId } = useContext(userIdCon);
   const [userData, setUserData] = useState<IUser>();
   const [productData, setProductData] = useState<Iproduct[]>();
@@ -17,56 +18,59 @@ export default function Index():JSX.Element {
   const [userData2, setUserData2] = useState<IUser>();
   const router = useRouter();
   const { _id } = router.query;
-  const { followers, following }: any = userData;
+  const { followers, following }: any = userData || {};
   useEffect(() => {
     if (_id) {
       getProducts();
       getUserData();
       getCategories();
     }
-  },);
-  function getUserData ():void {
+  });
+  function getUserData(): void {
     if (_id) {
       axios
-        .get(`http://localhost:8000/api/user/${_id}`)
+        .get(`${Utils.API_URL}/user/${_id}`)
         .then((res) => setUserData(res.data.result));
       axios
-        .get(`http://localhost:8000/api/user/${userId}`)
+        .get(`${Utils.API_URL}/user/${userId}`)
         .then((res) => setUserData2(res.data.result))
         .catch((Err) => console.log(Err));
     } else {
       alert("UserId not found");
     }
   }
-  function getProducts  ():void  {
+  function getProducts(): void {
     if (_id) {
       axios
-        .post("http://localhost:8000/api/itemUser", { createdUser: _id })
+        .post(`${Utils.API_URL}/itemUser`, { createdUser: _id })
         .then((res) => {
           setProductData(res.data.result);
         })
         .catch((err) => console.log(err));
     }
   }
-  function getCategories  ():void  {
+  function getCategories(): void {
     axios
-      .get("http://localhost:8000/api/category")
+      .get(`${Utils.API_URL}/category`)
       .then((res) => setCatData(res.data.result))
       .catch((err) => console.log(err));
   }
-  function followReq  (id: any):void {
+  function followReq(id: any): void {
     const newArr = [...followers];
 
     newArr.push(localStorage.getItem("currentUserId"));
     axios
-      .put(`http://localhost:8000/api/user/${id}`, { followers: newArr })
+      .put(`${Utils.API_URL}/user/${id}`, { followers: newArr })
       .then(() => {
+        console.log(id);
+
         if (userData2) {
           const newArr = [...userData2.following];
           newArr.push(id);
+          // console.log(newArr);
         }
         axios
-          .put(`http://localhost:8000/api/user/${userId}`, {
+          .put(`${Utils.API_URL}/user/${userId}`, {
             following: newArr,
           })
           .then(() => console.log("Success"))
@@ -121,13 +125,17 @@ export default function Index():JSX.Element {
               />
               <div className="w-2/3 flex justify-evenly">
                 <div className="w-1/3 flex flex-col items-center border-r-2 border-black">
-                  <button onClick={():void => setShowFollowers(!showFollowers)}>
+                  <button
+                    onClick={(): void => setShowFollowers(!showFollowers)}
+                  >
                     Followers
                   </button>
                   <p className="text-center"> {followers?.length}</p>
                 </div>
                 <div className="w-1/3 flex flex-col items-center border-r-2 border-black">
-                  <button onClick={():void => setShowFollowing(!showFollowing)}>
+                  <button
+                    onClick={(): void => setShowFollowing(!showFollowing)}
+                  >
                     {" "}
                     Following{" "}
                   </button>
@@ -172,7 +180,9 @@ export default function Index():JSX.Element {
                   Chat
                 </button>
                 <button
-                  onClick={():void => followReq(userData?._id ? userData._id : "")}
+                  onClick={(): void =>
+                    followReq(userData?._id ? userData._id : "")
+                  }
                   className="bg-blue-500 w-1/4 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
                 >
                   Follow

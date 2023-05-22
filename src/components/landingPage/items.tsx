@@ -4,15 +4,16 @@ import RatingStar from "../global/RatingStar";
 import Link from "next/link";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import { Iproduct } from "@/interfaces/product";
+import { Utils } from "../../utils/helper";
 
 export function Items(): JSX.Element {
   const [itemData, setItemData] = useState([]);
   useEffect(() => {
     getItemData();
   }, []);
-  const getItemData = ():void => {
+  const getItemData = (): void => {
     axios
-      .get("http://localhost:8000/api/itemsDate")
+      .get(`${Utils.API_URL}/itemsDate`)
       .then((res) => setItemData(res.data.result))
       .catch((err) => console.log(err));
   };

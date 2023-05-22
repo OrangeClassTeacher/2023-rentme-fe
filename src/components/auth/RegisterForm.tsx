@@ -4,6 +4,7 @@ import { FC, useState, useEffect } from "react";
 import { FaFacebookF, FaGoogle } from "react-icons/fa";
 import { BsCheckCircle, BsXCircle } from "react-icons/bs";
 import { IUser } from "../../interfaces/user";
+import { Utils } from "../../utils/helper";
 
 const RegisterForm: FC = (): JSX.Element => {
   const [userData, setUserData] = useState<IUser>();
@@ -44,8 +45,8 @@ const RegisterForm: FC = (): JSX.Element => {
       else req.state = false;
     }
     setPasswordRequirements(newPasswordRequirements);
-  }, );
-  const registerUser = (event: any):void => {
+  });
+  const registerUser = (event: any): void => {
     event.preventDefault();
     const data: IUser = {
       firstName: event.target.firstName.value,
@@ -78,7 +79,7 @@ const RegisterForm: FC = (): JSX.Element => {
         console.log(userData);
 
         axios
-          .post("http://localhost:8000/api/user", userData)
+          .post(`${Utils.API_URL}/user`, userData)
           .then((res) => {
             if (res.data.result) {
               console.log(res.data.result);
@@ -112,7 +113,7 @@ const RegisterForm: FC = (): JSX.Element => {
         </p>
       </div>
       <form
-        onSubmit={(event):void => {
+        onSubmit={(event): void => {
           registerUser(event);
         }}
         className="text-head"
@@ -174,7 +175,8 @@ const RegisterForm: FC = (): JSX.Element => {
             <select
               name="gender"
               id="gender"
-              className="text-black border border-border-2 w-full py-[12px] px-[22px] rounded-lg focus:outline-none focus:ring-2 focus:ring-color-1 text-text text-md-regular">
+              className="text-black border border-border-2 w-full py-[12px] px-[22px] rounded-lg focus:outline-none focus:ring-2 focus:ring-color-1 text-text text-md-regular"
+            >
               <option value="0">Сонгох....</option>
               <option value="Male">Эрэгтэй</option>
               <option value="Female">Эмэгтэй</option>
@@ -251,7 +253,7 @@ const RegisterForm: FC = (): JSX.Element => {
               placeholder="Profile pic..."
               type={"file"}
               name="profilePic"
-              onChange={(e):void => {
+              onChange={(e): void => {
                 const url = "https://api.cloudinary.com/v1_1/lwvom2iu/upload";
                 const formData = new FormData();
                 const file: any = e.target.files;
@@ -325,7 +327,7 @@ const RegisterForm: FC = (): JSX.Element => {
             type="checkbox"
             id="accept"
             className="w-[15px] h-[15px] border-2 border-icon"
-            onClick={():void => setConfirm(!confirm)}
+            onClick={(): void => setConfirm(!confirm)}
           />
           <label className="text-text text-teal-500" htmlFor="accept">
             Үйлчилгээний нөхцөл зөвшөөрөх

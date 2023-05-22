@@ -9,9 +9,9 @@ import { ICategory } from "../../../interfaces/category";
 import Link from "next/link";
 import { IUser } from "@/interfaces/user";
 import { IComment } from "@/interfaces/comment";
+import { Utils } from "../../../utils/helper";
 
-
-function Product ():JSX.Element  {
+function Product(): JSX.Element {
   const [data, setData] = useState<Iproduct>();
   const [catData, setCatData] = useState([]);
   const [userData, setUserData] = useState<IUser[]>();
@@ -22,34 +22,31 @@ function Product ():JSX.Element  {
   const router = useRouter();
   const path = router.query;
 
-  
   const { rentalEndDate, rentalStartDate } = data || {};
 
-
-  
   useEffect(() => {
     getData();
-  }, );
-  function getData ():void {
+  });
+  function getData(): void {
     axios
-      .get(`http://localhost:8000/api/item/${path._id}`)
+      .get(`${Utils.API_URL}/item/${path._id}`)
       .then((res) => setData(res.data.result));
     axios
-      .get("http://localhost:8000/api/category")
+      .get(`${Utils.API_URL}/category`)
       .then((res) => setCatData(res.data.result))
       .catch((err) => console.log(err));
     axios
-      .get("http://localhost:8000/api/users")
+      .get(`${Utils.API_URL}/users`)
       .then((res) => setUserData(res.data.result))
       .catch((err) => console.log(err));
     axios
-      .post("http://localhost:8000/api/comments", { itemId: path._id })
+      .post(`${Utils.API_URL}/comments`, { itemId: path._id })
       .then((res) => setCommentData(res.data.result))
       .catch((err) => console.log(err));
-    }
-  function createComment  (id: any):void {
+  }
+  function createComment(id: any): void {
     axios
-      .post("http://localhost:8000/api/comment", {
+      .post(`${Utils.API_URL}/comment`, {
         itemId: id,
         userId: userId,
         comment: comment,
@@ -58,7 +55,7 @@ function Product ():JSX.Element  {
         console.log(res.data.result), setRen(!ren);
       })
       .catch((err) => console.log(err));
-    }
+  }
   return (
     <div className="flex flex-col w-full">
       <div className="w-full flex px-4 pt-8">
@@ -119,13 +116,13 @@ function Product ():JSX.Element  {
               className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="
               Энд санал бодлоо бичээрэй..."
-              onChange={(e):void => setComment(e.target.value)}
+              onChange={(e): void => setComment(e.target.value)}
             />
           </div>
           <div className="flex gap-8">
             <button
               className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded-full w-2/4"
-              onClick={():void => createComment(data?._id)}
+              onClick={(): void => createComment(data?._id)}
             >
               Comment
             </button>
@@ -161,7 +158,7 @@ function Product ():JSX.Element  {
                           )}
                         </div>
                         <a className="text-gray-500 text-xl" href="#">
-                          <i className="fa-solid fa-trash"/>
+                          <i className="fa-solid fa-trash" />
                         </a>
                       </div>
                       <p className="text-gray-400 text-sm">
@@ -176,6 +173,7 @@ function Product ():JSX.Element  {
           </div>
         )}
       </div>
-    </div>);
+    </div>
+  );
 }
 export default Product;
