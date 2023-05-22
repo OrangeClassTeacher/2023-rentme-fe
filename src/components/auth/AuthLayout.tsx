@@ -1,17 +1,13 @@
 import { FC } from "react";
-// import AuthNavbar from "./AuthNavbar";
 import Image from "next/image";
-
 import authShapes from "@/assets/authShapes.svg";
 import authBg from "@/assets/authBg.svg";
 import authBgSmall1 from "@/assets/bg-1.svg";
 import authBgSmall2 from "@/assets/bg-2.svg";
 import authBgSmall3 from "@/assets/bg-3.svg";
-
 interface AuthLayoutProps {
   children: JSX.Element;
 }
-
 const AuthLayout: FC<AuthLayoutProps> = ({ children }) => (
   <>
     <main className="min-w-screen min-h-screen grid grid-cols-3">
@@ -29,7 +25,6 @@ const AuthLayout: FC<AuthLayoutProps> = ({ children }) => (
               className="w-full aspect-square object-cover"
             />
           </div>
-
           <div className="absolute overflow-hidden w-[90px] h-[90px] bg-[#efccc7] rounded-full top-20 -left-8">
             <Image
               alt="Bg Small"
@@ -37,7 +32,6 @@ const AuthLayout: FC<AuthLayoutProps> = ({ children }) => (
               className="w-full aspect-square object-contain"
             />
           </div>
-
           <div className="absolute overflow-hidden w-[90px] h-[90px] bg-color-6 rounded-full top-20 -right-8">
             <Image
               alt="Bg Small"
@@ -45,7 +39,6 @@ const AuthLayout: FC<AuthLayoutProps> = ({ children }) => (
               className="w-full aspect-square object-contain"
             />
           </div>
-
           <div className="absolute overflow-hidden w-[90px] h-[90px] bg-[#8FD4B8] rounded-full bottom-0 right-5">
             <Image
               alt="Bg Small"
