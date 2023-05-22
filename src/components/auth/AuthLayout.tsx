@@ -1,7 +1,7 @@
 import { FC } from "react";
 import Image from "next/image";
 import authShapes from "@/assets/authShapes.svg";
-import authBg from "@/assets/authBg.svg";
+import authBg from "@/assets/authbg.svg";
 import authBgSmall1 from "@/assets/bg-1.svg";
 import authBgSmall2 from "@/assets/bg-2.svg";
 import authBgSmall3 from "@/assets/bg-3.svg";
