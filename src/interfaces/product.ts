@@ -3,7 +3,7 @@ import { IUser } from "./user";
 export interface IProductCategory {
   _id: string;
   categoryName: string;
-  parentId:string
+  parentId: string;
   description?: string;
   image: string;
   slug: string;
@@ -15,7 +15,6 @@ export interface IProductCategory {
 export interface Iproduct {
   _id?: string;
   createdUser: string;
-  Username:string;
   itemName: string;
   itemPhoto: string;
   itemSlidePhoto: string[];

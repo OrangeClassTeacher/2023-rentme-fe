@@ -1,15 +1,16 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { IProductCategory } from "../../interfaces/product";
+import { Utils } from "../../utils/helper";
 
 export function Category(): JSX.Element {
   const [catData, setCatData] = useState<IProductCategory[]>([]);
   useEffect(() => {
     getCatData();
   }, []);
-  const getCatData = ():void => {
+  const getCatData = (): void => {
     axios
-      .get("http://localhost:8000/api/category")
+      .get(`${Utils.API_URL}/category`)
       .then((res) => setCatData(res.data.result))
       .catch((err) => console.log(err));
   };

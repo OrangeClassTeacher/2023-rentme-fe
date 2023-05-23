@@ -3,18 +3,19 @@ import axios from "axios";
 import { useState } from "react";
 import { Iproduct } from "@/interfaces/product";
 import { ICategory } from "../../interfaces/category";
+import { Utils } from "../../utils/helper";
 export default function Index(): JSX.Element {
   const [proData, setProData] = useState<Iproduct>();
   const [thumbImg, setThumbImg] = useState("");
   const [Images, setImages] = useState([]);
   const [catData, setCatData] = useState([]);
-  const createProd = (event: any):void => {
+  const createProd = (event: any): void => {
     event.preventDefault();
     const data: Iproduct = {
       createdUser: localStorage.getItem("currentUserId") || "",
       itemName: event.target.itemName.value || "",
       itemPhoto: thumbImg || "",
-      itemSlidePhoto: Images ,
+      itemSlidePhoto: Images,
       description: event.target.description.value || "",
       categoryId: event.target.category.value || "",
       phoneNumber: event.target.phoneNumber.value || 11111111,
@@ -25,13 +26,13 @@ export default function Index(): JSX.Element {
     };
     setProData(data);
     axios
-      .post("http://localhost:8000/api/item", proData)
+      .post(`${Utils.API_URL}/item`, proData)
       .then((res) => console.log(res.data.result))
       .catch((err) => console.log(err));
   };
   useEffect(() => {
     axios
-      .get("http://localhost:8000/api/category")
+      .get(`${Utils.API_URL}/category`)
       .then((res) => setCatData(res.data.result));
   }, []);
 
@@ -49,7 +50,7 @@ export default function Index(): JSX.Element {
             placeholder="Item Photo..."
             type={"file"}
             name="itemPhoto"
-            onChange={(e):void => {
+            onChange={(e): void => {
               const url = "https://api.cloudinary.com/v1_1/lwvom2iu/upload";
               const formData = new FormData();
               const file: any = e.target.files;

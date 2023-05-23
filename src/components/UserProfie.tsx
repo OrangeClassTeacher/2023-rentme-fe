@@ -4,6 +4,7 @@ import axios from "axios";
 import { FiLogOut } from "react-icons/fi";
 import Link from "next/link";
 import { IUser } from "@/interfaces/user";
+import { Utils } from "../utils/helper";
 
 export function UserProfie({ USer }: any): JSX.Element {
   const [userData, setUserData] = useState<IUser>();
@@ -11,17 +12,16 @@ export function UserProfie({ USer }: any): JSX.Element {
 
   useEffect(() => {
     getUserData();
-  },);
-  function getUserData  ():void  {
-    axios.get(`http://localhost:8000/api/user/${userId}`).then((res) => {
+  });
+  function getUserData(): void {
+    axios.get(`${Utils.API_URL}/user/${userId}`).then((res) => {
       setUserData(res.data.result);
-    }
-   )
+    });
   }
-  function logOut ():void  {
+  function logOut(): void {
     localStorage.removeItem("currentUserId");
-    setUserId("")
-}
+    setUserId("");
+  }
   return (
     <div className="realtive">
       {USer ? (

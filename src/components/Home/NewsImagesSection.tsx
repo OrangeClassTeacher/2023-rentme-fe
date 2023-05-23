@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import Image from "next/image";
-import bimage from "../../assets/backimg.svg"
+import bimage from "@/assets/backimg.svg"
 import Link from "next/link";
 import { HiOutlineArrowUpRight } from "react-icons/hi2";
 

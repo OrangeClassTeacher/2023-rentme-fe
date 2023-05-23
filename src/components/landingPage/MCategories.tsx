@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { IProductCategory } from "@/interfaces/product";
+import { Utils } from "../../utils/helper";
 
 export function MCategories(): JSX.Element {
   const [catData, setCatData] = useState<IProductCategory[]>([]);
@@ -9,19 +10,18 @@ export function MCategories(): JSX.Element {
   useEffect(() => {
     getCatData(), getData();
   }, []);
-  const getCatData = ():void => {
+  const getCatData = (): void => {
     axios
-      .get("http://localhost:8000/api/category")
+      .get(`${Utils.API_URL}/category`)
       .then((res) => setCatData(res.data.result))
       .catch((err) => console.log(err));
   };
-  const getData = ():void => {
+  const getData = (): void => {
     axios
-      .get("http://localhost:8000/api/items")
+      .get(`${Utils.API_URL}/items`)
       .then((res) => setCatID(res.data.result))
       .catch((err) => console.log(err));
   };
-  console.log(catID, catData);
   return (
     <div className="w-full flex justify-evenly py-4">
       {catID.map((item, index) => (

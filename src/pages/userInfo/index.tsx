@@ -5,6 +5,7 @@ import { IUser } from "../../interfaces/user";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { Iproduct } from "@/interfaces/product";
+import { Utils } from "../../utils/helper";
 // import { AiFillEdit } from "react-icons/ai";
 function Index(): JSX.Element {
   const { userId, setUserId } = useContext(userIdCon);
@@ -15,44 +16,41 @@ function Index(): JSX.Element {
   const [productData, setProductData] = useState<Iproduct[]>([]);
   const router = useRouter();
   const { _id } = router.query;
-  // console.log(_id);
-  const { followers, following } :any= userData;
-  // console.log(following);
+  const { followers, following }: any = userData || {};
 
   useEffect(() => {
     if (userId) {
       getProducts();
       getUserData();
       setUserId(localStorage.getItem("currentUserId"));
-      // console.log(following);
     }
   }, [userId, followers, following]);
   function getUserData(): void {
     if (_id) {
       axios
-        .get(`http://localhost:8000/api/user/${_id}`)
+        .get(`${Utils.API_URL}/user/${_id}`)
         .then((res) => setUserData(res.data.result));
     } else if (userId) {
       axios
-        .get(`http://localhost:8000/api/user/${userId}`)
+        .get(`${Utils.API_URL}/user/${userId}`)
         .then((res) => setUserData(res.data.result));
     } else {
-      alert("UserId not found")
+      alert("UserId not found");
     }
   }
   function getProducts(): void {
     if (userId) {
       axios
-        .post("http://localhost:8000/api/itemUser", { createdUser: userId })
+        .post(`${Utils.API_URL}/itemUser`, { createdUser: userId })
         .then((res) => {
           setProductData(res.data.result);
         })
-        .catch((err) => console.log(err))
+        .catch((err) => console.log(err));
     }
   }
   function deleteItem(id: string): void {
     axios
-      .delete(`http://localhost:8000/api/item/${id}`)
+      .delete(`${Utils.API_URL}/item/${id}`)
       .then(() => alert("Amjilttai ustgalaa"))
       .catch(() => alert("Product not found"));
     getProducts();
@@ -80,12 +78,11 @@ function Index(): JSX.Element {
 
           setUpdate(!update);
         })
-        .catch((err) => console.log(err)
-        )
+        .catch((err) => console.log(err));
     } else {
       alert("UserId not found");
     }
-    getUserData()
+    getUserData();
   }
   return (
     <div className="bg-white">
@@ -95,19 +92,19 @@ function Index(): JSX.Element {
             <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
               <Link href="/">Буцах</Link>
             </button>
-            {!update ? (
+            {update ? (
               <button
                 onClick={(): void => setUpdate(update)}
                 className="bg-yellow-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-full"
               >
-                Буцах
+                Edit profile
               </button>
             ) : (
               <button
                 onClick={(): void => setUpdate(update)}
                 className="bg-yellow-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-full"
               >
-                Edit profile
+                Буцах
               </button>
             )}
           </div>
@@ -254,13 +251,17 @@ function Index(): JSX.Element {
                 />
                 <div className="w-2/3 flex justify-evenly">
                   <div className="w-1/3 flex flex-col items-center border-r-2 border-black">
-                    <button onClick={(): void => setShowFollowers(!showFollowers)}>
+                    <button
+                      onClick={(): void => setShowFollowers(!showFollowers)}
+                    >
                       Followers
                     </button>
                     <p className="text-center"> {followers?.length}</p>
                   </div>
                   <div className="w-1/3 flex flex-col items-center border-r-2 border-black">
-                    <button onClick={(): void => setShowFollowing(!showFollowing)}>
+                    <button
+                      onClick={(): void => setShowFollowing(!showFollowing)}
+                    >
                       {" "}
                       Following{" "}
                     </button>
@@ -367,29 +368,27 @@ function Index(): JSX.Element {
               <h1 className="text-2xl">Хэрэглэгчийн оруулсан зар</h1>
               <div className="w-full flex flex-wrap gap-10 h-[85vh] overflow-auto">
                 {productData.map((item: Iproduct, index) => (
-                 
-                    <div key={index} className="w-1/3 flex flex-col">
-                      <div className="w-full">
-                        <img src={item.itemPhoto} alt="" className="w-full" />
-                      </div>
-                      <div className="w-full flex flex-col text-center">
-                        <h1>{item.itemName}</h1>
-                        <p>{item.description}</p>
-                        <p>{item.rentalPrice}</p>
-                        <div className="flex w-full">
-                          <button
-                            className="w-full bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-                            onClick={(): void =>
-                              deleteItem(item._id ? item._id : "")
-                            }
-                          >
-                            Delete
-                          </button>
-                        </div>
+                  <div key={index} className="w-1/3 flex flex-col">
+                    <div className="w-full">
+                      <img src={item.itemPhoto} alt="" className="w-full" />
+                    </div>
+                    <div className="w-full flex flex-col text-center">
+                      <h1>{item.itemName}</h1>
+                      <p>{item.description}</p>
+                      <p>{item.rentalPrice}</p>
+                      <div className="flex w-full">
+                        <button
+                          className="w-full bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                          onClick={(): void =>
+                            deleteItem(item._id ? item._id : "")
+                          }
+                        >
+                          Delete
+                        </button>
                       </div>
                     </div>
-                ))
-                }
+                  </div>
+                ))}
               </div>
             </div>
           </div>
