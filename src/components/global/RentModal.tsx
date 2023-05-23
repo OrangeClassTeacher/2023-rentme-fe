@@ -12,8 +12,6 @@ export default function RentModal(): JSX.Element {
   const [userData, setUserData] = useState<IUser>();
   const [itemData, setItemData] = useState<Iproduct>();
   const route = useRouter();
-  // console.log(userData);
-  // console.log(itemData);
   const { _id } = route.query;
   useEffect(() => {
     if (_id) {
@@ -33,6 +31,12 @@ export default function RentModal(): JSX.Element {
       .then((res) => setItemData(res.data.result))
       .catch((err) => console.log(err));
   };
+  function rentItem() {
+    axios
+      .put(`${Utils.API_URL}/item/${_id}`, { status: "Rented" })
+      .then((res) => console.log("Rent success"))
+      .catch((err) => console.log(err));
+  }
   return (
     <div className="w-100 flex justify-center bg-opacity-50  bg-gray-500 pt-12 pb-36">
       {confirm ? (
@@ -55,7 +59,10 @@ export default function RentModal(): JSX.Element {
             >
               Түрээсээгүй
             </button>
-            <button className=" bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 w-1/4 rounded-full">
+            <button
+              className=" bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 w-1/4 rounded-full"
+              onClick={rentItem}
+            >
               Түрээслэсэн
             </button>
           </div>

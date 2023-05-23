@@ -20,6 +20,7 @@ export default function Index(): JSX.Element {
       categoryId: event.target.category.value || "",
       phoneNumber: event.target.phoneNumber.value || 11111111,
       rating: event.target.rating.value || 5,
+      status: "Pending",
       rentalPrice: event.target.rentalPrice.value || 1000,
       rentalStartDate: event.target.rentStart.value || "2023-12-12",
       rentalEndDate: event.target.rentEnd.value || "2023-12-13",

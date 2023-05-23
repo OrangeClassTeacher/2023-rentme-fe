@@ -211,42 +211,46 @@ export default function Index(): JSX.Element {
           <div className="w-2/4 flex flex-col gap-4">
             <h1 className="text-2xl">Хэрэглэгчийн оруулсан зар</h1>
             <div className="w-full flex flex-wrap gap-10 h-[85vh] overflow-auto">
-              {productData?.map((item, index) => (
-                <div
-                  key={index}
-                  className=" lg:max-w-full  rounded overflow-hidden shadow-lg"
-                >
-                  <Image
-                    src={item.itemPhoto}
-                    className="w-full"
-                    width={600}
-                    height={600}
-                    alt="product"
-                  />
-                  <div className="px-6 py-4">
-                    <div className="font-bold text-xl mb-2">
-                      {item.itemName}
+              {productData?.map((item, index) => {
+                if (item.status != "Rented") {
+                  return (
+                    <div
+                      key={index}
+                      className=" lg:max-w-full  rounded overflow-hidden shadow-lg"
+                    >
+                      <Image
+                        src={item.itemPhoto}
+                        className="w-full"
+                        width={600}
+                        height={600}
+                        alt="product"
+                      />
+                      <div className="px-6 py-4">
+                        <div className="font-bold text-xl mb-2">
+                          {item.itemName}
+                        </div>
+                        <p className="text-gray-700 text-base">
+                          {item.description}
+                        </p>
+                      </div>
+                      <div className="px-6 pt-4 pb-2">
+                        {catData?.map((cat, index) => {
+                          if (cat._id == item.categoryId) {
+                            return (
+                              <span
+                                className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
+                                key={index}
+                              >
+                                #{cat.categoryName}
+                              </span>
+                            );
+                          }
+                        })}
+                      </div>
                     </div>
-                    <p className="text-gray-700 text-base">
-                      {item.description}
-                    </p>
-                  </div>
-                  <div className="px-6 pt-4 pb-2">
-                    {catData?.map((cat, index) => {
-                      if (cat._id == item.categoryId) {
-                        return (
-                          <span
-                            className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
-                            key={index}
-                          >
-                            #{cat.categoryName}
-                          </span>
-                        );
-                      }
-                    })}
-                  </div>
-                </div>
-              ))}
+                  );
+                }
+              })}
             </div>
           </div>
         </div>

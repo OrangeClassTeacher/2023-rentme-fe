@@ -10,6 +10,7 @@ export interface IProductCategory {
   courseCount: number;
   createdAt: string;
   updatedAt: string;
+
 }
 
 export interface Iproduct {
@@ -25,6 +26,7 @@ export interface Iproduct {
   rentalPrice: number;
   rentalStartDate?: Date;
   rentalEndDate?: Date;
+  status : string
 }
 
 export interface IProductReview {
