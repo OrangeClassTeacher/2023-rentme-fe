@@ -8,12 +8,12 @@ const NewsSection: FC = () => (
   <div className="container text-head mt-[60px] mb-[69px] lg:mt-[120px] lg:mb-[112px]">
     <div className="flex flex-col items-start mb-[30px] lg:flex-row lg:items-center lg:justify-between lg:mb-[51px] gap-[30px]">
       <div>
-        <h1 className="text-3xl-bold mb-[9px]">Түрүүсийн Мэдээлэл</h1>
+        <h1 className="text-3xl-bold mb-[9px]">Түрээсийн Мэдээлэл</h1>
         <p className="text-text font-md-regular">Top Rental Section</p>
       </div>
 
       <Link className="arrow-btn-1" href="/item">
-        Бүх Түрүүсийн Бараануудыг Харах
+        Бүх Түрээсийн Бараануудыг Харах
         <HiOutlineArrowUpRight size={15}/>
       </Link>
     </div>

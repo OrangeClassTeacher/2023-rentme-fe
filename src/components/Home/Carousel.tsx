@@ -7,9 +7,8 @@ import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import Image from 'next/image';
-import biamge from '@/assets/giphy.gif';
-import image from '@/images/dog.png'
-
+import carso1 from '@/images/6.jpg'
+import carso2 from "@/images/5.jpg"
 
 
 
@@ -35,12 +34,12 @@ const CarouselSection: FC = () => (
         >
             <SwiperSlide>
                 <div className="">
-                    <Image src={biamge} alt="" className="w-full h-[600px] object-cover" />
+                    <Image src={carso1} alt="" className="w-full h-[600px] object-cover" />
                 </div>
             </SwiperSlide>
             <SwiperSlide>
                 <div className="">
-                    <Image src={image} alt="" className="w-full h-[600px] object-cover" />
+                    <Image src={carso2} alt="" className="w-full h-[600px] object-cover" />
                 </div>
             </SwiperSlide>
         </Swiper>
