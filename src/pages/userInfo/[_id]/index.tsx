@@ -17,6 +17,7 @@ export default function Index(): JSX.Element {
   const [unfollow, setUnfollow] = useState(false);
   const [catData, setCatData] = useState<ICategory[]>();
   const [userData2, setUserData2] = useState<IUser>();
+  const [followNum, setFollowNum] = useState<number>();
   const router = useRouter();
   const { _id } = router.query;
   const { followers, following }: any = userData || {};
@@ -26,8 +27,6 @@ export default function Index(): JSX.Element {
       getUserData();
       getCategories();
     }
-  }, []);
-  useEffect(() => {
     if (followers && userId) {
       followers.map((follower: any) => {
         if (follower == userId) {
@@ -36,6 +35,7 @@ export default function Index(): JSX.Element {
       });
     }
   }, []);
+
   function getUserData(): void {
     if (_id) {
       axios
@@ -72,7 +72,7 @@ export default function Index(): JSX.Element {
     axios
       .put(`${Utils.API_URL}/user/${id}`, { followers: newArr })
       .then(() => {
-        console.log(id);
+        setFollowNum(newArr.length + 1);
 
         if (userData2) {
           const newArr = [...userData2.following];
@@ -89,15 +89,17 @@ export default function Index(): JSX.Element {
       .catch((err) => console.log(err));
   }
   function Unfollow(id: any): void {
-    if (followers && userId && unfollow) {
+    console.log(id);
+    if (followers) {
       const newArr: any = [];
       followers.map((follower: any) => {
         if (follower != userId) {
-          // console.log("res");
           newArr.push(follower);
           axios
             .put(`${Utils.API_URL}/user/${id}`, { followers: newArr })
-            .then((res) => console.log(res.data.result))
+            .then((res) => {
+              setUnfollow(false), setFollowNum(newArr.length + 1);
+            })
             .catch((err) => console.log(err));
         }
       });
@@ -159,7 +161,10 @@ export default function Index(): JSX.Element {
                   >
                     Followers
                   </button>
-                  <p className="text-center"> {followers?.length}</p>
+                  <p className="text-center">
+                    {" "}
+                    {followNum ? followNum : followers?.length + 1}
+                  </p>
                 </div>
                 <div className="w-1/3 flex flex-col items-center border-r-2 border-black">
                   <button

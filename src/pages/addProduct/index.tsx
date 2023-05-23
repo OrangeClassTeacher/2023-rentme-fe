@@ -48,12 +48,12 @@ export default function Index(): JSX.Element {
           />
           <input
             placeholder="Item Photo..."
-            type={"file"}
+            type="file"
             name="itemPhoto"
-            onChange={(e): void => {
+            onChange={(e: any): void => {
               const url = "https://api.cloudinary.com/v1_1/lwvom2iu/upload";
               const formData = new FormData();
-              const file: any = e.target.files;
+              const file: any = e.target.files[0];
               formData.append("file", file);
               formData.append("api_key", "384825931744178");
               formData.append("folder", "RentMeProduct");

@@ -67,8 +67,8 @@ const RegisterForm: FC = (): JSX.Element => {
       password: event.target.password.value,
       IUser: "",
       _id: "",
-      following: [],
-      followers: [],
+      following: [""],
+      followers: [""],
     };
     // console.log(data);
 
@@ -80,12 +80,10 @@ const RegisterForm: FC = (): JSX.Element => {
 
     try {
       if (userData) {
-        console.log(userData);
-
         axios
           .post(`${Utils.API_URL}/user`, userData)
           .then((res) => {
-            if (res.data.result) {
+            if (res) {
               console.log(res.data.result);
               alert("Амжилттай нэвтэрлээ бүртгэлээрээ нэвтрэнэ үү!!");
               route.push("/login");
@@ -256,10 +254,10 @@ const RegisterForm: FC = (): JSX.Element => {
               placeholder="Profile pic..."
               type={"file"}
               name="profilePic"
-              onChange={(e): void => {
+              onChange={(e: any): void => {
                 const url = "https://api.cloudinary.com/v1_1/lwvom2iu/upload";
                 const formData = new FormData();
-                const file: any = e.target.files;
+                const file: any = e.target.files[0];
                 formData.append("file", file);
                 formData.append("api_key", "384825931744178");
                 formData.append("folder", "RentMeUser");
