@@ -66,30 +66,31 @@ export default function Index(): JSX.Element {
       .catch((err) => console.log(err));
   }
   function followReq(id: any): void {
-    const newArr = [...followers];
+    if (followers) {
+      const newArr = [...followers];
 
-    newArr.push(localStorage.getItem("currentUserId"));
-    axios
-      .put(`${Utils.API_URL}/user/${id}`, { followers: newArr })
-      .then(() => {
-        setFollowNum(newArr.length + 1);
+      newArr.push(localStorage.getItem("currentUserId"));
+      axios
+        .put(`${Utils.API_URL}/user/${id}`, { followers: newArr })
+        .then(() => {
+          setFollowNum(newArr.length + 1);
 
-        if (userData2) {
-          const newArr = [...userData2.following];
-          newArr.push(id);
-          // console.log(newArr);
-        }
-        axios
-          .put(`${Utils.API_URL}/user/${userId}`, {
-            following: newArr,
-          })
-          .then(() => setUnfollow(true))
-          .catch((err) => console.log(err));
-      })
-      .catch((err) => console.log(err));
+          if (userData2) {
+            const newArr = [...userData2.following];
+            newArr.push(id);
+            // console.log(newArr);
+          }
+          axios
+            .put(`${Utils.API_URL}/user/${userId}`, {
+              following: newArr,
+            })
+            .then(() => setUnfollow(true))
+            .catch((err) => console.log(err));
+        })
+        .catch((err) => console.log(err));
+    }
   }
   function Unfollow(id: any): void {
-    console.log(id);
     if (followers) {
       const newArr: any = [];
       followers.map((follower: any) => {
@@ -105,6 +106,7 @@ export default function Index(): JSX.Element {
       });
     }
   }
+  console.log(unfollow);
   return (
     <div className="bg-white">
       <div className="flex flex-col items-center justify-center py-3 relative">
