@@ -65,10 +65,10 @@ const RegisterForm: FC = (): JSX.Element => {
       gender: event.target.gender.value,
       profilePic: proPic ? proPic : "",
       password: event.target.password.value,
-      IUser: "",
-      _id: "",
-      following: [""],
-      followers: [""],
+      IUser: null,
+      _id: null,
+      following: [],
+      followers: [],
     };
     // console.log(data);
 
@@ -83,10 +83,12 @@ const RegisterForm: FC = (): JSX.Element => {
         axios
           .post(`${Utils.API_URL}/user`, userData)
           .then((res) => {
+            console.log(res.data.result);
+
             if (res) {
-              console.log(res.data.result);
-              alert("Амжилттай нэвтэрлээ бүртгэлээрээ нэвтрэнэ үү!!");
-              route.push("/login");
+              // console.log(res.data.result);
+              alert("Амжилттай бүртгэлээ бүртгэлээрээ нэвтрэнэ үү!!");
+              // route.push("/login");
             } else {
               alert("Medeellee bvren bugluuuc!!!!");
             }

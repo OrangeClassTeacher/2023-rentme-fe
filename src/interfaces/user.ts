@@ -7,8 +7,8 @@ export interface IUserRole {
 }
 
 export interface IUser {
-  IUser: string;
-  _id: string;
+  IUser: string | null;
+  _id?: string | null;
   firstName: string;
   lastName: string;
   Username: string;
