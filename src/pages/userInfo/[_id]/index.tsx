@@ -98,7 +98,7 @@ export default function Index(): JSX.Element {
           newArr.push(follower);
           axios
             .put(`${Utils.API_URL}/user/${id}`, { followers: newArr })
-            .then((res) => {
+            .then(() => {
               setUnfollow(false), setFollowNum(newArr.length + 1);
             })
             .catch((err) => console.log(err));

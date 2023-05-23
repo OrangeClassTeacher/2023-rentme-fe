@@ -19,22 +19,22 @@ export default function RentModal(): JSX.Element {
       getUserData();
     }
   }, [_id]);
-  const getUserData = () => {
+  function getUserData(): void {
     axios
       .get(`${Utils.API_URL}/user/${itemData?.createdUser}`)
       .then((res) => setUserData(res.data.result))
       .catch((err) => console.log(err));
-  };
-  const getItemData = () => {
+  }
+  function getItemData(): void {
     axios
       .get(`${Utils.API_URL}/item/${_id}`)
       .then((res) => setItemData(res.data.result))
       .catch((err) => console.log(err));
-  };
-  function rentItem() {
+  }
+  function rentItem(): void {
     axios
       .put(`${Utils.API_URL}/item/${_id}`, { status: "Rented" })
-      .then((res) => console.log("Rent success"))
+      .then(() => console.log("Rent success"))
       .catch((err) => console.log(err));
   }
   return (
@@ -54,10 +54,10 @@ export default function RentModal(): JSX.Element {
           <p>Phone : {userData?.phoneNumber}</p>
           <div className="flex justify-around w-full px-24 pt-12">
             <button
-              onClick={() => setConfirm(false)}
+              onClick={(): void => setConfirm(false)}
               className="bg-yellow-500 hover:bg-orange-700 text-white font-bold py-2 px-4 w-1/4 rounded-full"
             >
-              Түрээсээгүй
+              Түрээслээгүй
             </button>
             <button
               className=" bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 w-1/4 rounded-full"
@@ -75,7 +75,7 @@ export default function RentModal(): JSX.Element {
             </h1>
             <h1 className="h-80 overflow-auto text-center">
               Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
+              industry. Lorem Ipsum has been the industrys standard dummy text
               ever since the 1500s, when an unknown printer took a galley of
               type and scrambled it to make a type specimen book. It has
               survived not only five centuries, but also the leap into
@@ -87,10 +87,10 @@ export default function RentModal(): JSX.Element {
               a reader will be distracted by the readable content of a page when
               looking at its layout. The point of using Lorem Ipsum is that it
               has a more-or-less normal distribution of letters, as opposed to
-              using 'Content here, content here', making it look like readable
+              using Content here, content here, making it look like readable
               English. Many desktop publishing packages and web page editors now
               use Lorem Ipsum as their default model text, and a search for
-              'lorem ipsum' will uncover many web sites still in their infancy.
+              lorem ipsum will uncover many web sites still in their infancy.
               Various versions have evolved over the years, sometimes by
               accident, sometimes on purpose (injected humour and the like).
             </h1>
@@ -102,7 +102,7 @@ export default function RentModal(): JSX.Element {
                 id="legal"
                 type="checkbox"
                 className="w-8"
-                onChange={() => setConfirm(true)}
+                onChange={(): void => setConfirm(true)}
               />
             </div>
           </div>
