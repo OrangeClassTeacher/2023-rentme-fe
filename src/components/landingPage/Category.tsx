@@ -25,6 +25,7 @@ export function Category(): JSX.Element {
                 key={index}
                 className="text-black border border-border-2 w-full py-[12px] px-[22px] rounded-lg focus:outline-none focus:ring-2 focus:ring-color-1 text-text text-md-regular"
               >
+                <option>Select ...</option>
                 <option value={item._id}>{item.categoryName}</option>
                 {catData.map((e, index) => {
                   if (e.parentId == item._id) {

@@ -7,7 +7,6 @@ import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import Image from 'next/image';
-import carso1 from '@/images/6.jpg'
 import carso2 from "@/images/5.jpg"
 
 
@@ -33,13 +32,19 @@ const CarouselSection: FC = () => (
             className="mySwiper"
         >
             <SwiperSlide>
-                <div className="">
-                    <Image src={carso1} alt="" className="w-full h-[600px] object-cover" />
-                </div>
+            <div className="relative h-screen w-full">
+          <video id="myVideo"
+            src={require("../../../public/cover.mp4")}
+            autoPlay
+            loop
+            muted
+            className="object-cover h-full w-full absolute py-[4%]"
+          />
+        </div>
             </SwiperSlide>
             <SwiperSlide>
-                <div className="">
-                    <Image src={carso2} alt="" className="w-full h-[600px] object-cover" />
+                <div className="relative h-screen w-full">
+                    <Image src={carso2} alt="" className="h-[800px]" />
                 </div>
             </SwiperSlide>
         </Swiper>
