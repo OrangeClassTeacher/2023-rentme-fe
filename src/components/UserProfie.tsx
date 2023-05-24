@@ -4,12 +4,14 @@ import axios from "axios";
 import { FiLogOut } from "react-icons/fi";
 import Link from "next/link";
 import { IUser } from "@/interfaces/user";
+import { useRouter } from "next/router";
 import { Utils } from "../utils/helper";
 import { TiDeleteOutline } from "react-icons/ti";
 
 export function UserProfie({ USer, setUSer }: any): JSX.Element {
   const [userData, setUserData] = useState<IUser>();
   const { userId, setUserId } = useContext(userIdCon);
+  const router = useRouter();
 
   useEffect(() => {
     getUserData();
@@ -22,6 +24,7 @@ export function UserProfie({ USer, setUSer }: any): JSX.Element {
   function logOut(): void {
     localStorage.removeItem("currentUserId");
     setUserId("");
+    router.push("/");
   }
   return (
     <div className="realtive bg-gray-500 w-100 opacity-100">

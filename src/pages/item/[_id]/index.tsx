@@ -47,17 +47,30 @@ function Product(): JSX.Element {
       .catch((err) => console.log(err));
   }
   function createComment(id: any): void {
-    axios
-      .post(`${Utils.API_URL}/comment`, {
-        itemId: id,
-        userId: userId,
-        comment: comment,
-      })
-      .then((res) => {
-        console.log(res.data.result), setRen(!ren);
-      })
-      .catch((err) => console.log(err));
+    if (localStorage.getItem("currentUserId")) {
+      axios
+        .post(`${Utils.API_URL}/comment`, {
+          itemId: id,
+          userId: userId,
+          comment: comment,
+        })
+        .then((res) => {
+          console.log(res.data.result), setRen(!ren);
+        })
+        .catch((err) => console.log(err));
+    } else {
+      alert("Та нэвтэрч орно уу!!!");
+      router.push("/login");
+    }
   }
+  const rent = () => {
+    if (localStorage.getItem("currentUserId")) {
+      setShowModal(!showModal);
+    } else {
+      alert("Та нэвтэрч орно уу!!!");
+      router.push("/login");
+    }
+  };
   return (
     <div>
       {showModal ? (
@@ -71,7 +84,7 @@ function Product(): JSX.Element {
               </div>
               <div className="h1/4 flex gap-3 py-5" />
             </div>
-            <div className="w-2/4 ps-8 py-8 flex flex-col gap-8">
+            <div className="w-2/4 ps-8 py-8 flex flex-col gap-5">
               <div>
                 <h1 className="text-7xl">{data?.itemName}</h1>
                 {catData.map((item: ICategory, index) => {
@@ -84,21 +97,7 @@ function Product(): JSX.Element {
                   }
                 })}
               </div>
-
               <p className="text-neutral-600  text-3xl">{data?.description}</p>
-
-              <p className="text-xl text-neutral-600 flex gap-2">
-                Rental Start :
-                <span className="text-xl text-yellow-600">
-                  {!rentalStartDate}
-                </span>
-              </p>
-              <p className="text-xl text-neutral-600 flex gap-2">
-                Rental End :
-                <span className="text-xl text-yellow-600">
-                  {!rentalEndDate}
-                </span>
-              </p>
               {userData?.map((user, index) => {
                 if (user._id == data?.createdUser) {
                   return (
@@ -140,14 +139,14 @@ function Product(): JSX.Element {
                 </button>
                 <button
                   className=" bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full w-2/4"
-                  onClick={(): void => setShowModal(!showModal)}
+                  onClick={rent}
                 >
                   Rent
                 </button>
               </div>
             </div>
           </div>
-          <div className="flex flex-col w-full px-12 pb-12">
+          <div className="flex flex-col h-48 overflow-auto w-full px-12 pb-12">
             {commentData && (
               <div>
                 {commentData.map((com, index) => (
