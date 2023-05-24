@@ -14,22 +14,27 @@ export default function RentModal(): JSX.Element {
   const [itemData, setItemData] = useState<Iproduct>();
   const route = useRouter();
   const { _id } = route.query;
+  // console.log(_id);
+
   useEffect(() => {
-    if (_id) {
-      getItemData();
-      getUserData();
-    }
+    getItemData();
   }, [_id]);
+  useEffect(() => {
+    getUserData();
+  }, [itemData]);
+
   function getUserData(): void {
-    axios
-      .get(`${Utils.API_URL}/user/${itemData?.createdUser}`)
-      .then((res) => setUserData(res.data.result))
-      .catch((err) => console.log(err));
+    if (itemData?.createdUser) {
+      axios
+        .get(`${Utils.API_URL}/user/${itemData?.createdUser}`)
+        .then((res) => console.log(res.data.result))
+        .catch((err) => console.log(err));
+    }
   }
   function getItemData(): void {
     axios
       .get(`${Utils.API_URL}/item/${_id}`)
-      .then((res) => setItemData(res.data.result))
+      .then((res) => console.log(res.data.result))
       .catch((err) => console.log(err));
   }
   function rentItem(): void {
