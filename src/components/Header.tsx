@@ -58,7 +58,7 @@ export function Header(): JSX.Element {
               </li>
 
               <li className="hover:text-white/70 duration-300 ">
-                <Link href="/contact-us">Холбоо барих</Link>
+                <Link href="/contact-us">Бидний тухай</Link>
               </li>
             </ul>
           </nav>

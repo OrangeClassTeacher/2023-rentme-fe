@@ -1,18 +1,63 @@
 import { FC } from "react";
 import AccordionAlternative from "@/components/global/AccordionAlternative";
 import Link from "next/link";
+import Image from "next/image";
+import ganzo from "../../images/ganzo.jpg";
+import amraa from "../../images/amraa.jpg";
+import orgil from "../../images/orgil.jpg";
 
 const ContactUs: FC = () => (
   <>
     <div className="bg-bg-5">
-      <h2 className="text-center text-2xl pt-[50px]">Бидэнтэй Холбогдох</h2>
+      <div className="flex flex-col">
+        <h2 className="text-center text-4xl pt-[50px]">Бидний тухай</h2>
+        <div className="w-full flex justify-evenly py-3">
+          <div className="w-1/4 border-2 h-auto">
+            <Image
+              src={amraa}
+              alt=""
+              className="w-full h-auto"
+              width={100}
+              height={100}
+            />
+            <h1 className="text-2xl text-center">Амрааа</h1>
+            <h1>Captain</h1>
+          </div>
+          <div className="w-1/4 border-2 h-auto">
+            <Image
+              src={ganzo}
+              alt=""
+              className="w-full h-auto"
+              width={100}
+              height={100}
+            />
+            <h1 className="text-2xl text-center">Ганзооо</h1>
+            <h1>Developer</h1>
+          </div>
+          <div className="w-1/4 border-2 h-auto">
+            <Image
+              src={orgil}
+              alt=""
+              className="w-full h-auto"
+              width={100}
+              height={100}
+            />
+            <h1 className="text-2xl text-center">Оргил</h1>
+            <h1>Developer</h1>
+          </div>
+        </div>
+      </div>
+
       <div className="container grid grid-cols-2 relative pt-[112px]">
         <div className="flex flex-col gap-1 px-[70px]">
           <h1 className="font-[700] text-[40px] leading-[46px]">
             Бидэнтэй холбогдох
           </h1>
           <p className="text-lg-regular text-text mb-[175px] w-[70%]">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis, ullam enim adipisci ab aliquid blanditiis reprehenderit aperiam repellat aspernatur, quo temporibus? Commodi, amet rem. Vero fuga cumque placeat laudantium quas!
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            Perferendis, ullam enim adipisci ab aliquid blanditiis reprehenderit
+            aperiam repellat aspernatur, quo temporibus? Commodi, amet rem. Vero
+            fuga cumque placeat laudantium quas!
           </p>
         </div>
         <div className="bg-bg-1" id="faq">
@@ -59,21 +104,10 @@ const ContactUs: FC = () => (
               Улаанбаатар
             </h4>
             <div className="text-text text-md-regular flex flex-col gap-[10px]">
-            <span>
-                <Link href="https://www.google.com/maps/place/47%C2%B054'54.3%22N+106%C2%B053'48.0%22E/@47.914964,106.8976872,17z/data=!4m4!3m3!8m2!3d47.915079!4d106.896679">Bldg 30 of 50000, Улаанбаатар</Link>
-              </span>
-              <span>+(976) 88877108</span>
-              <span>orgil.m888@gmail.com</span>
-            </div>
-          </div>
-
-          <div>
-            <h4 className="text-head text-[20px] font-[500] leading-[23px] mb-[20px]">
-              Улаанбаатар
-            </h4>
-            <div className="text-text text-md-regular flex flex-col gap-[10px]">
-            <span>
-                <Link href="https://www.google.com/maps/place/47%C2%B054'54.3%22N+106%C2%B053'48.0%22E/@47.914964,106.8976872,17z/data=!4m4!3m3!8m2!3d47.915079!4d106.896679">Bldg 30 of 50000, Улаанбаатар</Link>
+              <span>
+                <Link href="https://www.google.com/maps/place/47%C2%B054'54.3%22N+106%C2%B053'48.0%22E/@47.914964,106.8976872,17z/data=!4m4!3m3!8m2!3d47.915079!4d106.896679">
+                  Bldg 30 of 50000, Улаанбаатар
+                </Link>
               </span>
               <span>+(976) 88877108</span>
               <span>orgil.m888@gmail.com</span>
@@ -86,7 +120,24 @@ const ContactUs: FC = () => (
             </h4>
             <div className="text-text text-md-regular flex flex-col gap-[10px]">
               <span>
-                <Link href="https://www.google.com/maps/place/47%C2%B054'54.3%22N+106%C2%B053'48.0%22E/@47.914964,106.8976872,17z/data=!4m4!3m3!8m2!3d47.915079!4d106.896679">Bldg 30 of 50000, Улаанбаатар</Link>
+                <Link href="https://www.google.com/maps/place/47%C2%B054'54.3%22N+106%C2%B053'48.0%22E/@47.914964,106.8976872,17z/data=!4m4!3m3!8m2!3d47.915079!4d106.896679">
+                  Bldg 30 of 50000, Улаанбаатар
+                </Link>
+              </span>
+              <span>+(976) 88877108</span>
+              <span>orgil.m888@gmail.com</span>
+            </div>
+          </div>
+
+          <div>
+            <h4 className="text-head text-[20px] font-[500] leading-[23px] mb-[20px]">
+              Улаанбаатар
+            </h4>
+            <div className="text-text text-md-regular flex flex-col gap-[10px]">
+              <span>
+                <Link href="https://www.google.com/maps/place/47%C2%B054'54.3%22N+106%C2%B053'48.0%22E/@47.914964,106.8976872,17z/data=!4m4!3m3!8m2!3d47.915079!4d106.896679">
+                  Bldg 30 of 50000, Улаанбаатар
+                </Link>
               </span>
               <span>+(976) 88877108</span>
               <span>orgil.m888@gmail.com</span>
@@ -155,7 +206,6 @@ const ContactUs: FC = () => (
               id="message"
               rows={10}
             />
-
           </div>
           <button className="bg-color-1 text-rose-500 text-base- px-[55px] py-[21px] rounded-lg">
             Илгээх
