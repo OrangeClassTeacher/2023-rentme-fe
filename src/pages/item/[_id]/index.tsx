@@ -28,7 +28,7 @@ function Product(): JSX.Element {
 
   useEffect(() => {
     getData();
-  });
+  }, []);
   function getData(): void {
     axios
       .get(`${Utils.API_URL}/item/${path._id}`)
@@ -117,11 +117,10 @@ function Product(): JSX.Element {
                   );
                 }
               })}
-              <p className="text-2xl">
+              <p className="text-xl">
                 Rental Price :{" "}
-                <span className="text-2xl text-green-600">
-                  {data?.rentalPrice}$
-                </span>
+                <span className="text-2xl ">{data?.rentalPrice}$</span>
+                <span className="text-gray-500">per day</span>
               </p>
               <div>
                 <textarea

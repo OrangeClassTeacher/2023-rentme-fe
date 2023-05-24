@@ -25,7 +25,7 @@ export default function Index(): JSX.Element {
     if (_id) {
       getProducts();
       getUserData();
-      getCategories();
+      // getCategories();
     }
     if (followers && userId) {
       followers.map((follower: any) => {
