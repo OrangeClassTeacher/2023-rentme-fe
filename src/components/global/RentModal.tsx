@@ -8,7 +8,8 @@ import { Utils } from "../../utils/helper";
 import { Iproduct } from "@/interfaces/product";
 
 export default function RentModal(): JSX.Element {
-  const [confirm, setConfirm] = useState(false);
+  const [legacyConfirm, setLegacyConfirm] = useState(false);
+  const [confirm, setConrim] = useState(false);
   const [userData, setUserData] = useState<IUser>();
   const [itemData, setItemData] = useState<Iproduct>();
   const route = useRouter();
@@ -54,10 +55,10 @@ export default function RentModal(): JSX.Element {
           <p>Phone : {userData?.phoneNumber}</p>
           <div className="flex justify-around w-full px-24 pt-12">
             <button
-              onClick={(): void => setConfirm(false)}
+              onClick={(): void => setLegacyConfirm(false)}
               className="bg-yellow-500 hover:bg-orange-700 text-white font-bold py-2 px-4 w-1/4 rounded-full"
             >
-              Түрээслээгүй
+              <Link href={"/"}>Түрээслээгүй</Link>
             </button>
             <button
               className=" bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 w-1/4 rounded-full"
@@ -70,29 +71,29 @@ export default function RentModal(): JSX.Element {
       ) : (
         <div className="flex flex-col w-3/4 border-2 px-24 py-6">
           <div className="w-full flex flex-col pb-2 ">
-            <h1 className="text-3xl pb-5 text-center">
+            <h1 className="text-5xl pb-12 text-center underline underline-offset-8">
               Үйлчилгээний нөхцөлтэй танилцах
             </h1>
-            <h1 className="h-80 overflow-auto text-center">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industrys standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book. It has
-              survived not only five centuries, but also the leap into
-              electronic typesetting, remaining essentially unchanged. It was
-              popularised in the 1960s with the release of Letraset sheets
-              containing Lorem Ipsum passages, and more recently with desktop
-              publishing software like Aldus PageMaker including versions of
-              Lorem Ipsum. Why do we use it? It is a long established fact that
-              a reader will be distracted by the readable content of a page when
-              looking at its layout. The point of using Lorem Ipsum is that it
-              has a more-or-less normal distribution of letters, as opposed to
-              using Content here, content here, making it look like readable
-              English. Many desktop publishing packages and web page editors now
-              use Lorem Ipsum as their default model text, and a search for
-              lorem ipsum will uncover many web sites still in their infancy.
-              Various versions have evolved over the years, sometimes by
-              accident, sometimes on purpose (injected humour and the like).
+            <h1 className="h-80 overflow-auto  px-64">
+              --Хэрэглэгч нь имэйл, facebook, утасны дугаар зэрэг нэвтрэх
+              боломжит аль нэг хаягаар нэвтрэн орж бүртгэлээ баталгаажуулснаар
+              дараах мэдэгдлийг хүлээн зөвшөөрч, ойлгосон болно. Энэхүү
+              платформд нэвтрэн орсоноор бараа, бүтээгдэхүүн хөлслөх, зар мэдээг
+              үнэ төлбөргүй хүлээн авах, хайлт хийх, хадгалах боломжтой.
+              Хэрэглэгч нь тусгайлсан гэрээ байгуулснаар зуучлал болон
+              санхүүгийн үйлчилгээг авах эрхтэй бөгөөд тэдгээр нь барьцаа эсвэл
+              төлбөртэй үйлчилгээ болно. Рэнтми платформыг ашиглан нэвтрэн үзэх
+              боломжтой программ, дизайны элемент, текст, график, дүрслэл,
+              видео, мэдээллийн бааз, дуу, бусад объект, түүнчлэн үйлчилгээний
+              цахим хуудсанд байрлуулсан ямар нэгэн агуулга нь Рэнтми
+              хэрэглэгчдийн болон бусад эрх эзэмшигчийн онцгой эрх болно.
+              Хэрэглэгч вэбсайтын талаар санал гомдол, шинэ санаа санал, шүүмж
+              зэргийг чөлөөтэй илэрхийлэх, илгээх эрхтэй. Хэрэглэгч нь платформ
+              дээрх контентийг бүрэн буюу хэсэгчлэн арилжааны зорилгоор
+              ашиглахгүй байх үүрэг хүлээнэ. Хэрэглэгч нь платформд нэвтрэх
+              цахим шуудан болон нууц үгийн нууцлалыг өөрөө хариуцаж, хадгална.
+              Энэхүү үүргээ биелүүлээгүй буюу зохих ёсоор биелүүлээгүйн улмаас
+              учирсан аливаа хохирлыг компани хариуцахгүй болно.
             </h1>
             <div className="flex items-center justify-center">
               <label htmlFor="legal" className="text-xl">
@@ -102,13 +103,25 @@ export default function RentModal(): JSX.Element {
                 id="legal"
                 type="checkbox"
                 className="w-8"
-                onChange={(): void => setConfirm(true)}
+                onChange={(): void => setLegacyConfirm(!legacyConfirm)}
               />
             </div>
           </div>
-          <button className="bg-yellow-500 hover:bg-orange-700 text-white font-bold py-2 px-4 w-1/6 rounded-full">
-            <Link href={"/"}>Буцах</Link>
-          </button>
+          <div className="flex justify-between w-full">
+            <button className="bg-yellow-500 hover:bg-orange-700 text-white font-bold py-2 px-4 w-1/6 rounded-full">
+              <Link href={"/"}>Буцах</Link>
+            </button>
+            {legacyConfirm ? (
+              <button
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 w-1/6 rounded-full"
+                onClick={() => setConrim(true)}
+              >
+                Дараах
+              </button>
+            ) : (
+              ""
+            )}
+          </div>
         </div>
       )}
     </div>
