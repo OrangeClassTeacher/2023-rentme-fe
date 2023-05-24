@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { Iproduct } from "@/interfaces/product";
 import { Utils } from "../../utils/helper";
+import ReqInfo from "../../components/global/reqInfo";
 // import { AiFillEdit } from "react-icons/ai";
 function Index(): JSX.Element {
   const { userId, setUserId } = useContext(userIdCon);
@@ -14,6 +15,7 @@ function Index(): JSX.Element {
   const [showFollowers, setShowFollowers] = useState(false);
   const [showFollowing, setShowFollowing] = useState(false);
   const [productData, setProductData] = useState<Iproduct[]>([]);
+  const [showReqs, setShowReqs] = useState(false);
   const router = useRouter();
   const { _id } = router.query;
   const { followers, following }: any = userData || {};
@@ -366,34 +368,59 @@ function Index(): JSX.Element {
             </div>
             <div className="w-2/4 flex flex-col gap-4">
               <h1 className="text-2xl">Хэрэглэгчийн оруулсан зар</h1>
-              <div className="w-full flex flex-wrap gap-10 h-[85vh] overflow-auto">
-                {productData.map((item: Iproduct, index) => {
-                  if (item.status != "Rented") {
-                    return (
-                      <div key={index} className="w-1/3 flex flex-col">
-                        <div className="w-full">
-                          <img src={item.itemPhoto} alt="" className="w-full" />
-                        </div>
-                        <div className="w-full flex flex-col text-center">
-                          <h1>{item.itemName}</h1>
-                          <p>{item.description}</p>
-                          <p>{item.rentalPrice}</p>
-                          <div className="flex w-full">
-                            <button
-                              className="w-full bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-                              onClick={(): void =>
-                                deleteItem(item._id ? item._id : "")
-                              }
-                            >
-                              Delete
-                            </button>
+              {showReqs ? (
+                <ReqInfo />
+              ) : (
+                <div className="w-full flex flex-wrap gap-10 h-[85vh] overflow-auto">
+                  {productData.map((item: Iproduct, index) => {
+                    if (item.status != "Rented") {
+                      return (
+                        <div key={index} className="w-1/3 flex flex-col">
+                          <div className="w-full">
+                            <div className="flex">
+                              <p>Rental request : </p>
+                              <button
+                                onClick={() => {
+                                  setShowReqs(true),
+                                    localStorage.setItem(
+                                      "proId",
+                                      item._id ? item._id : ""
+                                    );
+                                }}
+                              >
+                                {item.requests.length}
+                              </button>
+                            </div>
+
+                            <img
+                              src={item.itemPhoto}
+                              alt=""
+                              className="w-full"
+                            />
+                          </div>
+                          <div className="w-full flex flex-col text-center">
+                            <h1>{item.itemName}</h1>
+                            <p>{item.description}</p>
+                            <p>{item.rentalPrice}</p>
+
+                            <div className="flex w-full">
+                              <button
+                                className="w-full bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                                onClick={(): void =>
+                                  deleteItem(item._id ? item._id : "")
+                                }
+                              >
+                                Delete
+                              </button>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    );
-                  }
-                })}
-              </div>
+                      );
+                    }
+                  })}
+                  )
+                </div>
+              )}
             </div>
           </div>
         </div>
