@@ -44,6 +44,11 @@ export function UserProfie({ USer, setUSer }: any): JSX.Element {
           </div>
           <p className="text-white text-2xl">{userData?.Username}</p>
           <button className="text-head w-full py-2 text-md-regular hover:bg-white/70 duration-300 flex border-t-4 justify-center items-center gap-2">
+            <Link href={"/addProduct"} className="text-white text-xl">
+              Add Rental Item
+            </Link>
+          </button>
+          <button className="text-head w-full py-2 text-md-regular hover:bg-white/70 duration-300 flex border-t-4 justify-center items-center gap-2">
             <Link href={"/userInfo"} className="text-white text-xl">
               Edit Profile
             </Link>
