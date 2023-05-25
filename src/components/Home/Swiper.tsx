@@ -5,7 +5,7 @@ import { FC } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
 import Image from "next/image";
-import ProductSwiperCard from "./ProductSwiper";
+// import ProductSwiperCard from "./ProductSwiper";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 import pro1 from "@/images/1.jpg";
 import pro2 from "@/images/2.jpg";

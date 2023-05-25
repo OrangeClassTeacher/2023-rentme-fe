@@ -9,7 +9,7 @@ interface NewsSectionProps {
   product: Iproduct[];
 }
 
-const NewsSection: FC<NewsSectionProps> = ({ product }) => (
+const NewsSection: FC<NewsSectionProps> = ({ product }: any) => (
   <div className="container text-head mt-[60px] mb-[69px] lg:mt-[120px] lg:mb-[112px]">
     <div className="flex flex-col items-start mb-[30px] lg:flex-row lg:items-center lg:justify-between lg:mb-[51px] gap-[30px]">
       <div>
