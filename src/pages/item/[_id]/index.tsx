@@ -23,9 +23,6 @@ function Product(): JSX.Element {
   const [showModal, setShowModal] = useState(false);
   const router = useRouter();
   const path = router.query;
-
-  const { rentalEndDate, rentalStartDate } = data || {};
-
   useEffect(() => {
     getData();
   }, []);
@@ -63,14 +60,14 @@ function Product(): JSX.Element {
       router.push("/login");
     }
   }
-  const rent = () => {
+  function rent(): void {
     if (localStorage.getItem("currentUserId")) {
       setShowModal(!showModal);
     } else {
       alert("Та нэвтэрч орно уу!!!");
       router.push("/login");
     }
-  };
+  }
   return (
     <div>
       {showModal ? (

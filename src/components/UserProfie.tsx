@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 import { Utils } from "../utils/helper";
 import { TiDeleteOutline } from "react-icons/ti";
 
-export function UserProfie({ USer, setUSer }: any): JSX.Element {
+export function UserProfie({ USer }: any): JSX.Element {
   const [userData, setUserData] = useState<IUser>();
   const { userId, setUserId } = useContext(userIdCon);
   const router = useRouter();

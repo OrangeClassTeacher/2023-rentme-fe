@@ -28,6 +28,7 @@ export interface Iproduct {
   rentalEndDate?: Date;
   updatedAt:string;
   status : string;
+  requests : object[]
 }
 
 export interface IProductReview {

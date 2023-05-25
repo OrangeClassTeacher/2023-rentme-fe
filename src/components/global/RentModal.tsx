@@ -41,13 +41,13 @@ export default function RentModal(): JSX.Element {
       .catch((err) => console.log(err));
   };
   return (
-    <div className="w-100 flex justify-center bg-opacity-50  bg-gray-500 pt-12 pb-36">
+    <div className="w-100 flex justify-center bg-opacity-50  pt-12 pb-36">
       <div className="flex flex-col w-3/4 border-2 px-24 py-6">
         <div className="w-full flex flex-col pb-2 ">
-          <h1 className="text-5xl pb-12 text-center underline underline-offset-8">
+          <h1 className="text-3xl pb-12 text-center font-bold">
             Үйлчилгээний нөхцөлтэй танилцах
           </h1>
-          <h1 className="h-80 overflow-auto  px-64">
+          <h1 className="h-80 overflow-auto  px-48">
             --Хэрэглэгч нь имэйл, facebook, утасны дугаар зэрэг нэвтрэх боломжит
             аль нэг хаягаар нэвтрэн орж бүртгэлээ баталгаажуулснаар дараах
             мэдэгдлийг хүлээн зөвшөөрч, ойлгосон болно. Энэхүү платформд нэвтрэн
@@ -67,7 +67,7 @@ export default function RentModal(): JSX.Element {
             үүргээ биелүүлээгүй буюу зохих ёсоор биелүүлээгүйн улмаас учирсан
             аливаа хохирлыг компани хариуцахгүй болно.
           </h1>
-          <div className="flex items-center justify-center">
+          <div className="flex items-center justify-center pt-4">
             <label htmlFor="legal" className="text-xl">
               Үйлчилгээний нөхцөл зөвшөөрөх
             </label>

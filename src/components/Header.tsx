@@ -3,7 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { Search } from "./Search";
 import mainLogo from "@/images/Logo1.png";
-import { FiShoppingBag } from "react-icons/fi";
 import { BsListNested } from "react-icons/bs";
 import { useContext } from "react";
 import { userIdCon } from "@/context/userIdContext";
