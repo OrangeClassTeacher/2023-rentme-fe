@@ -32,7 +32,7 @@ export default function Index(): JSX.Element {
           route.push("/");
         }
       })
-      .catch((err) => console.log(err));
+      .catch();
   }
   return (
     <AuthLayout>

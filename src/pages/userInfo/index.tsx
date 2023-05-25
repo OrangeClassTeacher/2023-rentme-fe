@@ -368,7 +368,7 @@ function Index(): JSX.Element {
               </div>
             </div>
             <div className="w-2/4 flex flex-col gap-4">
-              <div className="flex justify-around px-8 w-full">
+              <div className="flex justify-around px-8 w-full border-b-2">
                 <button
                   className="text-2xl"
                   onClick={() => setRentedShow(false)}
@@ -407,18 +407,6 @@ function Index(): JSX.Element {
 
                                 <div className="flex flex-col gap-2 w-full">
                                   <button
-                                    className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                                    onClick={() => {
-                                      setShowReqs(true),
-                                        localStorage.setItem(
-                                          "proId",
-                                          item._id ? item._id : ""
-                                        );
-                                    }}
-                                  >
-                                    Show requests
-                                  </button>
-                                  <button
                                     className="w-full bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
                                     onClick={(): void =>
                                       deleteItem(item._id ? item._id : "")
@@ -442,7 +430,7 @@ function Index(): JSX.Element {
                               <div className="w-full">
                                 <div className="flex">
                                   <p>Rental request : </p>
-                                  <span>{item.requests.length}</span>
+                                  <span>{item?.requests?.length}</span>
                                 </div>
 
                                 <img

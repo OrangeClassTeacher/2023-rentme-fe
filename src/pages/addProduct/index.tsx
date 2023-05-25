@@ -40,7 +40,7 @@ export default function Index(): JSX.Element {
   return (
     <div className="py-8">
       <form onSubmit={createProd} className="">
-        <h1 className="text-xl text-center pb-3">Add Rental Item</h1>
+        <h1 className="text-4xl text-center pb-3">Add Rental Item</h1>
         <div className="flex flex-col gap-1 items-center w-full py-8">
           <input
             placeholder="ItemName..."

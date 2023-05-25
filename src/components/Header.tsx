@@ -50,14 +50,14 @@ export function Header(): JSX.Element {
         <div className="w-4/5 hidden md:flex">
           <nav className="w-full">
             <ul className="flex items-center justify-evenly text-md-regular">
-              <li className="hover:text-white/70 duration-300">
+              <li className="text-white duration-300">
                 <Link href="/">Нүүр</Link>
               </li>
-              <li className="hover:text-white/70 duration-300">
+              <li className=" text-white duration-300">
                 <Link href="/item">Бүтээгдэхүүн</Link>
               </li>
 
-              <li className="hover:text-white/70 duration-300 ">
+              <li className="text-white duration-300 ">
                 <Link href="/contact-us">Бидний тухай</Link>
               </li>
             </ul>

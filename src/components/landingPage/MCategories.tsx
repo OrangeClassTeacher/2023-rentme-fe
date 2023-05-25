@@ -23,7 +23,7 @@ export function MCategories(): JSX.Element {
       .catch((err) => console.log(err));
   };
   return (
-    <div className="w-full flex justify-evenly py-4">
+    <div className="w-full flex justify-evenly pb-4">
       {catID.map((item, index) => (
         <div key={index} className="py-8 px-8 border-2 border-indigo-600 ">
           {catData.map((e, index) => {

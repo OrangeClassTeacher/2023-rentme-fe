@@ -1,15 +1,15 @@
 import React, { FC } from "react";
 import Image from "next/image";
-import bimage from "@/assets/backimg.svg"
+import bimage from "@/assets/backimg.svg";
 import Link from "next/link";
 import { HiOutlineArrowUpRight } from "react-icons/hi2";
 import { Iproduct } from "@/interfaces/product";
 
 interface NewsSectionProps {
-  product:Iproduct[]
+  product: Iproduct[];
 }
 
-const NewsSection: FC<NewsSectionProps> = ({product}) => (
+const NewsSection: FC<NewsSectionProps> = ({ product }) => (
   <div className="container text-head mt-[60px] mb-[69px] lg:mt-[120px] lg:mb-[112px]">
     <div className="flex flex-col items-start mb-[30px] lg:flex-row lg:items-center lg:justify-between lg:mb-[51px] gap-[30px]">
       <div>
@@ -18,12 +18,12 @@ const NewsSection: FC<NewsSectionProps> = ({product}) => (
 
       <Link className="arrow-btn-1" href="/item">
         Бүх Түрээсийн Бараануудыг Харах
-        <HiOutlineArrowUpRight size={15}/>
+        <HiOutlineArrowUpRight size={15} />
       </Link>
     </div>
 
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-[20px] lg:gap-[30px]">
-      {product.slice(0, 2).map((product) => (
+      {product?.slice(0, 2).map((product) => (
         <div key={product._id}>
           <Link
             href={`/item/${product._id}`}
@@ -39,7 +39,9 @@ const NewsSection: FC<NewsSectionProps> = ({product}) => (
 
             <div className="absolute top-0 right-0 left-0 w-full h-full group-hover:bg-head/50 duration-300" />
           </Link>
-          <span className="block uppercase text-color-1 text-sm-medium mb-[10px]">Education</span>
+          <span className="block uppercase text-color-1 text-sm-medium mb-[10px]">
+            Education
+          </span>
           <Link
             href={`/blogs/${product._id}`}
             className="block text-[#242239] text-2xl-medium leading-9 mb-[10px] hover:text-[#242239]/70 duration-300"
@@ -51,7 +53,6 @@ const NewsSection: FC<NewsSectionProps> = ({product}) => (
           </span>
         </div>
       ))}
-
 
       <div>
         <Link
@@ -132,7 +133,9 @@ const NewsSection: FC<NewsSectionProps> = ({product}) => (
             <Link
               className="block text-lg-medium mb-[10px] w-[20ch] hover:text-head/70 duration-300"
               href="/"
-            >  Bag
+            >
+              {" "}
+              Bag
             </Link>
             <span className="block text-text text-xs-regular">
               December 16, 2022
@@ -161,8 +164,8 @@ const NewsSection: FC<NewsSectionProps> = ({product}) => (
             <Link
               className="block text-lg-medium mb-[10px] w-[20ch] hover:text-head/70 duration-300"
               href="/"
-            >        
-            Bag                  
+            >
+              Bag
             </Link>
             <span className="block text-text text-xs-regular">
               December 16, 2022

@@ -35,6 +35,9 @@ export default function Index(): JSX.Element {
   };
   return (
     <div className="bg-white">
+      <div>
+        <SortDropDown />
+      </div>
       <div className="text-center p-4">
         {userId ? (
           <button className="text-teal-500 outline outline-offset-2 outline-teal-500 bg-white rounded px-3">
@@ -44,9 +47,7 @@ export default function Index(): JSX.Element {
           ""
         )}
       </div>
-      <div>
-        <SortDropDown />
-      </div>
+
       <div>
         <div className="flex flex-col items-start gap-5 sm:flex-row sm:items-center text-black">
           <button
