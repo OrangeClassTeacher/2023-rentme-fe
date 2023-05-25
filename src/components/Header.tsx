@@ -83,13 +83,13 @@ export function Header(): JSX.Element {
 
           {userId ? (
             <button
-              className="text-head rounded-lg px-[34px] py-2 text-md-regular hover:bg-white/70 duration-300"
+              className="text-head rounded-lg px-[34px] py-2 text-md-regular "
               onClick={(): void => setUser(!user)}
             >
               <UserProfie USer={user} setUSer={setUser} />
             </button>
           ) : (
-            <button className="text-head rounded-lg px-5 py-2 text-md-regular hover:bg-white/70 duration-300">
+            <button className="text-head rounded-lg px-5 py-2 text-md-regular ">
               <Link href="/login">Нэвтрэх</Link>
             </button>
           )}

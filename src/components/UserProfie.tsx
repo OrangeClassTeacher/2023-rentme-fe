@@ -67,13 +67,13 @@ export function UserProfie({ USer, setUSer }: any): JSX.Element {
           </button>
         </div>
       ) : (
-        <div className="flex items-center gap-1">
+        <div className="flex flex-col justify-center items-center gap-1">
           <img
             src="https://png.pngtree.com/png-vector/20191101/ourmid/pngtree-cartoon-color-simple-male-avatar-png-image_1934459.jpg"
             alt="avatar"
             className="w-12 rounded-full"
           />
-          <h1>{userData?.Username}</h1>
+          <h1 className="text-white">{userData?.Username}</h1>
         </div>
       )}
     </div>

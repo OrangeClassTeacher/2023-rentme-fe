@@ -18,7 +18,7 @@ export function Items(): JSX.Element {
       .catch((err) => console.log(err));
   };
   return (
-    <div className="w-full flex flex-col gap-4">
+    <div className="w-full flex flex-col gap-4 pb-12">
       <h1 className="ps-8 text-3xl">Шинээр нэмэгдсэн</h1>
       <div className="w-full flex flex-wrap justify-evenly gap-2">
         {itemData.map((item: Iproduct, index) => {
