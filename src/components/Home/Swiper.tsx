@@ -1,6 +1,5 @@
 import "swiper/css";
 import "swiper/css/navigation";
-
 import { FC } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
@@ -42,29 +41,6 @@ const SwiperSection: FC = () => (
         className="mb-[30px] md:mb-[40px] lg:mb-[56px]"
       >
         <SwiperSlide>
-<<<<<<< HEAD
-          <Image
-            src={pro1} alt="pro" className="h-[450px]" />
-        </SwiperSlide>
-
-        <SwiperSlide>
-          <Image
-            src={pro2} alt="pro" className="h-[450px]" />
-        </SwiperSlide>
-
-        <SwiperSlide>
-          <Image
-            src={pro3} alt="pro" className="h-[450px]" />
-        </SwiperSlide>
-
-        <SwiperSlide>
-          <Image
-            src={pro4} alt="pro" className="h-[450px]" />
-        </SwiperSlide>
-
-        <SwiperSlide>
-          <ProductSwiperCard />
-=======
           <Image src={pro2} alt="pro" />
         </SwiperSlide>
 
@@ -78,7 +54,6 @@ const SwiperSection: FC = () => (
 
         <SwiperSlide>
           <Image src={pro1} alt="pro" className="h-[290px]" />
->>>>>>> 3951368641b362c9650521b1eb86337f28c2ef8b
         </SwiperSlide>
 
         <div className="flex items-center justify-end gap-5 mt-[60px]">
