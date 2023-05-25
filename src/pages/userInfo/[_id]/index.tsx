@@ -223,11 +223,9 @@ export default function Index(): JSX.Element {
                       key={index}
                       className=" lg:max-w-full  rounded overflow-hidden shadow-lg"
                     >
-                      <Image
+                      <img
                         src={item.itemPhoto}
                         className="w-full"
-                        width={600}
-                        height={600}
                         alt="product"
                       />
                       <div className="px-6 py-4">
