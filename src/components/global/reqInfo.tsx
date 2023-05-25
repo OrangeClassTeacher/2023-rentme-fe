@@ -22,21 +22,21 @@ export default function ReqInfo(): JSX.Element {
     getUserData();
   }, [itemData]);
 
-  const getItemData = () => {
+  function getItemData(): void {
     if (proId) {
       axios
         .get(`${Utils.API_URL}/item/${proId}`)
         .then((res) => setItemData(res.data.result))
         .catch((err) => console.log(err));
     }
-  };
-  const getUserData = () => {
+  }
+  function getUserData(): void {
     axios
       .get(`${Utils.API_URL}/users`)
       .then((res) => setUserData(res.data.result))
       .catch((err) => console.log(err));
-  };
-  const confirmReq = (id: any) => {
+  }
+  function confirmReq(id: any): void {
     console.log(id);
 
     if (proId) {
@@ -52,16 +52,16 @@ export default function ReqInfo(): JSX.Element {
           requests: newArr,
           status: "Rented",
         })
-        .then((res) => console.log("Confirm success"))
+        .then(() => console.log("Confirm success"))
         .catch((err) => console.log(err));
     }
-  };
+  }
   //   console.log(userData);
   //   console.log(requests);
 
   return (
     <div className="flex flex-col sdkd">
-      {requests?.map((item: any, index: number) => {
+      {requests?.map((item: any) => {
         return userData?.map((user, index) => {
           if (item.userId == user._id) {
             // console.log("sasas", item.userId, user._id);
@@ -80,7 +80,7 @@ export default function ReqInfo(): JSX.Element {
                   </button>
                   <button
                     className="w-full bg-blue-500 hover:bg-blue-700 w-2/4 text-white font-bold py-2 px-4 rounded"
-                    onClick={() => confirmReq(user._id ? user._id : "")}
+                    onClick={(): void => confirmReq(user._id ? user._id : "")}
                   >
                     Confirm
                   </button>

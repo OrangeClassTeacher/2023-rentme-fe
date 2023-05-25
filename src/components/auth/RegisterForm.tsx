@@ -88,7 +88,7 @@ const RegisterForm: FC = (): JSX.Element => {
             if (res) {
               // console.log(res.data.result);
               alert("Амжилттай бүртгэлээ бүртгэлээрээ нэвтрэнэ үү!!");
-              // route.push("/login");
+              route.push("/lo gin");
             } else {
               alert("Medeellee bvren bugluuuc!!!!");
             }

@@ -371,13 +371,13 @@ function Index(): JSX.Element {
               <div className="flex justify-around px-8 w-full border-b-2">
                 <button
                   className="text-2xl"
-                  onClick={() => setRentedShow(false)}
+                  onClick={(): void => setRentedShow(false)}
                 >
                   Түрээслэх бараа
                 </button>
                 <button
                   className="text-2xl"
-                  onClick={() => setRentedShow(true)}
+                  onClick={(): void => setRentedShow(true)}
                 >
                   Түрээслэгдсэн бараа
                 </button>
@@ -447,7 +447,7 @@ function Index(): JSX.Element {
                                 <div className="flex flex-col gap-2 w-full">
                                   <button
                                     className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                                    onClick={() => {
+                                    onClick={(): void => {
                                       setShowReqs(true),
                                         localStorage.setItem(
                                           "proId",

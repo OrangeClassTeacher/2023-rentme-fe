@@ -6,7 +6,6 @@ import { BiFilterAlt } from "react-icons/bi";
 import { useState, useEffect, useContext } from "react";
 import { Iproduct } from "../../interfaces/product";
 import { SearchContext } from "@/context/searchTextContext";
-import { userIdCon } from "@/context/userIdContext";
 import RatingStar from "@/components/global/RatingStar";
 import { sortValContext } from "@/context/SortContext";
 import SortDropDown from "@/components/global/SortDropDown";
@@ -17,7 +16,6 @@ export default function Index(): JSX.Element {
   const [productData, setProductData] = useState<Iproduct[]>();
   const { sortVal } = useContext(sortValContext);
   const { search } = useContext<any>(SearchContext);
-  const { userId } = useContext(userIdCon);
   useEffect(() => {
     getData();
   }, [search, sortVal]);

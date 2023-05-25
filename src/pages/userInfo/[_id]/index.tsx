@@ -3,7 +3,6 @@ import { userIdCon } from "@/context/userIdContext";
 import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import Image from "next/image";
 import { IUser } from "@/interfaces/user";
 import { Iproduct } from "@/interfaces/product";
 import { ICategory } from "@/interfaces/category";
