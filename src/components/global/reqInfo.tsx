@@ -61,11 +61,9 @@ export default function ReqInfo(): JSX.Element {
 
   return (
     <div className="flex flex-col sdkd">
-      {requests?.map((item: any) => {
-        return userData?.map((user, index) => {
+      {requests?.map((item: any) =>
+        userData?.map((user, index) => {
           if (item.userId == user._id) {
-            // console.log("sasas", item.userId, user._id);
-
             return (
               <div className="flex items-center border-2 gap-3" key={index}>
                 <div>
@@ -88,8 +86,8 @@ export default function ReqInfo(): JSX.Element {
               </div>
             );
           }
-        });
-      })}
+        })
+      )}
     </div>
   );
 }
