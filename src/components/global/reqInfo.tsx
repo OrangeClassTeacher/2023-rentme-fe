@@ -3,7 +3,7 @@ import axios from "axios";
 import { Utils } from "../../utils/helper";
 import { IUser } from "../../interfaces/user";
 import { Iproduct } from "../../interfaces/product";
-import Image from "next/image";
+// import Image from "next/image";
 
 export default function ReqInfo(): JSX.Element {
   const [proId, setProId] = useState("");
@@ -69,12 +69,7 @@ export default function ReqInfo(): JSX.Element {
             return (
               <div className="flex items-center border-2 gap-3" key={index}>
                 <div>
-                  <Image
-                    src={user.profilePic}
-                    alt="profile"
-                    width={100}
-                    height={100}
-                  />
+                  <img src={user?.profilePic} alt="profile" />
                 </div>
                 <h1 className="w-1/4">{user.Username}</h1>
                 <h1 className="w-1/4">{user.phoneNumber}</h1>
