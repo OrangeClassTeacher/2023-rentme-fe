@@ -1,53 +1,10 @@
 import { FC } from "react";
 import AccordionAlternative from "@/components/global/AccordionAlternative";
 import Link from "next/link";
-import Image from "next/image";
-import ganzo from "@/images/ganzo.jpg";
-import amraa from "../../images/amraa.jpg";
-import orgil from "../../images/orgil.jpg";
 
 const ContactUs: FC = () => (
   <>
     <div className="bg-bg-5">
-      <div className="flex flex-col">
-        <h2 className="text-center text-4xl py-[50px]">Бидний тухай</h2>
-        <div className="w-full flex justify-evenly py-3">
-          <div className="w-1/4 border-2 h-auto">
-            <Image
-              src={amraa}
-              alt=""
-              className="w-full h-auto"
-              width={100}
-              height={100}
-            />
-            <h1 className="m-5 text-2xl text-center">Ц.Амарбаясгалан</h1>
-            <h1 className="text-center text-green-500">Developer & Captain</h1>
-          </div>
-          <div className="w-1/4 border-2 h-auto">
-            <Image
-              src={ganzo}
-              alt=""
-              className="w-full h-auto"
-              width={100}
-              height={100}
-            />
-            <h1 className="m-5 text-2xl text-center">Б.Ганзориг</h1>
-            <h1 className="text-center text-green-500">Full-Stack Developer</h1>
-          </div>
-          <div className="w-1/4 border-2 h-auto">
-            <Image
-              src={orgil}
-              alt=""
-              className="w-full h-auto"
-              width={100}
-              height={100}
-            />
-            <h1 className="m-5 text-2xl text-center">Г.Мөнх-Оргил</h1>
-            <h1 className="text-center text-green-500">Full-Stack Developer</h1>
-          </div>
-        </div>
-      </div>
-
       <div className="container grid grid-cols-2 relative pt-[112px]">
         <div className="flex flex-col gap-1 px-[70px]">
           <h1 className="font-[700] text-[40px] leading-[46px]">
@@ -70,24 +27,24 @@ const ContactUs: FC = () => (
             </p>
             <div className="flex flex-col gap-5">
               <AccordionAlternative
-                header=""
+                header="It depends on"
                 content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco."
               />
               <AccordionAlternative
-                header=""
+                header="It depends on"
                 content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco."
               />
               <AccordionAlternative
-                header=""
+                header="It depends on"
                 content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco."
               />
               <AccordionAlternative
-                header=""
+                header="It depends on"
                 content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco."
               />
 
               <AccordionAlternative
-                header=""
+                header="It depends on"
                 content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco."
               />
             </div>

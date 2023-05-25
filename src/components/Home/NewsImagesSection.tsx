@@ -20,9 +20,7 @@ export default function NewsSection(): JSX.Element {
     <div className="w-full flex flex-col gap-4">
       <div className="flex flex-col items-start mb-[30px] lg:flex-row lg:items-center lg:justify-between lg:mb-[51px] gap-[30px]">
         <div>
-          <h1 className="text-3xl-bold mb-[9px]">
-            Хамгийн их түрээслэгдсэн бүтээгдэхүүн
-          </h1>
+          <h1 className="text-3xl-bold mb-[9px]">Хамгийн их түрээслэгдсэн бүтээгдэхүүн</h1>
         </div>
 
         <Link className="arrow-btn-1" href="/item">
@@ -31,7 +29,7 @@ export default function NewsSection(): JSX.Element {
         </Link>
       </div>
       <div className="w-full flex flex-wrap justify-evenly gap-2">
-        {itemData?.slice(0, 4).map((item: Iproduct, index) => {
+        {itemData?.slice(0, 3).map((item: Iproduct, index) => {
           if (item.status != "Rented") {
             return (
               <div
@@ -39,7 +37,9 @@ export default function NewsSection(): JSX.Element {
                 className="w-full max-w-sm bg-white rounded-lg shadow "
               >
                 <div>
-                  <Link href={`/item/${item._id}`}>
+                  <Link
+                    href={`/item/${item._id}`}
+                  >
                     <img
                       src={item.itemPhoto}
                       alt="itemPhoto"
@@ -65,7 +65,7 @@ export default function NewsSection(): JSX.Element {
         })}
       </div>
       <div className="w-full flex flex-wrap justify-evenly gap-2">
-        {itemData?.slice(0).map((item: Iproduct, index) => {
+        {itemData?.slice(0,3).map((item: Iproduct, index) => {
           if (item.status != "Rented") {
             return (
               <div
@@ -73,7 +73,9 @@ export default function NewsSection(): JSX.Element {
                 className="w-full max-w-sm bg-white rounded-lg shadow "
               >
                 <div>
-                  <Link href={`/item/${item._id}`}>
+                  <Link
+                    href={`/item/${item._id}`}
+                  >
                     <img
                       src={item.itemPhoto}
                       alt="itemPhoto"

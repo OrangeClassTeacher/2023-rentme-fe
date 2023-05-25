@@ -17,7 +17,7 @@ export function Footer(): JSX.Element {
               <Link href="/contact-us">Бидэнтэй Холбогдох</Link>
             </li>
             <li className="pb-2 hover:text-color-6 cursor-pointer">
-              <Link href="/contact-us">Бидний тухай</Link>
+              <Link href="/aboutus">Бидний тухай</Link>
             </li>
             <li className="pb-2 hover:text-color-6 cursor-pointer">
               <Link href="/contact-us">Санал Хүсэлт</Link>

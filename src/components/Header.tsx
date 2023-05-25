@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Search } from "./Search";
 import mainLogo from "@/images/Logo1.png";
+
 import { BsListNested } from "react-icons/bs";
 import { useContext } from "react";
 import { userIdCon } from "@/context/userIdContext";
@@ -56,10 +57,10 @@ export function Header(): JSX.Element {
               </li>
 
               <li className="text-white duration-300 ">
-                <Link href="/contact-us">Бидний тухай</Link>
+                <Link href="/contact-us">Бидэнтэй Холбогдох</Link>
               </li>
               <li className="text-white duration-300 ">
-                <Link href="/adventage">Манайхыг сонгох давуу тал</Link>
+                <Link href="/aboutus">Бидний тухай</Link>
               </li>
             </ul>
           </nav>
@@ -70,7 +71,7 @@ export function Header(): JSX.Element {
           </button>
         </div>
 
-        <div className="flex w-2/5 md:w-full items-center  gap-7 ps-8 ">
+        <div className="flex w-2/5 md:w-full items-center gap-7">
           {/* <button className="text-xl hover:opacity-70 duration-300">
             <FiSearch />
           </button> */}
