@@ -6,7 +6,7 @@ import gif from "@/assets/giphy.gif";
 const UserCommentCard: FC = () => (
   <>
     <div className="w-full h-[290px]">
-      {/* <Image src={gif} alt="" className="w-full h-full object-cover" /> */}
+      <Image src={gif} alt="" className="h-[450px] w-full" />
     </div>
   </>
 );

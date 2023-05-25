@@ -6,21 +6,21 @@ export function Footer(): JSX.Element {
         <p>© 2023 RentMe. All Right Reserved.</p>
 
         <div className="flex items-center">
-          <ul className="flex gap-4 items-center">
+          <ul className="flex gap-[50px] items-center px-[30px]">
             <li className="pb-2 hover:text-color-6 cursor-pointer">
-              <Link href="/">Help</Link>
+              <Link href="/item">Бүтээгдэхүүн</Link>
             </li>
             <li className="pb-2 hover:text-color-6 cursor-pointer">
-              <Link href="/">Privacy Policy</Link>
+              <Link href="/">Нүүр</Link>
             </li>
             <li className="pb-2 hover:text-color-6 cursor-pointer">
-              <Link href="/">Cookie Notice</Link>
+              <Link href="/contact-us">Бидэнтэй Холбогдох</Link>
             </li>
             <li className="pb-2 hover:text-color-6 cursor-pointer">
-              <Link href="/">Security</Link>
+              <Link href="/contact-us">Бидний тухай</Link>
             </li>
             <li className="pb-2 hover:text-color-6 cursor-pointer">
-              <Link href="/">Terms of Use</Link>
+              <Link href="/contact-us">Санал Хүсэлт</Link>
             </li>
           </ul>
         </div>

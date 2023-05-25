@@ -42,23 +42,23 @@ const SwiperSection: FC = () => (
         className="mb-[30px] md:mb-[40px] lg:mb-[56px]"
       >
         <SwiperSlide>
-          <Image 
-          src={pro1} alt="pro" className="h-[290px]"/>
+          <Image
+            src={pro1} alt="pro" className="h-[450px]" />
         </SwiperSlide>
 
         <SwiperSlide>
-        <Image 
-          src={pro2} alt="pro"/>
+          <Image
+            src={pro2} alt="pro" className="h-[450px]" />
         </SwiperSlide>
 
         <SwiperSlide>
-        <Image 
-          src={pro3} alt="pro"/>
+          <Image
+            src={pro3} alt="pro" className="h-[450px]" />
         </SwiperSlide>
 
         <SwiperSlide>
-        <Image 
-          src={pro4} alt="pro"/>
+          <Image
+            src={pro4} alt="pro" className="h-[450px]" />
         </SwiperSlide>
 
         <SwiperSlide>

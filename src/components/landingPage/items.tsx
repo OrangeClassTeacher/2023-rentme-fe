@@ -32,7 +32,7 @@ export function Items(): JSX.Element {
                   <img
                     src={item.itemPhoto}
                     alt="itemPhoto"
-                    className="w-full rounded-t-lg"
+                    className="w-full rounded-t-lg h-[400px]"
                   />
                   <h1 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-black text-center">
                     {" "}

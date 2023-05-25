@@ -2,7 +2,7 @@ import { FC } from "react";
 import AccordionAlternative from "@/components/global/AccordionAlternative";
 import Link from "next/link";
 import Image from "next/image";
-import ganzo from "../../images/ganzo.jpg";
+import ganzo from "@/images/ganzo.jpg";
 import amraa from "../../images/amraa.jpg";
 import orgil from "../../images/orgil.jpg";
 
@@ -10,7 +10,7 @@ const ContactUs: FC = () => (
   <>
     <div className="bg-bg-5">
       <div className="flex flex-col">
-        <h2 className="text-center text-4xl pt-[50px]">Бидний тухай</h2>
+        <h2 className="text-center text-4xl py-[50px]">Бидний тухай</h2>
         <div className="w-full flex justify-evenly py-3">
           <div className="w-1/4 border-2 h-auto">
             <Image
@@ -20,8 +20,8 @@ const ContactUs: FC = () => (
               width={100}
               height={100}
             />
-            <h1 className="text-2xl text-center">Амрааа</h1>
-            <h1>Captain</h1>
+            <h1 className="m-5 text-2xl text-center">Ц.Амарбаясгалан</h1>
+            <h1 className="text-center text-green-500">Developer & Captain</h1>
           </div>
           <div className="w-1/4 border-2 h-auto">
             <Image
@@ -31,8 +31,8 @@ const ContactUs: FC = () => (
               width={100}
               height={100}
             />
-            <h1 className="text-2xl text-center">Ганзооо</h1>
-            <h1>Developer</h1>
+            <h1 className="m-5 text-2xl text-center">Б.Ганзориг</h1>
+            <h1 className="text-center text-green-500">Full-Stack Developer</h1>
           </div>
           <div className="w-1/4 border-2 h-auto">
             <Image
@@ -42,8 +42,8 @@ const ContactUs: FC = () => (
               width={100}
               height={100}
             />
-            <h1 className="text-2xl text-center">Оргил</h1>
-            <h1>Developer</h1>
+            <h1 className="m-5 text-2xl text-center">Г.Мөнх-Оргил</h1>
+            <h1 className="text-center text-green-500">Full-Stack Developer</h1>
           </div>
         </div>
       </div>

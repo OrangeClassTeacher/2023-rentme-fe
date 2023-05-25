@@ -11,7 +11,9 @@ export default function Home(): JSX.Element {
       <Category />
       <CarouselSection />
       <Swiper />
-      <NewsSection />
+      <div className="pb-[140px]">
+        <NewsSection />
+      </div>
       <MCategories />
       <Items />
     </div>

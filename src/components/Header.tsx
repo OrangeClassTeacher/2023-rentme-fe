@@ -60,6 +60,9 @@ export function Header(): JSX.Element {
               <li className="text-white duration-300 ">
                 <Link href="/contact-us">Бидний тухай</Link>
               </li>
+              <li className="text-white duration-300 ">
+                <Link href="/adventage">Манайхыг сонгох давуу тал</Link>
+              </li>
             </ul>
           </nav>
         </div>
