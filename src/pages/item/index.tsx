@@ -10,6 +10,7 @@ import { userIdCon } from "@/context/userIdContext";
 import RatingStar from "@/components/global/RatingStar";
 import { sortValContext } from "@/context/SortContext";
 import SortDropDown from "@/components/global/SortDropDown";
+import { Category } from "@/components/landingPage/Category";
 import { Utils } from "../../utils/helper";
 
 export default function Index(): JSX.Element {
@@ -35,17 +36,9 @@ export default function Index(): JSX.Element {
   };
   return (
     <div className="bg-white">
-      <div>
+      <div className="flex flex-col">
+        <Category />
         <SortDropDown />
-      </div>
-      <div className="text-center p-4">
-        {userId ? (
-          <button className="text-teal-500 outline outline-offset-2 outline-teal-500 bg-white rounded px-3">
-            <Link href="/addProduct">Түрээслэх Бараа Нэмэх</Link>
-          </button>
-        ) : (
-          ""
-        )}
       </div>
 
       <div>

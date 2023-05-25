@@ -1,7 +1,7 @@
 import Link from "next/link";
 export function Footer(): JSX.Element {
   return (
-    <div className="bg-head bg-gradient-to-r from-gray-900 to-gray-500">
+    <div className="bg-head bg-gradient-to-r from-gray-900 to-gray-500 px-12 py-3">
       <div className="flex items-center justify-between py-6   text-white text-xs-regular">
         <p>© 2023 RentMe. All Right Reserved.</p>
 

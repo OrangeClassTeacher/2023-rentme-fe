@@ -32,7 +32,7 @@ export default function Index(): JSX.Element {
           route.push("/");
         }
       })
-      .catch();
+      .catch((err) => alert("Email or password is wrong"));
   }
   return (
     <AuthLayout>
